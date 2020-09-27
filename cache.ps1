@@ -1,6 +1,5 @@
 param (
-   $Module, 
-   [switch]$List
+   $Module
 )
 $neededlist = @()
 $paths = @()
@@ -22,5 +21,5 @@ if ($List) {
    Write-Output "$($neededlist -join ', ')"
 }
 else {
-   Write-Output "$($paths -join ', ')"
+   Write-Output $($paths -join ', ')
 }
