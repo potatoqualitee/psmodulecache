@@ -17,13 +17,14 @@ outputs:
 runs:
   using: "composite"
   steps: 
-    - run: echo Finding install path for ${{ inputs.modules-to-install }}.
+    - id: intro
       shell: bash
+      run: echo Finding install path for ${{ inputs.modules-to-install }}.
     - id: psoutput
       shell: pwsh
       run: |
         Write-Output "::set-output name=paths::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
-        Write-Output "::set-output name=paths2::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
+        Write-Output "::set-output name=paths2::$(${{ github.action_path }}/cache.ps1 -List -Module ${{ inputs.modules-to-install }})"
     - id: bashoutput
-      run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
       shell: bash
+      run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
