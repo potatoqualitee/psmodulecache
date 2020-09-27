@@ -8,9 +8,9 @@ outputs:
   paths: 
     description: "Output paths"
     value: ${{ steps.install-paths.outputs.paths }}
-  refined-module-list: 
-    description: "List of modules to install"
-    value: ${{ steps.module-list.refined-module-list }}
+  paths2: 
+    description: "Output paths"
+    value: ${{ steps.install-paths2.outputs.paths2 }}
   current-modules: 
     description: "List of modules"
     value: ${{ steps.all-modules.outputs.list-of-modules }}
@@ -24,11 +24,10 @@ runs:
       run: |
         Write-Output "::set-output name=paths::$((Get-ChildItem /tmp) -join ', ')"
         #Write-Output "::set-output name=paths::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
-    - id: module-list
+    - id: install-paths2
       shell: pwsh
       run: |
-        Write-Output "::set-output name=refined-module-list::$((Get-ChildItem /tmp) -join ', ')"
-        #Write-Output "::set-output name=refined-module-list::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }} -List)"
+        Write-Output "::set-output name=paths2::$((Get-ChildItem /tmp) -join ', ')"
     - id: all-modules
       run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
       shell: bash
