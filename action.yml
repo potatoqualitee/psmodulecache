@@ -13,8 +13,8 @@ runs:
   steps: 
     - run: echo Installing and caching ${{ inputs.modules-to-install }}.
       shell: bash
-    - run: ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
-      shell: pwsh
     - id: all-modules
       run: Write-Output "::set-output name=list-of-modules::$(Get-Module)"
+      shell: pwsh
+    - run: ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
       shell: pwsh
