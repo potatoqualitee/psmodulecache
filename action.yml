@@ -14,16 +14,15 @@ outputs:
 runs:
   using: "composite"
   steps: 
-    - run: echo Installing and caching ${{ inputs.modules-to-install }}.
+    - run: echo Finding install path for ${{ inputs.modules-to-install }}.
       shell: bash
-    - id: perform-install
+    - id: get-modulepath
       run:  ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
       shell: pwsh
     - id: install-paths
       shell: pwsh
       run: |
-        Import-Module PSFramework, Pester
-        Write-Output "::set-output name=output-path::$((Get-Module PSFramework, Pester | Select -ExpandProperty Path) -join ', ')"
+        Write-Output "::set-output name=output-path::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
     - id: all-modules
       run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
       shell: bash
