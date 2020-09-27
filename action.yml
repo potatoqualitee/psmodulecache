@@ -1,20 +1,29 @@
 name: 'PowerShell Module Cache'
 description: 'Cache modules from the PowerShell Gallery'
 inputs:
-  modules-to-install:  # id of input
+  modules-to-install:
     description: 'Modules to install or cache'
     required: true
 outputs:
-  installed-modules: 
+  modules: 
     description: "List of modules"
     value: ${{ steps.all-modules.outputs.list-of-modules }}
+  output-paths: 
+    description: "Output paths"
+    value: ${{ steps.install-paths.outputs.output-path }}
 runs:
   using: "composite"
   steps: 
     - run: echo Installing and caching ${{ inputs.modules-to-install }}.
       shell: bash
-    - run: ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
+    - id: perform-install
+      run:  ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
       shell: pwsh
+    - id: install-paths
+      shell: pwsh
+      run: |
+        Import-Module PSFramework, Pester
+        Write-Output "::set-output name=output-path::$((Get-Module PSFramework, Pester | Select -ExpandProperty Path) -join ', ')"
     - id: all-modules
-      run: Write-Output "::set-output name=list-of-modules::$(Get-ChildItem /tmp)"
-      shell: pwsh
+      run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
+      shell: bash
