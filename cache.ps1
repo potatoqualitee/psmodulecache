@@ -1,8 +1,26 @@
-param ([object]$Module)
+param (
+   [string[]]$Module, 
+   [switch]$List
+)
+$neededlist = @()
+$paths = @()
 $module = $Module.Split(",")
-foreach ($item in $module.Trim()) {
-   if (-not (Get-Module $item -ListAvailable)) {
-      #Write-Output "/usr/local/share/powershell/Modules/$item"
-      Write-Output "/home/runner/.local/share/powershell/Modules/$item"
+
+foreach ($item in $module) {
+   if ($List) {
+      if (-not (Get-Module $item -ListAvailable)) {
+         $neededlist += $item
+      }
    }
+   else {
+      if (-not (Get-Module $item -ListAvailable)) {
+         $paths += "/home/runner/.local/share/powershell/Modules/$item"
+      }
+   }
+}
+if ($List) {
+   Write-Output "$($neededlist -join ', ')"
+}
+else {
+   Write-Output "$($paths -join ', ')"
 }
