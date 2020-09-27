@@ -18,7 +18,7 @@ foreach ($item in $module.Trim()) {
    }
 }
 if ($list) {
-   $neededlist -join ", "
+   Write-Output "$($neededlist -join ', ')"
 }
 # if no paths, then it shouldn't run the install-module anyway
-$paths -join ", "
+Write-Output "$($paths -join ', ')"
