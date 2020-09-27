@@ -20,12 +20,12 @@ runs:
       run:  ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
       shell: pwsh
     - id: install-paths
+      shell: pwsh
       run: |
         Write-Output "::set-output name=output-path::$((
           Import-Module PSFramework, Pester
           Get-Module PSFramework, Pester | Select -ExpandProperty Path) -join ', '
         )"
-      shell: pwsh
     - id: all-modules
       run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
       shell: bash
