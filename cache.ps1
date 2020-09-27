@@ -20,5 +20,5 @@ if ($NeededOnly) {
    Write-Output "$($neededlist -join ', ')"
 }
 else {
-   Write-Output $($paths -join "\r\n")
+   Write-Output $($paths -join "`n")
 }
