@@ -1,20 +1,21 @@
 name: 'Hello World'
 description: 'Greet someone'
 inputs:
-  modules-to-install:  # id of input
-    description: 'The comma separated list of the modules to install'
+  who-to-greet:  # id of input
+    description: 'Who to greet'
     required: true
+    default: 'World'
 outputs:
-  installed-modules: 
-    description: "All installed modules"
-    value: ${{ steps.installed-modules-list.outputs.installed-modules }}
+  list-of-all-installed-modules: 
+    description: "List of modules"
+    value: ${{ steps.all-modules.outputs.list-of-modules }}
 runs:
   using: "composite"
-  steps:
-    - run: echo Hello ${{ inputs.modules-to-install }}.
-      shell: pwsh
-    - id: installed-modules-list
-      run: echo "::set-output name=installed-modules::$(Get-Module)"
+  steps: 
+    - run: echo Hello ${{ inputs.who-to-greet }}.
+      shell: bash
+    - id: all-modules
+      run: Write-Host "::set-output name=list-of-modules::$(Get-Random)"
       shell: pwsh
     - run: ${{ github.action_path }}/goodbye.ps1
       shell: pwsh
