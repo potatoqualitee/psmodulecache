@@ -1,13 +1,13 @@
 param (
    [string[]]$Module,
-   [switch]$List
+   [switch]$NeededOnly
 )
 $neededlist = @()
 $paths = @()
 write-warning "$Module"
-Write-warning "$list"
+Write-warning "$NeededOnly"
 foreach ($item in $module) {
-   if ($List) {
+   if ($NeededOnly) {
       if (-not (Get-Module $item -ListAvailable)) {
          $neededlist += $item
       }
@@ -18,11 +18,9 @@ foreach ($item in $module) {
       }
    }
 }
-if ($List) {
-   #Write-Output "$($neededlist -join ', ')"
-   Write-Output "list"
+if ($NeededOnly) {
+   Write-Output "$($neededlist -join ', ')"
 }
 else {
-   #Write-Output $($paths -join ', ')
-   Write-Output "path"
+   Write-Output $($paths -join ', ')
 }
