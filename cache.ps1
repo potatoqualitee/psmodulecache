@@ -4,8 +4,6 @@ param (
 )
 $neededlist = @()
 $paths = @()
-write-warning "$Module"
-Write-warning "$NeededOnly"
 foreach ($item in $module) {
    if ($NeededOnly) {
       if (-not (Get-Module $item -ListAvailable)) {
