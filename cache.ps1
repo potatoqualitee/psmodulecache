@@ -1,5 +1,6 @@
 param ($Module)
 $module = $Module.Split(",")
+$module
 foreach ($item in $module.Trim()) {
-    Write-Output $item
+    "hello"
 }
