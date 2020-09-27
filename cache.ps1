@@ -1,10 +1,9 @@
 param (
-   $Module,
+   [string[]]$Module,
    [switch]$List
 )
 $neededlist = @()
 $paths = @()
-$module = $Module.Split(",")
 
 foreach ($item in $module) {
    if ($List) {

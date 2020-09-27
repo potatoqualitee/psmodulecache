@@ -20,7 +20,9 @@ runs:
     - run: echo Finding install path for ${{ inputs.modules-to-install }}.
       shell: bash
     - id: get-modulepath
-      run:  ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
+      run:  |
+        ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
+        ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }} -List
       shell: pwsh
     - id: install-paths
       shell: pwsh
