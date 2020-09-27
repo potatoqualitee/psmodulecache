@@ -5,7 +5,7 @@ inputs:
     description: 'Modules to install or cache'
     required: true
 outputs:
-  installed-modules: 
+  modules: 
     description: "List of modules"
     value: ${{ steps.all-modules.outputs.list-of-modules }}
   output-paths: 
