@@ -21,7 +21,10 @@ runs:
       shell: pwsh
     - id: install-paths
       run: |
-        Write-Output "::set-output name=output-path::$((Import-Module PSFramework, Pester';' Get-Module PSFramework, Pester | Select -ExpandProperty Path) -join ', ')"
+        Write-Output "::set-output name=output-path::$((
+          Import-Module PSFramework, Pester
+          Get-Module PSFramework, Pester | Select -ExpandProperty Path) -join ', '
+        )"
       shell: pwsh
     - id: all-modules
       run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
