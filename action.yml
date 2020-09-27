@@ -8,13 +8,19 @@ outputs:
   installed-modules: 
     description: "List of modules"
     value: ${{ steps.all-modules.outputs.list-of-modules }}
+  output-paths: 
+    description: "Output paths"
+    value: ${{ steps.install-paths.outputs.output-path }}
 runs:
   using: "composite"
   steps: 
     - run: echo Installing and caching ${{ inputs.modules-to-install }}.
       shell: bash
-    - run: ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
+    - id: install-paths
+      run: |
+        $hello = ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
+        Write-Output "::set-output name=output-path::$(Write-Output $hello)"
       shell: pwsh
     - id: all-modules
-      run: echo "::set-output name=list-of-modules::${{inputs.modules-to-install}}"
+      run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
       shell: bash
