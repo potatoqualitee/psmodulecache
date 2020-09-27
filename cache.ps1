@@ -18,8 +18,10 @@ foreach ($item in $module) {
    }
 }
 if ($List) {
-   Write-Output "$($neededlist -join ', ')"
+   #Write-Output "$($neededlist -join ', ')"
+   Write-Output "list"
 }
 else {
-   Write-Output $($paths -join ', ')
+   #Write-Output $($paths -join ', ')
+   Write-Output "path"
 }
