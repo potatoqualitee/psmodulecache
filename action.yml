@@ -1,4 +1,7 @@
 name: 'PowerShell Module Cache'
+branding:
+  icon: 'download'  
+  color: 'gray-dark'
 description: 'Cache modules from the PowerShell Gallery'
 inputs:
   modules-to-install:
