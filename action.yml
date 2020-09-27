@@ -8,9 +8,9 @@ outputs:
   modules: 
     description: "List of modules"
     value: ${{ steps.all-modules.outputs.list-of-modules }}
-  output-paths: 
+  paths: 
     description: "Output paths"
-    value: ${{ steps.install-paths.outputs.output-path }}
+    value: ${{ steps.install-paths.outputs.path }}
   modules-to-install: 
     description: "List of modules to install"
     value: ${{ steps.module-list.refined-module-list }}
@@ -25,7 +25,7 @@ runs:
     - id: install-paths
       shell: pwsh
       run: |
-        Write-Output "::set-output name=output-path::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
+        Write-Output "::set-output name=path::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
     - id: module-list
       shell: pwsh
       run: |

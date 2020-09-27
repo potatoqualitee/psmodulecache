@@ -1,5 +1,5 @@
 param (
-   [string[]]$Module, 
+   $Module, 
    [switch]$List
 )
 $neededlist = @()
