@@ -4,10 +4,10 @@ param (
 )
 $neededlist = @()
 $paths = @()
-
+write-warning "$Module"
+Write-warning "$list"
 foreach ($item in $module) {
    if ($List) {
-      Write-Warning "list"
       if (-not (Get-Module $item -ListAvailable)) {
          $neededlist += $item
       }

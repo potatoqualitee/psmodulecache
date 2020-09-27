@@ -11,7 +11,7 @@ outputs:
   paths: 
     description: "Output paths"
     value: ${{ steps.install-paths.outputs.path }}
-  modules-to-install: 
+  new-modules: 
     description: "List of modules to install"
     value: ${{ steps.module-list.refined-module-list }}
 runs:
