@@ -5,7 +5,7 @@ inputs:
     description: 'Modules to install or cache'
     required: true
 outputs:
-  list-of-all-installed-modules: 
+  installed-modules: 
     description: "List of modules"
     value: ${{ steps.all-modules.outputs.list-of-modules }}
 runs:
@@ -14,7 +14,7 @@ runs:
     - run: echo Hello ${{ inputs.modules-to-install }}.
       shell: bash
     - id: all-modules
-      run: Write-Output "::set-output name=list-of-modules::$(Get-ChildItem)"
+      run: Write-Output "::set-output name=list-of-modules::$(Get-Module)"
       shell: pwsh
     - run: ${{ github.action_path }}/cache.ps1
       shell: pwsh
