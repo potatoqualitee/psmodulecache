@@ -1,8 +1,8 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'PowerShell Module Cache'
+description: 'Cache modules from the PowerShell Gallery'
 inputs:
   modules-to-install:  # id of input
-    description: 'Who to greet'
+    description: 'Modules to install or cache'
     required: true
 outputs:
   list-of-all-installed-modules: 
@@ -14,7 +14,7 @@ runs:
     - run: echo Hello ${{ inputs.modules-to-install }}.
       shell: bash
     - id: all-modules
-      run: Write-Output "::set-output name=list-of-modules::$('Annoying')"
+      run: Write-Output "::set-output name=list-of-modules::$(Get-ChildItem)"
       shell: pwsh
-    - run: ${{ github.action_path }}/goodbye.ps1
+    - run: ${{ github.action_path }}/cache.ps1
       shell: pwsh
