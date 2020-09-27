@@ -7,24 +7,23 @@ inputs:
 outputs:
   paths: 
     description: "Output paths"
-    value: ${{ steps.install-paths.outputs.paths }}
+    value: ${{ steps.psoutput.outputs.paths }}
   paths2: 
     description: "Output paths"
-    value: ${{ steps.install-paths.outputs.paths2 }}
+    value: ${{ steps.psoutput.outputs.paths2 }}
   current-modules: 
     description: "List of modules"
-    value: ${{ steps.all-modules.outputs.list-of-modules }}
+    value: ${{ steps.bashoutput.outputs.list-of-modules }}
 runs:
   using: "composite"
   steps: 
     - run: echo Finding install path for ${{ inputs.modules-to-install }}.
       shell: bash
-    - id: install-paths
+    - id: psoutput
       shell: pwsh
       run: |
         Write-Output "::set-output name=paths::$((Get-ChildItem /tmp) -join ', ')"
-        Write-Output "::set-output name=paths2::$((Get-ChildItem /tmp) -join ', ')"
-        #Write-Output "::set-output name=paths::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
-    - id: all-modules
+        Write-Output "::set-output name=paths2::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
+    - id: bashoutput
       run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
       shell: bash
