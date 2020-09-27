@@ -14,7 +14,7 @@ runs:
     - run: echo Hello ${{ inputs.modules-to-install }}.
       shell: bash
     - id: all-modules
-      run: Write-Output "::set-output name=list-of-modules::$(Get-Module)"
+      run: Write-Output "::set-output name=list-of-modules::$(Get-ChildItem)"
       shell: pwsh
     - run: ${{ github.action_path }}/cache.ps1
       shell: pwsh
