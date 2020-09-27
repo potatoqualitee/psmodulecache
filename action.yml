@@ -13,7 +13,7 @@ outputs:
     value: ${{ steps.install-paths.outputs.output-path }}
   modules-to-install: 
     description: "List of modules to install"
-    value: ${{ steps.install-paths.refined-module-list }}
+    value: ${{ steps.module-list.refined-module-list }}
 runs:
   using: "composite"
   steps: 
@@ -26,6 +26,9 @@ runs:
       shell: pwsh
       run: |
         Write-Output "::set-output name=output-path::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
+    - id: module-list
+      shell: pwsh
+      run: |
         Write-Output "::set-output name=refined-module-list::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }} -List)"
     - id: all-modules
       run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
