@@ -5,29 +5,24 @@ inputs:
     description: 'Modules to install or cache'
     required: true
 outputs:
-  modules: 
-    description: "List of modules"
-    value: ${{ steps.all-modules.outputs.list-of-modules }}
   paths: 
     description: "Output paths"
-    value: ${{ steps.install-paths.outputs.path }}
+    value: ${{ steps.install-paths.outputs.paths }}
   new-modules: 
     description: "List of modules to install"
     value: ${{ steps.module-list.refined-module-list }}
+  current-modules: 
+    description: "List of modules"
+    value: ${{ steps.all-modules.outputs.list-of-modules }}
 runs:
   using: "composite"
   steps: 
     - run: echo Finding install path for ${{ inputs.modules-to-install }}.
       shell: bash
-    - id: get-modulepath
-      run:  |
-        ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
-        ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }} -List
-      shell: pwsh
     - id: install-paths
       shell: pwsh
       run: |
-        Write-Output "::set-output name=path::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
+        Write-Output "::set-output name=paths::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
     - id: module-list
       shell: pwsh
       run: |
