@@ -14,7 +14,7 @@ runs:
     - run: echo Hello ${{ inputs.modules-to-install }}.
       shell: bash
     - id: all-modules
-      run: Write-Output "::set-output name=list-of-modules::$(Write-Output (Get-Module) | Out-String)"
-      shell: pwsh
+      run: echo "::set-output name=list-of-modules::$(echo ANNOYING)"
+      shell: bash
     - run: ${{ github.action_path }}/goodbye.ps1
       shell: pwsh
