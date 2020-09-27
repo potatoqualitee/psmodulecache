@@ -22,8 +22,8 @@ runs:
     - id: psoutput
       shell: pwsh
       run: |
-        Write-Output "::set-output name=paths::$((Get-ChildItem /tmp) -join ', ')"
         Write-Output "::set-output name=paths2::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
+        Write-Output "::set-output name=paths2::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }} -List)"
     - id: bashoutput
       run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
       shell: bash
