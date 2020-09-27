@@ -1,21 +1,20 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'PowerShell Module Cache'
+description: 'Cache modules from the PowerShell Gallery'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  modules-to-install:  # id of input
+    description: 'Modules to install or cache'
     required: true
-    default: 'World'
 outputs:
-  random-number: 
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+  installed-modules: 
+    description: "List of modules"
+    value: ${{ steps.all-modules.outputs.list-of-modules }}
 runs:
   using: "composite"
   steps: 
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: echo Installing and caching ${{ inputs.modules-to-install }}.
+      shell: bash
+    - run: ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
       shell: pwsh
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(Get-Random)"
-      shell: pwsh
-    - run: ${{ github.action_path }}/goodbye.ps1
+    - id: all-modules
+      run: Write-Output "::set-output name=list-of-modules::$(Get-ChildItem /tmp)"
       shell: pwsh
