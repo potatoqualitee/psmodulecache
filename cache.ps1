@@ -1,1 +1,5 @@
-Write-Host "Just kidding, hello!"
+param ($Module)
+$module = $Module.Split(",")
+foreach ($item in $module.Trim()) {
+    Write-Output $item
+}

@@ -11,10 +11,10 @@ outputs:
 runs:
   using: "composite"
   steps: 
-    - run: echo Hello ${{ inputs.modules-to-install }}.
+    - run: echo Installing and caching ${{ inputs.modules-to-install }}.
       shell: bash
-    - id: all-modules
-      run: Write-Output "::set-output name=list-of-modules::$(Get-ChildItem)"
+    - run: ${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }}
       shell: pwsh
-    - run: ${{ github.action_path }}/cache.ps1
+    - id: all-modules
+      run: Write-Output "::set-output name=list-of-modules::$(Get-Module)"
       shell: pwsh
