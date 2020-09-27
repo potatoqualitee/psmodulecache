@@ -8,9 +8,9 @@ outputs:
   paths: 
     description: "Output paths"
     value: ${{ steps.psoutput.outputs.paths }}
-  paths2: 
+  needed: 
     description: "Output paths"
-    value: ${{ steps.psoutput.outputs.paths2 }}
+    value: ${{ steps.psoutput.outputs.needed }}
   current-modules: 
     description: "List of modules"
     value: ${{ steps.bashoutput.outputs.list-of-modules }}
