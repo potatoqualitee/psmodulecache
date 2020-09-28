@@ -4,7 +4,7 @@ This action makes caching PowerShell modules from the PowerShll Gallery easy for
 
 ## Documentation
 
-Just copy the below code and modify the line `modules-to-cache: PSFramework, Pester, dbatools`
+Just copy the code below and modify the line **`modules-to-cache: PSFramework, Pester, dbatools`** with the modules you need
 
 Once GitHub supports [using actions in composite actions](https://github.com/actions/runner/issues/646), there will be a lot less code (just the `Set required PowerShell modules` section). But until then, here's a sample workflow.
 
