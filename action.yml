@@ -20,6 +20,9 @@ outputs:
   modules-to-cache: 
     description: "Original request without versions"
     value: ${{ steps.psoutput.outputs.modules-to-cache }}
+  original-list: 
+    description: "Original request with versions"
+    value: ${{ inputs.modules-to-cache }}
 runs:
   using: "composite"
   steps: 
