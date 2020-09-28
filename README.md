@@ -4,7 +4,7 @@ This action makes caching PowerShell modules from the PowerShll Gallery easy for
 
 ## Documentation
 
-Just copy the below code and modify the line `modules-to-cache: 'PSFramework, Pester, dbatools'`
+Just copy the below code and modify the line `modules-to-cache: PSFramework, Pester, dbatools`
 
 Once GitHub supports [using actions in composite actions](https://github.com/actions/runner/issues/646), there will be a lot less code (just the `Set required PowerShell modules` section). But until then, here's a sample workflow.
 
@@ -13,7 +13,7 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v1
       with:
-        modules-to-cache: 'PSFramework, Pester, dbatools'
+        modules-to-cache: PSFramework, Pester, dbatools
     - name: Setup PowerShell module cache
       id: cacher
       uses: actions/cache@v2
@@ -61,7 +61,7 @@ jobs:
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v1
       with:
-        modules-to-cache: 'PSFramework, Pester, dbatools'
+        modules-to-cache: PSFramework, Pester, dbatools
     - name: Setup PowerShell module cache
       id: cacher
       uses: actions/cache@v2
@@ -97,7 +97,7 @@ Pull requests are welcome!
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v1
       with:
-        modules-to-cache: 'PSFramework, Pester, dbatools'
+        modules-to-cache: PSFramework, Pester, dbatools
 ```
 
 ## License
