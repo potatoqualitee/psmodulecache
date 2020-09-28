@@ -80,7 +80,7 @@ jobs:
       shell: pwsh
       run: |
           Get-Module -Name ${{ steps.psmodulecache.outputs.modules-to-cache }} -ListAvailable | Select Path
-          Import-Module dbatools
+          Import-Module PSFramework
 ```
 
 ## Cache Limits
