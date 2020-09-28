@@ -2,6 +2,8 @@
 
 This action makes caching PowerShell modules from the PowerShll Gallery easy for both Linux and Windows runners. Basically, it builds all of the required input for [actions/cache@v2](https://github.com/actions/cache).
 
+If you're using GitHub Actions to test projets that rely on PowerShell modules like PSFramework or dbatools, this caches those modules so they aren't downloaded from the PowerShell Gallery over and over again.
+
 ## Documentation
 
 Just copy the code below and modify the line **`modules-to-cache: PSFramework, Pester, dbatools`** with the modules you need.
