@@ -23,7 +23,7 @@ switch ($Type) {
    }
    'ModulePath' {
       if ($PSVersionTable.Platform -eq "Win32NT") {
-         Write-Output "C:\users\runner\.local\share\powershell\Modules\"
+         Write-Output "C:\Users\runneradmin\Documents\PowerShell\Modules\"
       } else {
          Write-Output "/home/runner/.local/share/powershell/Modules/"
       }
