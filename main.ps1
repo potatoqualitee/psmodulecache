@@ -16,16 +16,17 @@ switch ($Type) {
    }
    'KeyGen' {
       if ($neededlist.count -gt 0) {
-         Write-Output "$($neededlist -join '-')"
+         Write-Output "$($PSVersionTable.Platform)-$($neededlist -join '-')"
       }
       else {
          Write-Output "psmodulecache"
       }
    }
    'ModulePath' {
-      Write-Output "/home/runner/.local/share/powershell/Modules/"
-      if ($runner.os) {
-         Write-Warning $runner.os
+      if ($PSVersionTable.Platform -eq "Win32NT") {
+         Write-Output "C:\users\runner\.local\share\powershell\Modules\"
+      } else {
+         Write-Output "/home/runner/.local/share/powershell/Modules/"
       }
    }
 }
