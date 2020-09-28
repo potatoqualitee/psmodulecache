@@ -4,30 +4,27 @@ branding:
   color: 'gray-dark'
 description: 'Cache modules from the PowerShell Gallery'
 inputs:
-  modules-to-install:
-    description: 'Modules to install or cache'
+  modules-to-cache:
+    description: 'Modules to cache'
     required: true
 outputs:
-  paths: 
-    description: "Output paths"
-    value: ${{ steps.psoutput.outputs.paths }}
   needed: 
-    description: "Output paths"
+    description: "Needed modules"
     value: ${{ steps.psoutput.outputs.needed }}
-  current-modules: 
-    description: "List of modules"
-    value: ${{ steps.bashoutput.outputs.list-of-modules }}
+  installed: 
+    description: "All installed modules"
+    value: ${{ steps.psoutput.outputs.installed }}
 runs:
   using: "composite"
   steps: 
     - id: intro
       shell: bash
-      run: echo Finding install path for ${{ inputs.modules-to-install }}.
+      run: echo Finding modules that have not been installed in list ${{ inputs.modules-to-cache }}.
     - id: psoutput
       shell: pwsh
       run: |
-        Write-Output "::set-output name=paths::$(${{ github.action_path }}/cache.ps1 -Module ${{ inputs.modules-to-install }})"
-        Write-Output "::set-output name=needed::$(${{ github.action_path }}/cache.ps1 -NeededOnly -Module ${{ inputs.modules-to-install }})"
-    - id: bashoutput
+        Write-Output "::set-output name=needed::$(${{ github.action_path }}/cache.ps1 -NeededOnly -Module ${{ inputs.modules-to-cache }})"
+        Write-Output "::set-output name=installed::$(Get-Module -ListAvailable | Select-Object -ExpandProperty Name)"
+    - id: list-available
       shell: bash
-      run: echo "::set-output name=list-of-modules::${{ inputs.modules-to-install }}"
+      run: echo All modules currently installed ${{ steps.psoutput.outputs.installed }}
