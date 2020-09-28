@@ -13,21 +13,23 @@ foreach ($module in $Modules) {
    }
 }
 
+
+$originallist = @()
+foreach ($module in $Modules) {
+      $item, $version = $module.Split(':')
+      $originallist += $item
+}
+
 switch ($Type) {
    'Needed' {
       Write-Output "$($neededlist -join ', ')"
    }
    'ModulesToCache' {
-      $cachethis = @()
-      foreach ($module in $Modules) {
-         $item, $version = $module.Split(':')
-            $cachethis += $item
-      }
-      Write-Output "$($cachethis -join ', ')"
+      Write-Output "$($originallist -join ', ')"
    }
    'KeyGen' {
-      if ($neededlist.count -gt 0) {
-         Write-Output "$($PSVersionTable.Platform)-$($neededlist -join '-')"
+      if ($originallist.count -gt 0) {
+         Write-Output "$($PSVersionTable.Platform)-$($originallist -join '-')"
       }
       else {
          Write-Output "psmodulecache"
