@@ -1,6 +1,6 @@
 # psmodulecache
 
-This action makes caching PowerShell modules from the PowerShll Gallery easy. Basically, it builds all of the required input for [actions/cache@v2](https://github.com/actions/cache).
+This action makes caching PowerShell modules from the PowerShll Gallery easy for both Linux and Windows runners. Basically, it builds all of the required input for [actions/cache@v2](https://github.com/actions/cache).
 
 ## Documentation
 
@@ -10,22 +10,22 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
 
 ```yaml
     - name: Set required PowerShell modules
-      id: psmodulecache-action-id
+      id: psmodulecache
       uses: potatoqualitee/psmodulecache@v1
       with:
         modules-to-cache: 'PSFramework, Pester, dbatools'
     - name: Setup PowerShell module cache
-      id: psmodulecache-cacher
+      id: cacher
       uses: actions/cache@v2
       with:
-          path: ${{ steps.psmodulecache-action-id.outputs.modulepath }}
-          key: ${{ steps.psmodulecache-action-id.outputs.keygen }}
+          path: ${{ steps.psmodulecache.outputs.modulepath }}
+          key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install required PowerShell modules
-      if: steps.psmodulecache-cacher.outputs.cache-hit != 'true'
+      if: steps.cacher.outputs.cache-hit != 'true'
       shell: pwsh
       run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module ${{ steps.psmodulecache-action-id.outputs.needed }} -ErrorAction Stop
+          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
 ```
 
 ## Usage
@@ -53,31 +53,32 @@ The cache is scoped to the key and branch. The default branch cache is available
 on: [push]
 
 jobs:
-  sample-job:
+  run-on-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set required PowerShell modules
-      id: psmodulecache-action-id
+      id: psmodulecache
       uses: potatoqualitee/psmodulecache@v1
       with:
         modules-to-cache: 'PSFramework, Pester, dbatools'
     - name: Setup PowerShell module cache
-      id: psmodulecache-cacher
+      id: cacher
       uses: actions/cache@v2
       with:
-          path: ${{ steps.psmodulecache-action-id.outputs.modulepath }}
-          key: ${{ steps.psmodulecache-action-id.outputs.keygen }}
+          path: ${{ steps.psmodulecache.outputs.modulepath }}
+          key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install required PowerShell modules
-      if: steps.psmodulecache-cacher.outputs.cache-hit != 'true'
+      if: steps.cacher.outputs.cache-hit != 'true'
       shell: pwsh
       run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module ${{ steps.psmodulecache-action-id.outputs.needed }} -ErrorAction Stop
+          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
     - name: Show that the Action works
       shell: pwsh
       run: |
-          Get-Module -Name ${{ steps.psmodulecache-action-id.outputs.modules-to-cache }} -ListAvailable | Select Name
+          Get-Module -Name ${{ steps.psmodulecache.outputs.modules-to-cache }} -ListAvailable | Select Path
+          Import-Module dbatools
 ```
 
 ## Cache Limits
@@ -93,7 +94,7 @@ Pull requests are welcome!
 
 ```yaml
     - name: Set required PowerShell modules
-      id: psmodulecache-action-id
+      id: psmodulecache
       uses: potatoqualitee/psmodulecache@v1
       with:
         modules-to-cache: 'PSFramework, Pester, dbatools'
