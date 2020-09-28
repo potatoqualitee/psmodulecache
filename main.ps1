@@ -7,7 +7,7 @@ $neededlist = @()
 $allmodules = Get-Module $item -ListAvailable
 
 foreach ($item in $module) {
-   if (-not ($allmodules)) {
+   if (-not ($allmodules | Where-Object Name -eq $item)) {
       $neededlist += $item
    }
 }
