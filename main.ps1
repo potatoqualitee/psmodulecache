@@ -4,8 +4,10 @@ param (
 )
 
 $neededlist = @()
+$allmodules = Get-Module $item -ListAvailable
+
 foreach ($item in $module) {
-   if (-not (Get-Module $item -ListAvailable)) {
+   if (-not ($allmodules)) {
       $neededlist += $item
    }
 }
