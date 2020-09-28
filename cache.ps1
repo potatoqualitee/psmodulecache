@@ -1,26 +1,33 @@
 param (
    [string[]]$Module,
-   [switch]$NeededOnly
+   [string]$Type
 )
+
 $neededlist = @()
-$paths = @()
 foreach ($item in $module) {
-   if ($NeededOnly) {
+   if ($Type -eq "Needed") {
       if (-not (Get-Module $item -ListAvailable)) {
          $neededlist += $item
       }
    }
-   else {
-      # leftovers, but may be needed in the future
-      if (-not (Get-Module $item -ListAvailable)) {
-         $paths += "/home/runner/.local/share/powershell/Modules/$item"
+}
+switch ($Type) {
+   'Needed' {
+      Write-Warning "$($neededlist -join ', ')"
+      Write-Output "$($neededlist -join ', ')"
+   }
+   'KeyGen' {
+      $os = $PSVersionTable.OS.Replace(" ", "-")
+      if ($neededlist.count -gt 0) {
+         Write-Output "$os-$($neededlist -join '-')"
+      } else {
+         Write-Output $os
+      }
+      Write-Warning $os
+   }
+   'ModulePath' {
+      if ($runner.os) {
+         Write-Warning $runner.os
       }
    }
-}
-if ($NeededOnly) {
-   Write-Output "$($neededlist -join ', ')"
-}
-else {
-   # leftovers, but may be needed in the future
-   Write-Output "$($paths -join '%0A')"
 }
