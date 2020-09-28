@@ -4,7 +4,7 @@ This action makes caching PowerShell modules from the PowerShll Gallery easy. Ba
 
 ## Documentation
 
-Just copy the below code and modify the line `modules-to-install: 'PSFramework, Pester, dbatools'`
+Just copy the below code and modify the line `modules-to-cache: 'PSFramework, Pester, dbatools'`
 
 Once GitHub supports [using actions in composite actions](https://github.com/actions/runner/issues/646), there will be a lot less code (just the `Set required PowerShell modules` section). But until then, here's a sample workflow.
 
@@ -13,7 +13,7 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
       id: psmodulecache-action-id
       uses: potatoqualitee/psmodulecache@v0.0.2
       with:
-        modules-to-install: 'PSFramework, Pester, dbatools'
+        modules-to-cache: 'PSFramework, Pester, dbatools'
     - name: Setup PowerShell module cache
       id: cache-psmodulesupdate
       uses: actions/cache@v2
@@ -34,7 +34,7 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 
 ### Inputs
 
-* `modules-to-install` - A comma separated list of PowerShell modules to install or cache. 
+* `modules-to-cache` - A comma separated list of PowerShell modules to install or cache. 
 
 ### Outputs
 
@@ -57,7 +57,7 @@ jobs:
       id: psmodulecache-action-id
       uses: potatoqualitee/psmodulecache@v0.0.2
       with:
-        modules-to-install: 'PSFramework, Pester, dbatools'
+        modules-to-cache: 'PSFramework, Pester, dbatools'
 
     - name: Setup PowerShell module cache
       id: cache-psmodulesupdate
