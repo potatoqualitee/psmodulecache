@@ -11,7 +11,6 @@ foreach ($item in $module) {
 }
 switch ($Type) {
    'Needed' {
-      Write-Warning "$($neededlist -join ', ')"
       Write-Output "$($neededlist -join ', ')"
    }
    'KeyGen' {
