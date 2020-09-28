@@ -4,8 +4,10 @@ param (
 )
 
 $neededlist = @()
+$allmodules = Get-Module -ListAvailable
+
 foreach ($item in $module) {
-   if (-not (Get-Module $item -ListAvailable)) {
+   if (-not ($allmodules | Where-Object Name -eq $item)) {
       $neededlist += $item
    }
 }
@@ -23,7 +25,7 @@ switch ($Type) {
    }
    'ModulePath' {
       if ($PSVersionTable.Platform -eq "Win32NT") {
-         Write-Output "C:\users\runner\.local\share\powershell\Modules\"
+         Write-Output "C:\Users\runneradmin\Documents\PowerShell\Modules\"
       } else {
          Write-Output "/home/runner/.local/share/powershell/Modules/"
       }
