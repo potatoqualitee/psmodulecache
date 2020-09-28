@@ -1,16 +1,18 @@
 param (
-   [string[]]$Module,
+   [string[]]$Modules,
    [string]$Type
 )
 
 $neededlist = @()
 $allmodules = Get-Module -ListAvailable
 
-foreach ($item in $module) {
+foreach ($module in $Modules) {
+   $item, $version = $module.Split(':')
    if (-not ($allmodules | Where-Object Name -eq $item)) {
       $neededlist += $item
    }
 }
+
 switch ($Type) {
    'Needed' {
       Write-Output "$($neededlist -join ', ')"
