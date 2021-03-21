@@ -6,7 +6,7 @@ param (
 $neededlist = @()
 $allmodules = Get-Module -ListAvailable
 
-foreach ($item in $module) {
+foreach ($item in $Module) {
    if (-not ($allmodules | Where-Object Name -eq $item)) {
       $neededlist += $item
    }
