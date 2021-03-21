@@ -1,0 +1,46 @@
+name: Actions Workflow
+on: [push, pull_request]
+defaults:
+  run:
+    shell: pwsh
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # get the docker container
+      - name: Startup the container
+        run: docker run -p 8834:8834 --hostname nessus --name nessus -d sometheycallme/docker-nessus:latest
+
+      # setup nessus
+      - name: Sleep to give nessus time to startup
+        run: Start-Sleep 20
+      - name: Write nessus license
+        run: $env:NLICENSE | Set-Content -Path /tmp/nessus.license
+        env:
+          NLICENSE: ${{secrets.LICENSE}}
+
+      # setup powershell module cache https://github.com/marketplace/actions/cache
+
+      - name: Setup PowerShell module cache
+        id: cache-psmodules
+        uses: actions/cache@v2
+        with:
+          path: |
+            /home/runner/.local/share/powershell/Modules
+          key: ${{ runner.os }}-psmodules
+      - name: Install required PowerShell modules
+        if: steps.cache-psmodules.outputs.cache-hit != 'true'
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module PSFramework, PoshRSJob,dbatools -ErrorAction Stop
+
+      - name: Import tentools and test connect to the container
+        run: |
+          Import-Module ./tentools.psd1
+          $splat = @{
+            ComputerName = "localhost"
+            Port = 8834
+          }
+          Connect-TenService @splat
