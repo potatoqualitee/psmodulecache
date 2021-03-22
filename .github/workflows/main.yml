@@ -10,6 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # download and start the container
+      - name: Startup the container
+        run: docker run -p 8834:8834 --hostname nessus --name nessus -d sometheycallme/docker-nessus:latest
+
+      # write license from secrets
+      - name: Write nessus license
+        env:
+          NLICENSE: ${{secrets.LICENSE}}
+        run: $env:NLICENSE | Set-Content -Path /tmp/nessus.license
+
       # setup powershell module cache https://github.com/marketplace/actions/cache
 
       - name: Set required PowerShell modules
