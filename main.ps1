@@ -1,3 +1,5 @@
+# Since this is a powershell group, let's take a look at PowerShell first
+# after seeing the repo
 param (
    [string[]]$Module,
    [string]$Type
