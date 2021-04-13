@@ -8,15 +8,15 @@ inputs:
     description: 'The PowerShell modules to cache from the PowerShell Gallery'
     required: true
 outputs:
-  needed: 
-    description: "Needed modules"
-    value: ${{ steps.psoutput.outputs.needed }}
-  keygen: 
-    description: "Unique Key Generator"
-    value: ${{ steps.psoutput.outputs.keygen }}
   modulepath: 
     description: "Default module path for OS"
     value: ${{ steps.psoutput.outputs.modulepath }}
+  keygen: 
+    description: "Unique Key Generator"
+    value: ${{ steps.psoutput.outputs.keygen }}
+  needed: 
+    description: "Needed modules"
+    value: ${{ steps.psoutput.outputs.needed }}
   modules-to-cache: 
     description: "Original request"
     value: ${{ inputs.modules-to-cache }}
