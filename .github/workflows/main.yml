@@ -27,12 +27,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            /home/runner/.local/share/powershell/Modules/PSFramework
-            /home/runner/.local/share/powershell/Modules/PoshRSJob
-          key: ${{ runner.os }}-psmodulecache
+            /home/runner/.local/share/powershell/Modules
+          key: ${{ runner.os }}-psmodulecache1ddbatoolssTestFinal12FinalForReal
       - name: Install required PowerShell modules
         if: steps.cache-psmodules.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module PSFramework, PoshRSJob -ErrorAction Stop
+          Install-Module PSFramework, PoshRSJob, dbatools -ErrorAction Stop
