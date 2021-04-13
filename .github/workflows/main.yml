@@ -22,20 +22,17 @@ jobs:
 
       # setup powershell module cache https://github.com/marketplace/actions/cache
 
-      - name: Set required PowerShell modules
-        id: psmodulecache
-        uses: potatoqualitee/psmodulecache@master
-        with:
-          modules-to-cache: PSFramework, Pester, dbatools
       - name: Setup PowerShell module cache
-        id: cacher
+        id: cache-psmodules
         uses: actions/cache@v2
         with:
-            path: ${{ steps.psmodulecache.outputs.modulepath }}
-            key: ${{ steps.psmodulecache.outputs.keygen }}
+          path: |
+            /home/runner/.local/share/powershell/Modules/PSFramework
+            /home/runner/.local/share/powershell/Modules/PoshRSJob
+          key: ${{ runner.os }}-psmodulecache
       - name: Install required PowerShell modules
-        if: steps.cacher.outputs.cache-hit != 'true'
+        if: steps.cache-psmodules.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
-            Set-PSRepository PSGallery -InstallationPolicy Trusted
-            Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module PSFramework, PoshRSJob -ErrorAction Stop
