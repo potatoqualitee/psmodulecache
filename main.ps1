@@ -19,7 +19,9 @@ switch ($Type) {
    }
    'KeyGen' {
       if ($ShellToUse -eq "powershell" -and $PSVersionTable.Platform -eq "Win32NT") {
-         $versiontable = (powershell -command { $PSVersionTable })
+         $versiontable = Invoke-Command -ScriptBlock { 
+            powershell -command { $PSVersionTable } 
+         }
       } else {
          $versiontable = $PSVersionTable
       }
