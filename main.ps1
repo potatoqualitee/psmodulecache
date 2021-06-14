@@ -1,6 +1,8 @@
 param (
    [string[]]$Module,
-   [string]$Type
+   [string]$Type,
+   [ValidateSet("pwsh","powershell")]
+   [string]$ShellToUse
 )
 
 $neededlist = @()
@@ -16,18 +18,26 @@ switch ($Type) {
       Write-Output "$($neededlist -join ', ')"
    }
    'KeyGen' {
-      if ($neededlist.count -gt 0) {
-         Write-Output "$($PSVersionTable.Platform)-$($neededlist -join '-')"
+      if ($ShellToUse -eq "powershell" -and $PSVersionTable.Platform -eq "Win32NT") {
+         $versiontable = Invoke-Command -ScriptBlock { 
+            powershell -command { $PSVersionTable } 
+         }
+      } else {
+         $versiontable = $PSVersionTable
       }
-      else {
+      if ($neededlist.count -gt 0) {
+         if ($versiontable.OS) {
+            $os = $versiontable.OS.Replace(' ','').Replace('#','')
+            $platform = $versiontable.Platform
+         } else {
+            $os = $platform = "Windows"
+         }
+         Write-Output "$os-$platform-$($versiontable.PSVersion)-$($neededlist -join '-')"
+      } else {
          Write-Output "psmodulecache"
       }
    }
    'ModulePath' {
-      if ($PSVersionTable.Platform -eq "Win32NT") {
-         Write-Output "C:\Users\runneradmin\Documents\PowerShell\Modules\"
-      } else {
-         Write-Output "/home/runner/.local/share/powershell/Modules/"
-      }
+      Write-Output ($env:PSModulePath.Split(";") | Select-Object -First 1)
    }
 }
