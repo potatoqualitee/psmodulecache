@@ -13,7 +13,7 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
 ```yaml
     - name: Set required PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1
+      uses: potatoqualitee/psmodulecache@v1.1
       with:
         modules-to-cache: PSFramework, Pester, dbatools
     - name: Setup PowerShell module cache
@@ -37,7 +37,8 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 
 ### Inputs
 
-* `modules-to-cache` - A comma separated list of PowerShell modules to install or cache
+* `modules-to-cache` - A comma separated list of PowerShell modules to install or cache.
+* `shell-to-use` - The default shell to use. Defaults to pwsh. Options are pwsh or powershell.
 
 ### Outputs
 
@@ -49,7 +50,9 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 ### Cache scopes
 The cache is scoped to the key and branch. The default branch cache is available to other branches. 
 
-### Example workflow
+### Example workflows
+
+Using pwsh on Ubuntu
 
 ```yaml
 on: [push]
@@ -61,9 +64,44 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set required PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1
+      uses: potatoqualitee/psmodulecache@v1.1
       with:
         modules-to-cache: PSFramework, Pester, dbatools
+    - name: Setup PowerShell module cache
+      id: cacher
+      uses: actions/cache@v2
+      with:
+          path: ${{ steps.psmodulecache.outputs.modulepath }}
+          key: ${{ steps.psmodulecache.outputs.keygen }}
+    - name: Install required PowerShell modules
+      if: steps.cacher.outputs.cache-hit != 'true'
+      shell: pwsh
+      run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
+    - name: Show that the Action works
+      shell: pwsh
+      run: |
+          Get-Module -Name ${{ steps.psmodulecache.outputs.modules-to-cache }} -ListAvailable | Select Path
+          Import-Module PSFramework
+```
+
+Using powershell on Windows. pwsh also works and is the default.
+
+```yaml
+on: [push]
+
+jobs:
+  run-on-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set required PowerShell modules
+      id: psmodulecache
+      uses: potatoqualitee/psmodulecache@v1.1
+      with:
+        modules-to-cache: PSFramework, Pester, dbatools
+        shell-to-use: powershell
     - name: Setup PowerShell module cache
       id: cacher
       uses: actions/cache@v2
