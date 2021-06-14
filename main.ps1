@@ -17,7 +17,7 @@ switch ($Type) {
    }
    'KeyGen' {
       if ($neededlist.count -gt 0) {
-         Write-Output "$($PSVersionTable.OS.Replace(' ',''))-$($PSVersionTable.Platform)-$($neededlist -join '-')"
+         Write-Output "$($PSVersionTable.OS.Replace(' ',''))-$($PSVersionTable.Platform)-$($PSVersionTable.PSEdition)-$($neededlist -join '-')"
       } else {
          Write-Output "psmodulecache"
       }
