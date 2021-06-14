@@ -18,11 +18,11 @@ runs:
       shell: bash
       run: echo Gathering information for modules ${{ inputs.modules-to-cache }}.
     - id: psoutput
-      shell: ${{ inputs.shell-to-use }}
+      shell: pwsh
       run: |
-        Write-Output "::set-output name=needed::$(${{ github.action_path }}/main.ps1 -Type Needed -Module ${{ inputs.modules-to-cache }})"
-        Write-Output "::set-output name=keygen::$(${{ github.action_path }}/main.ps1 -Type KeyGen -Module ${{ inputs.modules-to-cache }})"
-        Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath -Module ${{ inputs.modules-to-cache }})"
+        Write-Output "::set-output name=needed::$(${{ github.action_path }}/main.ps1 -Type Needed -Module ${{ inputs.modules-to-cache }}) -ShellToUse ${{ inputs.shell-to-use }})"
+        Write-Output "::set-output name=keygen::$(${{ github.action_path }}/main.ps1 -Type KeyGen -Module ${{ inputs.modules-to-cache }}) -ShellToUse ${{ inputs.shell-to-use }})"
+        Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath -Module ${{ inputs.modules-to-cache }}) -ShellToUse ${{ inputs.shell-to-use }})"
 outputs:
   needed:
     description: "Needed modules"

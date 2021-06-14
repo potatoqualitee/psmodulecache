@@ -1,6 +1,8 @@
 param (
    [string[]]$Module,
-   [string]$Type
+   [string]$Type,
+   [ValidateSet("pwsh","powershell")]
+   [string]$ShellToUse
 )
 
 $neededlist = @()
@@ -16,14 +18,19 @@ switch ($Type) {
       Write-Output "$($neededlist -join ', ')"
    }
    'KeyGen' {
+      if ($ShellToUse -eq "powershell") {
+         $versiontable = (powershell -command { $PSVersionTable })
+      } else {
+         $versiontable = $PSVersionTable
+      }
       if ($neededlist.count -gt 0) {
-         if ($PSVersionTable.OS) {
-            $os = $PSVersionTable.OS.Replace(' ','').Replace('#','')
-            $platform = $PSVersionTable.Platform
+         if ($versiontable.OS) {
+            $os = $versiontable.OS.Replace(' ','').Replace('#','')
+            $platform = $versiontable.Platform
          } else {
             $os = $platform = "Windows"
          }
-         Write-Output "$os-$platform-$($PSVersionTable.PSVersion)-$($neededlist -join '-')"
+         Write-Output "$os-$platform-$($versiontable.PSVersion)-$($neededlist -join '-')"
       } else {
          Write-Output "psmodulecache"
       }
