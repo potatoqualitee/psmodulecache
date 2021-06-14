@@ -17,15 +17,18 @@ switch ($Type) {
    }
    'KeyGen' {
       if ($neededlist.count -gt 0) {
-         Write-Output "$($PSVersionTable.Platform)-$($neededlist -join '-')"
-      }
-      else {
+         Write-Output "$($PSVersionTable.OS.Replace(' ',''))-$($PSVersionTable.Platform)-$($neededlist -join '-')"
+      } else {
          Write-Output "psmodulecache"
       }
    }
    'ModulePath' {
       if ($PSVersionTable.Platform -eq "Win32NT") {
-         Write-Output "C:\Users\runneradmin\Documents\PowerShell\Modules\"
+         if ($PSVersionTable.PSEdition -eq "Core") {
+            Write-Output "C:\Users\runneradmin\Documents\PowerShell\Modules\"
+         } else {
+            Write-Output "C:\Users\runneradmin\Documents\WindowsPowerShell\Modules\"
+         }
       } else {
          Write-Output "/home/runner/.local/share/powershell/Modules/"
       }
