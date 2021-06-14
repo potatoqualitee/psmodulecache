@@ -18,7 +18,7 @@ switch ($Type) {
       Write-Output "$($neededlist -join ', ')"
    }
    'KeyGen' {
-      if ($ShellToUse -eq "powershell") {
+      if ($ShellToUse -eq "powershell" -and $PSVersionTable.Platform -eq "Win32NT") {
          $versiontable = (powershell -command { $PSVersionTable })
       } else {
          $versiontable = $PSVersionTable
