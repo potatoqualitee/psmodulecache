@@ -20,8 +20,8 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
       id: cacher
       uses: actions/cache@v2
       with:
-          path: ${{ steps.psmodulecache.outputs.modulepath }}
-          key: ${{ steps.psmodulecache.outputs.keygen }}
+        path: ${{ steps.psmodulecache.outputs.modulepath }}
+        key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install required PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
       uses: potatoqualitee/psmodulecache@newv2
