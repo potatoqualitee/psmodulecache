@@ -20,7 +20,7 @@ switch ($Type) {
       } else {
          $platform = "Windows"
       }
-      Write-Output "$env:RUNNER_OS-test-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
+      Write-Output "$env:RUNNER_OS-test1-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
