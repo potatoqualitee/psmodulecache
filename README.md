@@ -40,11 +40,13 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 
 * `modules-to-cache` - A comma separated list of PowerShell modules to install or cache.
 * `shell-to-use` - The default shell to use. Defaults to pwsh. Options are pwsh or powershell.
-* `modules-to-cache-final` - This is basically a repeat of the first list.
+* `modules-to-cache-final` - Auto-generated module list. This is basically a repeat of the first list.
+* `skip-publisher-check` - Skip publisher check during Install-Module. Defaults to true.
+* `allow-prerelease` - Allow prerelease during Install-Module. Defaults to true.
+* `force` - Force during Install-Module. Defaults to true.
 
 ### Outputs
 
-* `needed` - All modules that need to be installed (some are already built-in, like Pester)
 * `keygen` - Auto-generated cache key for actions/cache@v2 based on OS and needed modules
 * `modulepath` - The PowerShell module path directory
 * `modules-to-cache` - A comma separated list of PowerShell modules to install or cache which can be used to confirm that the modules have been installed
@@ -84,7 +86,6 @@ jobs:
       shell: pwsh
       run: |
           Get-Module -Name PSFramework, Pester, dbatools -ListAvailable | Select Path
-          Import-Module dbatools
 ```
 
 Using powershell on Windows. pwsh also works and is the default.
@@ -97,24 +98,22 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set required PowerShell modules
+    - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v2
+      uses: potatoqualitee/psmodulecache@newv2
       with:
-        modules-to-cache: PSFramework, Pester, dbatools
-        shell-to-use: powershell
-    - name: Setup PowerShell module cache
+        modules-to-cache: PSFramework, Pester, dbatools:1.0.0
+    - name: Run module cacher action
       id: cacher
       uses: actions/cache@v2
       with:
-          path: ${{ steps.psmodulecache.outputs.modulepath }}
-          key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install required PowerShell modules
+        path: ${{ steps.psmodulecache.outputs.modulepath }}
+        key: ${{ steps.psmodulecache.outputs.keygen }}
+    - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      shell: pwsh
-      run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
+      uses: potatoqualitee/psmodulecache@newv2
+      with:
+        modules-to-cache-final: ${{ steps.psmodulecache.outputs.modules-to-cache }}
     - name: Show that the Action works
       shell: pwsh
       run: |

@@ -12,7 +12,7 @@ inputs:
     required: false
     default: "pwsh"
   modules-to-cache-final:
-    description: "Auto-populated module list"
+    description: "Auto-generated module list"
     required: false
   skip-publisher-check:
     description: "Skip publisher check during Install-Module"
