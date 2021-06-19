@@ -57,7 +57,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create variables for module cacher
+      - name: Create variables for module cacher1
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@ps
         with:
