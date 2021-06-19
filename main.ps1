@@ -20,7 +20,7 @@ switch ($Type) {
       } else {
          $platform = "Windows"
       }
-      Write-Output "$env:RUNNER_OS-3-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
+      Write-Output "$env:RUNNER_OS-4-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
    }
    'ModulePath' {
       Write-Output ($env:PSModulePath.Split(";").Split(":") | Select-Object -First 1)
