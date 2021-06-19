@@ -42,18 +42,15 @@ runs:
           $modulelist = "${{ inputs.modules-to-cache-final }}"
 
           Write-Output "Installing modules $modulelist on PowerShell $($PSVersionTable.PSVersion)"
-          if ($modulelist -notmatch "\:") {
-            foreach ($module in $modulelist.Split(",").Trim()) {
-              Install-Module $module -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-            }
-          } else {
-            # it's versioned
-            $modules = $modulelist.Split(",").Trim()
-            foreach ($module in $modules) {
-                Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
-                $item, $version = $module.Split(":")
+          $modules = $modulelist.Split(",").Trim()
+          foreach ($module in $modules) {
+              Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
+              $item, $version = $module.Split(":")
+              if ($version) {
                 Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-            }
+              } else {
+                Install-Module $item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+              }
           }
         }
 outputs:
