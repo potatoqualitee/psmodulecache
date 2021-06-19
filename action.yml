@@ -41,13 +41,13 @@ runs:
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           $modulelist = "${{ inputs.modules-to-cache-final }}"
           if ($modulelist -notmatch "\:") {
-            Install-Module ${{ inputs.modules-to-cache-final }} -ErrorAction Stop -Force:${{ inputs.force }} -SkipPublisherCheck:${{ inputs.skip-publisher-check }} -AllowPrerelease:${{ inputs.allow-prerelease }}
+            Install-Module ${{ inputs.modules-to-cache-final }} -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
           } else {
             # it's versioned
             $modules = $modulelist.Split(",").Trim()
             foreach ($module in $modules) {
                 $item, $version = $module.Split(":")
-                Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:${{ inputs.force }} -SkipPublisherCheck:${{ inputs.skip-publisher-check }} -AllowPrerelease:${{ inputs.allow-prerelease }}
+                Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
             }
           }
         }
