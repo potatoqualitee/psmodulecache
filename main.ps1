@@ -1,5 +1,6 @@
 param (
    [string[]]$Module,
+   [ValidateSet("KeyGen","ModulePath")]
    [string]$Type,
    [ValidateSet("pwsh","powershell")]
    [string]$ShellToUse

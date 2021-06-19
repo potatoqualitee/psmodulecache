@@ -20,7 +20,7 @@ jobs:
         if: steps.cacher.outputs.cache-hit != 'true'
         uses: potatoqualitee/psmodulecache@newv2
         with:
-          final-to-cache: ${{ steps.psmodulecache.outputs.modules-to-cache }}
+          modules-to-cache-final: ${{ steps.psmodulecache.outputs.modules-to-cache }}
       - name: Show that the Action works
         shell: pwsh
         run: |

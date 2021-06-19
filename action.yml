@@ -11,9 +11,21 @@ inputs:
     description: "The default shell to use. Defaults to pwsh. Options are pwsh or powershell."
     required: false
     default: "pwsh"
-  final-to-cache:
+  modules-to-cache-final:
     description: "Auto-populated module list"
     required: false
+  skip-publisher-check:
+    description: "Skip publisher check during Install-Module"
+    required: false
+    default: "true"
+  allow-prerelease:
+    description: "Allow prerelease during Install-Module"
+    required: false
+    default: "true"
+  force:
+    description: "Force during Install-Module"
+    required: false
+    default: "true"
 runs:
   using: "composite"
   steps:
@@ -27,15 +39,15 @@ runs:
         } else {
           Write-Output "Installing modules"
           Set-PSRepository PSGallery -InstallationPolicy Trusted
-          $modulelist = "${{ inputs.final-to-cache }}"
+          $modulelist = "${{ inputs.modules-to-cache-final }}"
           if ($modulelist -notmatch "\:") {
-            Install-Module ${{ inputs.final-to-cache }} -ErrorAction Stop -Force -SkipPublisherCheck
+            Install-Module ${{ inputs.modules-to-cache-final }} -ErrorAction Stop -Force:${{ inputs.force }} -SkipPublisherCheck:${{ inputs.skip-publisher-check }} -AllowPrerelease:${{ inputs.allow-prerelease }}
           } else {
             # it's versioned
             $modules = $modulelist.Split(",").Trim()
             foreach ($module in $modules) {
                 $item, $version = $module.Split(":")
-                Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force -SkipPublisherCheck
+                Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:${{ inputs.force }} -SkipPublisherCheck:${{ inputs.skip-publisher-check }} -AllowPrerelease:${{ inputs.allow-prerelease }}
             }
           }
         }

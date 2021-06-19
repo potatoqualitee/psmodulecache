@@ -8,25 +8,27 @@ If you're using GitHub Actions to test projects that rely on PowerShell modules 
 
 Just copy the code below and modify the line **`modules-to-cache: PSFramework, Pester, dbatools`** with the modules you need.
 
+If you need to use `RequiredVersion`, add a colon then the version: **`modules-to-cache: PSFramework, Pester:4.10.1, dbatools:1.0.0`**
+
 Once GitHub supports [using actions in composite actions](https://github.com/actions/runner/issues/646), there will be a lot less code (just the `Set required PowerShell modules` section). But until then, here's a sample workflow.
 
 ```yaml
-    - name: Get PowerShell module variables for cacher
+    - name: Create variables for module cacher
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@newv2
       with:
         modules-to-cache: PSFramework, Pester, dbatools
-    - name: Setup PowerShell module cache
+    - name: Run module cacher action
       id: cacher
       uses: actions/cache@v2
       with:
         path: ${{ steps.psmodulecache.outputs.modulepath }}
         key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install required PowerShell modules
+    - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
       uses: potatoqualitee/psmodulecache@newv2
       with:
-        final-to-cache: ${{ steps.psmodulecache.outputs.modules-to-cache }}
+        modules-to-cache-final: ${{ steps.psmodulecache.outputs.modules-to-cache }}
 ```
 
 ## Usage
@@ -38,6 +40,7 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 
 * `modules-to-cache` - A comma separated list of PowerShell modules to install or cache.
 * `shell-to-use` - The default shell to use. Defaults to pwsh. Options are pwsh or powershell.
+* `modules-to-cache-final` - This is basically a repeat of the first list.
 
 ### Outputs
 
@@ -61,27 +64,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Get PowerShell module variables for cacher
+    - name: Create variables for module cacher
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@newv2
       with:
-        modules-to-cache: PSFramework, Pester, dbatools
-    - name: Setup PowerShell module cache
+        modules-to-cache: PSFramework, Pester, dbatools:1.0.0
+    - name: Run module cacher action
       id: cacher
       uses: actions/cache@v2
       with:
         path: ${{ steps.psmodulecache.outputs.modulepath }}
         key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install required PowerShell modules
+    - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
       uses: potatoqualitee/psmodulecache@newv2
       with:
-        final-to-cache: ${{ steps.psmodulecache.outputs.modules-to-cache }}
+        modules-to-cache-final: ${{ steps.psmodulecache.outputs.modules-to-cache }}
     - name: Show that the Action works
       shell: pwsh
       run: |
-          Get-Module -Name ${{ steps.psmodulecache.outputs.modules-to-cache }} -ListAvailable | Select Path
-          Import-Module PSFramework
+          Get-Module -Name PSFramework, Pester, dbatools -ListAvailable | Select Path
+          Import-Module dbatools
 ```
 
 Using powershell on Windows. pwsh also works and is the default.
@@ -96,7 +99,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set required PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1.1
+      uses: potatoqualitee/psmodulecache@v2
       with:
         modules-to-cache: PSFramework, Pester, dbatools
         shell-to-use: powershell
@@ -126,7 +129,6 @@ A repository can have up to 5GB of caches. Once the 5GB limit is reached, older 
 Pull requests are welcome!
 
 ## TODO
-* Add support for specific module versions
 * Add support for additional custom repositories (may be out of scope?)
 * Once GitHub supports actions in composite actions, only the following will be required!
 
