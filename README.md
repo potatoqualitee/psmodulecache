@@ -61,23 +61,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set required PowerShell modules
+    - name: Get PowerShell module variables for cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1.1
+      uses: potatoqualitee/psmodulecache@newv2
       with:
         modules-to-cache: PSFramework, Pester, dbatools
     - name: Setup PowerShell module cache
       id: cacher
       uses: actions/cache@v2
       with:
-          path: ${{ steps.psmodulecache.outputs.modulepath }}
-          key: ${{ steps.psmodulecache.outputs.keygen }}
+        path: ${{ steps.psmodulecache.outputs.modulepath }}
+        key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install required PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      shell: pwsh
-      run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
+      uses: potatoqualitee/psmodulecache@newv2
+      with:
+        final-to-cache: ${{ steps.psmodulecache.outputs.modules-to-cache }}
     - name: Show that the Action works
       shell: pwsh
       run: |
