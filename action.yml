@@ -54,18 +54,18 @@ runs:
               if ($version) {
                Invoke-Command -ScriptBlock { 
                   ${{ inputs.shell-to-use }} -command {
-                  Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+                  Install-Module $using:item -RequiredVersion $using:version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
                   }
                 }
               } else {
                 Invoke-Command -ScriptBlock { 
                   ${{ inputs.shell-to-use }} -command {
-                  Install-Module $item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+                  Install-Module $using:item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
                   }
                 }
               }
+            }
           }
-        }
 outputs:
   keygen:
     description: "Unique Key Generator"
