@@ -11,9 +11,9 @@ Just copy the code below and modify the line **`modules-to-cache: PSFramework, P
 Once GitHub supports [using actions in composite actions](https://github.com/actions/runner/issues/646), there will be a lot less code (just the `Set required PowerShell modules` section). But until then, here's a sample workflow.
 
 ```yaml
-    - name: Set required PowerShell modules
+    - name: Get PowerShell module variables for cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1.1
+      uses: potatoqualitee/psmodulecache@newv2
       with:
         modules-to-cache: PSFramework, Pester, dbatools
     - name: Setup PowerShell module cache
@@ -24,10 +24,9 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
           key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install required PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      shell: pwsh
-      run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
+      uses: potatoqualitee/psmodulecache@newv2
+      with:
+        final-to-cache: ${{ steps.psmodulecache.outputs.modules-to-cache }
 ```
 
 ## Usage
