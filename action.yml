@@ -30,7 +30,7 @@ runs:
   using: "composite"
   steps:
     - id: psoutput
-      shell: ${{ inputs.shell-to-use }}
+      shell: inputs.shell-to-use
       run: |
         if ("${{ inputs.modules-to-cache }}") {
           Write-Output "Getting variables for cacher"
