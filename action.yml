@@ -37,18 +37,20 @@ runs:
           Write-Output "::set-output name=keygen::$(${{ github.action_path }}/main.ps1 -Type KeyGen -Module ${{ inputs.modules-to-cache }} -ShellToUse ${{ inputs.shell-to-use }})"
           Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath)"
         } else {
-          Write-Output "Installing modules"
+          Write-Output "Trusting PSGallery"
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           $modulelist = "${{ inputs.modules-to-cache-final }}"
-          if ($modulelist -notmatch "\:") {
-            Install-Module ${{ inputs.modules-to-cache-final }} -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-          } else {
-            # it's versioned
-            $modules = $modulelist.Split(",").Trim()
-            foreach ($module in $modules) {
-                $item, $version = $module.Split(":")
+
+          Write-Output "Installing modules $modulelist on PowerShell $($PSVersionTable.PSVersion)"
+          $modules = $modulelist.Split(",").Trim()
+          foreach ($module in $modules) {
+              Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
+              $item, $version = $module.Split(":")
+              if ($version) {
                 Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-            }
+              } else {
+                Install-Module $item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+              }
           }
         }
 outputs:
