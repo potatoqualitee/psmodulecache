@@ -41,14 +41,14 @@ runs:
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           $modulelist = "${{ inputs.modules-to-cache-final }}"
 
-          Write-Output "Installing modules $modulelist"
+          Write-Output "Installing modules $modulelist on PowerShell $($PSVersionTable.PSVersion)"
           if ($modulelist -notmatch "\:") {
             Install-Module ${{ inputs.modules-to-cache-final }} -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
           } else {
             # it's versioned
             $modules = $modulelist.Split(",").Trim()
             foreach ($module in $modules) {
-                Write-Output "Installing module $module"
+                Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
                 $item, $version = $module.Split(":")
                 Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
             }
