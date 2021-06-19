@@ -43,7 +43,9 @@ runs:
 
           Write-Output "Installing modules $modulelist on PowerShell $($PSVersionTable.PSVersion)"
           if ($modulelist -notmatch "\:") {
-            Install-Module ${{ inputs.modules-to-cache-final }} -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+            foreach ($module in modulelist) {
+              Install-Module $module -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+            }
           } else {
             # it's versioned
             $modules = $modulelist.Split(",").Trim()
