@@ -55,13 +55,13 @@ runs:
                Invoke-Command -ScriptBlock { 
                   ${{ inputs.shell-to-use }} -command {
                   Install-Module $args[0] -RequiredVersion $args[1] -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-                  } -ArgumentList $item, $version
-                }
+                  }
+                } -ArgumentList $item, $version
               } else {
                 Invoke-Command -ScriptBlock { 
                   ${{ inputs.shell-to-use }} -command {
-                  Install-Module $args[0] -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }} -ArgumentList $item
-                  }
+                  Install-Module $args[0] -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+                  } -ArgumentList $item
                 }
               }
             }
