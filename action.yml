@@ -54,13 +54,13 @@ runs:
               if ($version) {
                Invoke-Command -ScriptBlock { 
                   ${{ inputs.shell-to-use }} -command {
-                  Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-                  } -ArgumentList @{ item = $item; version = $version}
+                  Install-Module $args[0] -RequiredVersion $args[1] -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+                  } -ArgumentList $item, $version
                 }
               } else {
                 Invoke-Command -ScriptBlock { 
                   ${{ inputs.shell-to-use }} -command {
-                  Install-Module $item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }} -ArgumentList @{ item = $item; version = $version}
+                  Install-Module $args[0] -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }} -ArgumentList $item
                   }
                 }
               }
