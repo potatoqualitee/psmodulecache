@@ -23,7 +23,7 @@ runs:
     - id: psoutput
       shell: pwsh
       run: |
-        if (${{ inputs.modules-to-cache }}) {
+        if ("${{ inputs.modules-to-cache }}") {
           Write-Output "::set-output name=keygen::$(${{ github.action_path }}/main.ps1 -Type KeyGen -Module ${{ inputs.modules-to-cache }} -ShellToUse ${{ inputs.shell-to-use }})"
           Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath"
         } else {
