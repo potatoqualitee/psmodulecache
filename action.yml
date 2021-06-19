@@ -53,15 +53,15 @@ runs:
               $item, $version = $module.Split(":")
               if ($version) {
                Invoke-Command -ScriptBlock { 
-                  ${{ inputs.shell-to-use }} -command {
+                  ${{ inputs.shell-to-use }} -args $item, $version -command {
                   Install-Module $args[0] -RequiredVersion $args[1] -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
                   }
-                } -ArgumentList $item, $version
+                }
               } else {
                 Invoke-Command -ScriptBlock { 
-                  ${{ inputs.shell-to-use }} -command {
+                  ${{ inputs.shell-to-use }} -args $item -command {
                   Install-Module $args[0] -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-                  } -ArgumentList $item
+                  }
                 }
               }
             }
