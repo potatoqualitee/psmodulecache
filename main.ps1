@@ -28,6 +28,5 @@ switch ($Type) {
       } else {
          Write-Output ($env:PSModulePath.Split(":") | Select-Object -First 1)
       }
-      Write-Warning ($env:PSModulePath.Split(";") | Select-Object -First 1)
    }
 }
