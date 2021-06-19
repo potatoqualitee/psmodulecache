@@ -23,6 +23,6 @@ switch ($Type) {
       Write-Output "$os-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
    }
    'ModulePath' {
-      Write-Output ($env:PSModulePath.Split(";") | Select-Object -First 1)
+      Write-Output ($env:PSModulePath.Split(";").Split(":") | Select-Object -First 1)
    }
 }
