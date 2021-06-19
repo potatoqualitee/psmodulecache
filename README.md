@@ -26,7 +26,7 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
       if: steps.cacher.outputs.cache-hit != 'true'
       uses: potatoqualitee/psmodulecache@newv2
       with:
-        final-to-cache: ${{ steps.psmodulecache.outputs.modules-to-cache }
+        final-to-cache: ${{ steps.psmodulecache.outputs.modules-to-cache }}
 ```
 
 ## Usage
