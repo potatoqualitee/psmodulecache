@@ -37,15 +37,18 @@ runs:
           Write-Output "::set-output name=keygen::$(${{ github.action_path }}/main.ps1 -Type KeyGen -Module ${{ inputs.modules-to-cache }} -ShellToUse ${{ inputs.shell-to-use }})"
           Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath)"
         } else {
-          Write-Output "Installing modules"
+          Write-Output "Trusting PSGallery"
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           $modulelist = "${{ inputs.modules-to-cache-final }}"
+
+          Write-Output "Installing modules $modulelist"
           if ($modulelist -notmatch "\:") {
             Install-Module ${{ inputs.modules-to-cache-final }} -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
           } else {
             # it's versioned
             $modules = $modulelist.Split(",").Trim()
             foreach ($module in $modules) {
+                Write-Output "Installing module $module"
                 $item, $version = $module.Split(":")
                 Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
             }
