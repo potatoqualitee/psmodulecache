@@ -24,7 +24,7 @@ runs:
           Write-Output "Getting variables for cacher"
           Write-Output "::set-output name=keygen::$(${{ github.action_path }}/main.ps1 -Type KeyGen -Module ${{ inputs.modules-to-cache }} -ShellToUse ${{ inputs.shell-to-use }})"
           Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath)"
-          $modpath = .${{ github.action_path }}/main.ps1 -Type ModulePath
+          $modpath = ${{ github.action_path }}/main.ps1 -Type ModulePath
           Write-Warning $modpath
         } else {
           Write-Output "Installing modules"
