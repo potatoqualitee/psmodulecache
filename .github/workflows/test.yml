@@ -61,7 +61,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@ps
         with:
-          modules-to-cache: PSFramework, Pester, dbatools:1.0.1
+          modules-to-cache: PoshRSJob
           shell-to-use: powershell
       - name: Run module cacher action
         id: cacher
@@ -78,5 +78,5 @@ jobs:
       - name: Show that the Action works
         shell: powershell
         run: |
-          Get-Module -Name dbatools -ListAvailable | Select Path
-          Import-Module PSFramework
+          Get-Module -Name PoshRSJob -ListAvailable | Select Path
+          Import-Module PoshRSJob
