@@ -15,12 +15,11 @@ switch ($Type) {
          $versiontable = $PSVersionTable
       }
       if ($versiontable.OS) {
-         $os = $versiontable.OS.Replace(' ','').Replace('#','')
          $platform = $versiontable.Platform
       } else {
-         $os = $platform = "Windows"
+         $platform = "Windows"
       }
-      Write-Output "$os-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
+      Write-Output "$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
    }
    'ModulePath' {
       Write-Output ($env:PSModulePath.Split(";").Split(":") | Select-Object -First 1)
