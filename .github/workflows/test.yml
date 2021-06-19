@@ -76,7 +76,7 @@ jobs:
           modules-to-cache-final: ${{ steps.psmodulecache.outputs.modules-to-cache }}
           shell-to-use: powershell
       - name: Show that the Action works
-        shell: pwsh
+        shell: powershell
         run: |
           Get-Module -Name dbatools -ListAvailable | Select Path
           Import-Module PSFramework
