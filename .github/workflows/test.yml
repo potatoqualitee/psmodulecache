@@ -9,7 +9,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v2
         with:
-          modules-to-cache: PSFramework, Pester, dbatools:1.0.0
+          modules-to-cache: PSFramework, Pester, dbatools:1.0.1
       - name: Run module cacher action
         id: cacher
         uses: actions/cache@v2
