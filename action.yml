@@ -38,6 +38,7 @@ runs:
                 $item, $version = $module.Split(":")
                 Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force -SkipPublisherCheck
             }
+          }
         }
 outputs:
   keygen:
