@@ -30,7 +30,7 @@ runs:
   using: "composite"
   steps:
     - id: psoutput
-      shell: ${{ inputs.modules-to-cache }}
+      shell: pwsh
       run: |
         if ("${{ inputs.modules-to-cache }}") {
           Write-Output "Getting variables for cacher"
@@ -38,7 +38,12 @@ runs:
           Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath)"
         } else {
           Write-Output "Trusting PSGallery"
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Invoke-Command -ScriptBlock { 
+            ${{ inputs.shell-to-use }} -command { 
+              Set-PSRepository PSGallery -InstallationPolicy Trusted
+            }
+          }
+          
           $modulelist = "${{ inputs.modules-to-cache-final }}"
 
           Write-Output "Installing modules $modulelist on PowerShell $($PSVersionTable.PSVersion)"
@@ -47,9 +52,17 @@ runs:
               Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
               $item, $version = $module.Split(":")
               if ($version) {
-                Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+               Invoke-Command -ScriptBlock { 
+                  ${{ inputs.shell-to-use }} -command {
+                  Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+                  }
+                }
               } else {
-                Install-Module $item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+                Invoke-Command -ScriptBlock { 
+                  ${{ inputs.shell-to-use }} -command {
+                  Install-Module $item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
+                  }
+                }
               }
           }
         }
