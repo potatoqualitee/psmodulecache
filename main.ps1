@@ -23,7 +23,11 @@ switch ($Type) {
       Write-Output "$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
    }
    'ModulePath' {
-      Write-Output ($env:PSModulePath.Split(";").Split(":") | Select-Object -First 1)
-      Write-Warning ($env:PSModulePath.Split(";").Split(":") | Select-Object -First 1)
+      if ($env:RUNNER_OS -eq "Windows") {
+         Write-Output ($env:PSModulePath.Split(";") | Select-Object -First 1)
+      } else {
+         Write-Output ($env:PSModulePath.Split(":") | Select-Object -First 1)
+      }
+      Write-Warning ($env:PSModulePath.Split(";") | Select-Object -First 1)
    }
 }
