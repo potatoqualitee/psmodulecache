@@ -43,7 +43,7 @@ runs:
 
           Write-Output "Installing modules $modulelist on PowerShell $($PSVersionTable.PSVersion)"
           if ($modulelist -notmatch "\:") {
-            foreach ($module in modulelist) {
+            foreach ($module in $modulelist) {
               Install-Module $module -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
             }
           } else {
