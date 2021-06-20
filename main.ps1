@@ -20,7 +20,7 @@ switch ($Type) {
       } else {
          $platform = "Windows"
       }
-      Write-Output "$env:RUNNER_OS-test1-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
+      Write-Output "$env:RUNNER_OS-test2-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
@@ -29,6 +29,7 @@ switch ($Type) {
             $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
          }
          Write-Output $modpath
+         Write-Warning $modpath
       } else {
          Write-Output ($env:PSModulePath.Split(":") | Select-Object -First 1)
       }
