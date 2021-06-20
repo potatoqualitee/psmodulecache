@@ -52,3 +52,28 @@ jobs:
         run: |
           Get-Module -Name dbatools -ListAvailable | Select Path
           Import-Module PSFramework
+
+  run-on-windows-powershell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create variables for module cacher
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v3
+        with:
+          modules-to-cache: PoshRSJob
+          shell: powershell
+      - name: Run module cacher action
+        id: cacher
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.psmodulecache.outputs.modulepath }}
+          key: ${{ steps.psmodulecache.outputs.keygen }}
+      - name: Install PowerShell modules
+        if: steps.cacher.outputs.cache-hit != 'true'
+        uses: potatoqualitee/psmodulecache@v3
+      - name: Show that the Action works
+        shell: powershell
+        run: |
+          Get-Module -Name PoshRSJob -ListAvailable | Select Path
+          Import-Module PoshRSJob

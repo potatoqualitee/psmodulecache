@@ -7,23 +7,16 @@ inputs:
   modules-to-cache:
     description: "The PowerShell modules to cache from the PowerShell Gallery"
     required: false
-  shell-to-use:
+  shell:
     description: "The default shell to use. Defaults to pwsh. Options are pwsh or powershell."
     required: false
     default: "pwsh"
-  modules-to-cache-final:
-    description: "Auto-generated module list"
-    required: false
-  skip-publisher-check:
-    description: "Skip publisher check during Install-Module"
-    required: false
-    default: "true"
   allow-prerelease:
-    description: "Allow prerelease during Install-Module"
+    description: "Allow prerelease during Save-Module"
     required: false
     default: "true"
   force:
-    description: "Force during Install-Module"
+    description: "Force during Save-Module"
     required: false
     default: "true"
 runs:
@@ -34,24 +27,24 @@ runs:
       run: |
         if ("${{ inputs.modules-to-cache }}") {
           Write-Output "Getting variables for cacher"
-          Write-Output "::set-output name=keygen::$(${{ github.action_path }}/main.ps1 -Type KeyGen -Module ${{ inputs.modules-to-cache }} -ShellToUse ${{ inputs.shell-to-use }})"
-          Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath)"
-        } else {
-          Write-Output "Trusting PSGallery"
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          $modulelist = "${{ inputs.modules-to-cache-final }}"
+          $keygen = ${{ github.action_path }}/main.ps1 -Type KeyGen -Module "${{ inputs.modules-to-cache }}" -Shell "${{ inputs.shell }}"
+          $modulepath = ${{ github.action_path }}/main.ps1 -Type ModulePath  -Shell "${{ inputs.shell }}"
 
-          Write-Output "Installing modules $modulelist on PowerShell $($PSVersionTable.PSVersion)"
-          $modules = $modulelist.Split(",").Trim()
-          foreach ($module in $modules) {
-              Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
-              $item, $version = $module.Split(":")
-              if ($version) {
-                Install-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-              } else {
-                Install-Module $item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }}
-              }
-          }
+          $inputs = [pscustomobject]@{
+                ModulePath      = $modulepath
+                Modules         = ("${{ inputs.modules-to-cache }}" -split ",")
+                Force           = "${{ inputs.force }}"
+                AllowPrerelease = "${{ inputs.allow-prerelease }}"
+                Shell           = "${{ inputs.shell }}"
+            }
+          
+          Write-Output "::set-output name=keygen::$keygen"
+          Write-Output "::set-output name=modulepath::$modulepath"
+
+          $null = $inputs | Export-CliXml -Path (Join-Path $home -ChildPath cache.xml)
+        } else {
+          Write-Output "Saving modules"
+          ${{ github.action_path }}/main.ps1 -Type SaveModule
         }
 outputs:
   keygen:
@@ -60,6 +53,3 @@ outputs:
   modulepath:
     description: "Default module path for OS"
     value: ${{ steps.psoutput.outputs.modulepath }}
-  modules-to-cache:
-    description: "Original request"
-    value: ${{ inputs.modules-to-cache }}
