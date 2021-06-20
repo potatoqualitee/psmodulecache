@@ -20,7 +20,7 @@ switch ($Type) {
       } else {
          $platform = "Windows"
       }
-      Write-Output "v2-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$($Module.Split(",") -join '-')"
+      Write-Output "v2-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
@@ -30,7 +30,7 @@ switch ($Type) {
          }
          Write-Output $modpath
       } else {
-         Write-Output ($env:PSModulePath.Split(":") | Select-Object -First 1)
+         ($env:PSModulePath.Split(":") | Select-Object -First 1)
       }
    }
    'SaveModule' {
