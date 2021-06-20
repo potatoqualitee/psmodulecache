@@ -20,7 +20,8 @@ switch ($Type) {
       } else {
          $platform = "Windows"
       }
-      Write-Output "v2-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$($Module.Split(",") -join '-')"
+      # all this splitting and joining accomodates for powershell and pwsh
+      Write-Output "v2-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
