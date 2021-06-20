@@ -1,6 +1,6 @@
 param (
    [string[]]$Module,
-   [ValidateSet("KeyGen","ModulePath")]
+   [ValidateSet("KeyGen","ModulePath", "SaveModule")]
    [string]$Type,
    [ValidateSet("pwsh","powershell")]
    [string]$Shell
@@ -34,7 +34,7 @@ switch ($Type) {
       }
    }
    'SaveModule' {
-      $moduleinfo = Import-CliXml -Path "$home\cache.xml"
+      $moduleinfo = Import-CliXml -Path (Join-Path $home -ChildPath cache.xml)
       Write-Output "Trusting PSGallery"
       Set-PSRepository PSGallery -InstallationPolicy Trusted
 
