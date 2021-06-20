@@ -34,7 +34,7 @@ runs:
       run: |
         $inputs = [pscustomobject]@{
             ModulePath      = $modulepath
-            Modules         = "${{ inputs.modules-to-cache }}" -Split ","
+            Modules         = "${{ inputs.modules-to-cache }}"
             Force           = "${{ inputs.force }}"
             AllowPrerelease = "${{ inputs.allow-prerelease }}"
             Shell           = "${{ inputs.shell }}"

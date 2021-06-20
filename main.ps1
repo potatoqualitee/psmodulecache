@@ -20,7 +20,7 @@ switch ($Type) {
       } else {
          $platform = "Windows"
       }
-      Write-Output "v2-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$($Module -join '-')"
+      Write-Output "v2-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$($Module.Split(",") -join '-')"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
@@ -41,14 +41,16 @@ switch ($Type) {
       $modulelist = $moduleinfo.Modules
       Write-Output "Saving modules $modulelist to $($moduleinfo.ModulePath)"
       $modules = $modulelist.Split(",").Trim()
+      $force = [bool]($moduleinfo.force)
+      $allowprerelease = [bool]($moduleinfo.allowprerelease)
 
       foreach ($module in $modules) {
          Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
          $item, $version = $module.Split(":")
          if ($version) {
-            Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$moduleinfo.force -AllowPrerelease:$moduleinfo.allowprerelease -Path $moduleinfo.ModulePath
+            Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $moduleinfo.ModulePath
          } else {
-            Save-Module $item -ErrorAction Stop -Force:$moduleinfo.force -AllowPrerelease:$moduleinfo.allowprerelease -Path $moduleinfo.ModulePath
+            Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $moduleinfo.ModulePath
          }
       }
    }
