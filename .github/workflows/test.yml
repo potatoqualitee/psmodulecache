@@ -62,7 +62,7 @@ jobs:
         uses: potatoqualitee/psmodulecache@ps
         with:
           modules-to-cache: PoshRSJob
-          shell-to-use: powershell
+          shell: powershell
       - name: Run module cacher action
         id: cacher
         uses: actions/cache@v2
