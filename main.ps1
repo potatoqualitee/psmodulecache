@@ -46,9 +46,9 @@ switch ($Type) {
          Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
          $item, $version = $module.Split(":")
          if ($version) {
-            Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$$ { { inputs.force } } -AllowPrerelease:$$ { { inputs.allow-prerelease } } -Path $moduleinfo.ModulePath
+            Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$moduleinfo.force -AllowPrerelease:$moduleinfo.allowprerelease -Path $moduleinfo.ModulePath
          } else {
-            Save-Module $item -ErrorAction Stop -Force:$$ { { inputs.force } } -AllowPrerelease:$$ { { inputs.allow-prerelease } } -Path $moduleinfo.ModulePath
+            Save-Module $item -ErrorAction Stop -Force:$moduleinfo.force -AllowPrerelease:$moduleinfo.allowprerelease -Path $moduleinfo.ModulePath
          }
       }
    }
