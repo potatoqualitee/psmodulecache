@@ -40,7 +40,7 @@ runs:
           Write-Output "::set-output name=modulepath::$modulepath"
           [pscustomobject]@{
             ModulePath = $modulepath
-            Modules    = ${{ inputs.modules-to-cache }}
+            Modules    = "${{ inputs.modules-to-cache }}"
           } | Export-CliXml -Path "$home\cache.xml"
         } else {
           $moduleinfo = Import-CliXml -Path "$home\cache.xml"
