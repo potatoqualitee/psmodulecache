@@ -52,7 +52,7 @@ runs:
           }
           
           $modulelist = $moduleinfo.Modules
-          Write-Output "Installing modules $modulelist on PowerShell $($PSVersionTable.PSVersion)"
+          Write-Output "Saving modules $modulelist to $($moduleinfo.ModulePath)"
           $modules = $modulelist.Split(",").Trim()
 
           foreach ($module in $modules) {
