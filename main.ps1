@@ -29,7 +29,6 @@ switch ($Type) {
             $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
          }
          Write-Output $modpath
-         Write-Warning $modpath
       } else {
          Write-Output ($env:PSModulePath.Split(":") | Select-Object -First 1)
       }
