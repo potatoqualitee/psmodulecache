@@ -21,7 +21,7 @@ switch ($Type) {
          $platform = "Windows"
       }
       # all this splitting and joining accomodates for powershell and pwsh
-      Write-Output "v2-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$(($Module.Split(",") -join '-').Replace(' ',''))"
+      Write-Output "v3-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
