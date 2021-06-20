@@ -15,7 +15,7 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
 ```yaml
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v2
+      uses: potatoqualitee/psmodulecache@v2.1
       with:
         modules-to-cache: PSFramework, Pester, dbatools
     - name: Run module cacher action
@@ -26,9 +26,7 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
         key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v2
-      with:
-        modules-to-cache-final: ${{ steps.psmodulecache.outputs.modules-to-cache }}
+      uses: potatoqualitee/psmodulecache@v2.1
 ```
 
 ## Usage
@@ -40,16 +38,13 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 
 * `modules-to-cache` - A comma separated list of PowerShell modules to install or cache.
 * `shell` - The default shell to use. Defaults to pwsh. Options are pwsh or powershell.
-* `modules-to-cache-final` - Auto-generated module list. This is basically a repeat of the first list.
-* `skip-publisher-check` - Skip publisher check during Install-Module. Defaults to true.
-* `allow-prerelease` - Allow prerelease during Install-Module. Defaults to true.
-* `force` - Force during Install-Module. Defaults to true.
+* `allow-prerelease` - Allow prerelease during Save-Module. Defaults to true.
+* `force` - Force during Save-Module. Defaults to true.
 
 ### Outputs
 
 * `keygen` - Auto-generated cache key for actions/cache@v2 based on OS and needed modules
 * `modulepath` - The PowerShell module path directory
-* `modules-to-cache` - A comma separated list of PowerShell modules to install or cache which can be used to confirm that the modules have been installed
 
 ### Cache scopes
 The cache is scoped to the key and branch. The default branch cache is available to other branches. 
@@ -68,7 +63,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v2
+      uses: potatoqualitee/psmodulecache@v2.1
       with:
         modules-to-cache: PSFramework, Pester, dbatools:1.0.0
     - name: Run module cacher action
@@ -79,9 +74,7 @@ jobs:
         key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v2
-      with:
-        modules-to-cache-final: ${{ steps.psmodulecache.outputs.modules-to-cache }}
+      uses: potatoqualitee/psmodulecache@v2.1
     - name: Show that the Action works
       shell: pwsh
       run: |
@@ -100,7 +93,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v2
+      uses: potatoqualitee/psmodulecache@v2.1
       with:
         modules-to-cache: PSFramework, Pester, dbatools:1.0.0
     - name: Run module cacher action
@@ -111,9 +104,7 @@ jobs:
         key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v2
-      with:
-        modules-to-cache-final: ${{ steps.psmodulecache.outputs.modules-to-cache }}
+      uses: potatoqualitee/psmodulecache@v2.1
     - name: Show that the Action works
       shell: pwsh
       run: |

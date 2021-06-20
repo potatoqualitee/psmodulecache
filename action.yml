@@ -11,19 +11,12 @@ inputs:
     description: "The default shell to use. Defaults to pwsh. Options are pwsh or powershell."
     required: false
     default: "pwsh"
-  modules-to-cache-final:
-    description: "Auto-generated module list"
-    required: false
-  skip-publisher-check:
-    description: "Skip publisher check during Install-Module"
-    required: false
-    default: "true"
   allow-prerelease:
-    description: "Allow prerelease during Install-Module"
+    description: "Allow prerelease during Save-Module"
     required: false
     default: "true"
   force:
-    description: "Force during Install-Module"
+    description: "Force during Save-Module"
     required: false
     default: "true"
 runs:
@@ -45,8 +38,8 @@ runs:
                 Shell           = "${{ inputs.shell }}"
             }
           
-          Write-Output "::set-output name=keygen::$($keygen)"
-          Write-Output "::set-output name=modulepath::$($modulepath)"
+          Write-Output "::set-output name=keygen::$keygen"
+          Write-Output "::set-output name=modulepath::$modulepath"
 
           $null = $inputs | Export-CliXml -Path (Join-Path $home -ChildPath cache.xml)
         } else {
