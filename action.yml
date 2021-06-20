@@ -33,13 +33,13 @@ runs:
       shell: pwsh
       run: |
         if ("${{ inputs.modules-to-cache }}") {
-        $inputs = [pscustomobject]@{
-              ModulePath      = $modulepath
-              Modules         = "${{ inputs.modules-to-cache }}"
-              Force           = "${{ inputs.force }}"
-              AllowPrerelease = "${{ inputs.allow-prerelease }}"
-              Shell           = "${{ inputs.shell }}"
-          }
+          $inputs = [pscustomobject]@{
+                ModulePath      = $modulepath
+                Modules         = "${{ inputs.modules-to-cache }}"
+                Force           = "${{ inputs.force }}"
+                AllowPrerelease = "${{ inputs.allow-prerelease }}"
+                Shell           = "${{ inputs.shell }}"
+            }
 
           Write-Output "Getting variables for cacher"
           $keygen = ${{ github.action_path }}/main.ps1 -Type KeyGen -Module $inputs.Modules -Shell $inputs.Shell
