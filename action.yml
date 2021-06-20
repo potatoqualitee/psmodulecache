@@ -46,8 +46,8 @@ runs:
           $modulepath = ${{ github.action_path }}/main.ps1 -Type ModulePath  -Shell $inputs.Shell
           
           $null = $inputs | Export-CliXml -Path (Join-Path $home -ChildPath cache.xml)
-          Write-Output "::set-output name=keygen::$keygen"
-          Write-Output "::set-output name=modulepath::$modulepath"
+          Write-Output "::set-output name=keygen::$($keygen)"
+          Write-Output "::set-output name=modulepath::$($modulepath)"
         } else {
           Write-Output "Saving modules"
           ${{ github.action_path }}/main.ps1 -Type SaveModule
