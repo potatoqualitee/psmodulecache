@@ -64,6 +64,7 @@ runs:
               Save-Module $item -ErrorAction Stop -Force:$${{ inputs.force }} -SkipPublisherCheck:$${{ inputs.skip-publisher-check }} -AllowPrerelease:$${{ inputs.allow-prerelease }} -Path $moduleinfo.ModulePath
             }
           }
+        }
 outputs:
   keygen:
     description: "Unique Key Generator"
