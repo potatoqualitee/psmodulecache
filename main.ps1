@@ -8,7 +8,7 @@ $shells = $Shell.Split(",").Trim()
 switch ($Type) {
    'KeyGen' {
       # all this splitting and joining accomodates for powershell and pwsh
-      Write-Output "$env:RUNNER_OS-v35test12-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
+      Write-Output "$env:RUNNER_OS-v35-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
