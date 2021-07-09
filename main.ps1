@@ -4,8 +4,7 @@ param (
    [string]$Type,
    [string]$Shell
 )
-$Shell = $Shell.Replace(" ","")
-$shellarray = $Shell -split ","
+$shellarray = $Shell.Split(",").Trim()
 switch ($Type) {
    'KeyGen' {
       # all this splitting and joining accomodates for powershell and pwsh
@@ -21,7 +20,7 @@ switch ($Type) {
          if ($shellarray -contains "pwsh") {
             $modpaths += $modpath.Replace("PowerShell","WindowsPowerShell")
          }
-         Write-Output ($modpaths -join "`n            ")
+         Write-Output $modpaths
       } else {
          ($env:PSModulePath.Split(":") | Select-Object -First 1)
       }
@@ -30,7 +29,7 @@ switch ($Type) {
       $moduleinfo = Import-CliXml -Path (Join-Path $home -ChildPath cache.xml)
       Write-Output "Trusting PSGallery"
       Set-PSRepository PSGallery -InstallationPolicy Trusted
-
+      $modulelist = $moduleinfo.Modules
       $modules = $modulelist.Split(",").Trim()
       $force = [bool]($moduleinfo.force)
       $allowprerelease = [bool]($moduleinfo.allowprerelease)
