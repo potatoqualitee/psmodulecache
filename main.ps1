@@ -17,7 +17,7 @@ switch ($Type) {
             return $modpath.Replace("PowerShell","WindowsPowerShell")
          }
          if ($Shell -eq "pwsh") {
-            return $modpath.Replace("PowerShell","WindowsPowerShell")
+            return $modpath
          }
          if ($shells -contains "pwsh" -and $shells -contains "powershell") {
             return $modpath.Replace("PowerShell","*PowerShell*")
