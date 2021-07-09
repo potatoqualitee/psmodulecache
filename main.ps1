@@ -31,19 +31,17 @@ switch ($Type) {
       Write-Output "Trusting PSGallery"
       Set-PSRepository PSGallery -InstallationPolicy Trusted
 
-      $modulelist = $moduleinfo.Modules
-      Write-Output "Saving modules $modulelist to $($moduleinfo.ModulePath)"
       $modules = $modulelist.Split(",").Trim()
       $force = [bool]($moduleinfo.force)
       $allowprerelease = [bool]($moduleinfo.allowprerelease)
 
       foreach ($module in $modules) {
          foreach ($psshell in $shellarray) {
-            Write-Output "Installing module $module on $psshell"
             $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
             if ($psshell -eq "powershell") {
                $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
             }
+            Write-Output "Saving module $module on $psshell to $modpath"
             $item, $version = $module.Split(":")
             if ($version) {
                Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
