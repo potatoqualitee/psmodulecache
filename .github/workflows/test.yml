@@ -98,7 +98,7 @@ jobs:
             ${{ steps.psmodulecache.outputs.modulepath }}
       - name: Install PowerShell modules
         if: steps.cacher.outputs.cache-hit != 'true'
-        uses: potatoqualitee/psmodulecache@v3
+        uses: potatoqualitee/psmodulecache@v35
       - name: Show that the Action works
         shell: powershell
         run: |
