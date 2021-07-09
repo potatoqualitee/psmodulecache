@@ -104,4 +104,6 @@ jobs:
         run: |
           Get-Module -Name PoshRSJob -ListAvailable | Select Path
           Import-Module PoshRSJob
+          powershell -command "Write-Warning 'GETTING MODULE'"
+          powershell -command "Get-Module -Name PoshRSJob -ListAvailable | Select Path"
           powershell -command "Import-Module PoshRSJob -ErrorAction Stop"
