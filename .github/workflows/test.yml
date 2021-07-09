@@ -1,7 +1,7 @@
 on: [push]
 
 jobs:
-  run-on-linux-v2:
+  run-v2-on-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
