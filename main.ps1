@@ -4,20 +4,20 @@ param (
    [string]$Type,
    [string]$Shell
 )
-$shellarray = $Shell.Split(",").Trim()
+$shells = $Shell.Split(",").Trim()
 switch ($Type) {
    'KeyGen' {
       # all this splitting and joining accomodates for powershell and pwsh
-      Write-Output "$env:RUNNER_OS-$platform-$($shellarray -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
+      Write-Output "$env:RUNNER_OS-$platform-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
          $modpaths = @()
          $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
-         if ($shellarray -contains "powershell") {
+         if ($shells -contains "powershell") {
             $modpaths += $modpath.Replace("PowerShell","WindowsPowerShell")
          }
-         if ($shellarray -contains "pwsh") {
+         if ($shells -contains "pwsh") {
             $modpaths += $modpath.Replace("PowerShell","WindowsPowerShell")
          }
          Write-Output $modpaths
@@ -29,13 +29,13 @@ switch ($Type) {
       $moduleinfo = Import-CliXml -Path (Join-Path $home -ChildPath cache.xml)
       Write-Output "Trusting PSGallery"
       Set-PSRepository PSGallery -InstallationPolicy Trusted
-      $modulelist = $moduleinfo.Modules
-      $modules = $modulelist.Split(",").Trim()
+      $modules = $moduleinfo.Modules.Split(",").Trim()
+      $shells = $moduleinfo.Shell.Split(",").Trim()
       $force = [bool]($moduleinfo.force)
       $allowprerelease = [bool]($moduleinfo.allowprerelease)
 
       foreach ($module in $modules) {
-         foreach ($psshell in $shellarray) {
+         foreach ($psshell in $shells) {
             $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
             if ($psshell -eq "powershell") {
                $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
