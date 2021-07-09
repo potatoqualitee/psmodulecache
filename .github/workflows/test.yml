@@ -124,7 +124,7 @@ jobs:
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
-          Get-Module -Name PoshRSJob -ListAvailable | Select Path
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
           Import-Module PoshRSJob
       - name: Show that the Action works on PowerShell
         shell: powershell
