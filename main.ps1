@@ -37,10 +37,13 @@ switch ($Type) {
 
       foreach ($module in $modules) {
          foreach ($psshell in $shells) {
-            $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
+            if ($env:RUNNER_OS -eq "Windows") {
+               $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
             if ($psshell -eq "powershell") {
                $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
-            }
+            } else {
+               $modpath = ($env:PSModulePath.Split(":") | Select-Object -First 1)
+            } 
             Write-Output "Saving module $module on $psshell to $modpath"
             $item, $version = $module.Split(":")
             if ($version) {
