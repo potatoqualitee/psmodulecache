@@ -99,11 +99,13 @@ jobs:
       - name: Install PowerShell modules
         if: steps.cacher.outputs.cache-hit != 'true'
         uses: potatoqualitee/psmodulecache@v35
-      - name: Show that the Action works
+      - name: Show that the Action works on pwsh
+        shell: pwsh
+        run: |
+          Get-Module -Name PoshRSJob -ListAvailable | Select Path
+          Import-Module PoshRSJob
+      - name: Show that the Action works on PowerShell
         shell: powershell
         run: |
           Get-Module -Name PoshRSJob -ListAvailable | Select Path
           Import-Module PoshRSJob
-          powershell -command "Write-Warning 'GETTING MODULE'"
-          powershell -command "Get-Module -Name PoshRSJob -ListAvailable | Select Path"
-          powershell -command "Import-Module PoshRSJob -ErrorAction Stop"
