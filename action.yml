@@ -43,7 +43,7 @@ runs:
 
           $null = $inputs | Export-CliXml -Path (Join-Path $home -ChildPath cache.xml)
         } else {
-          Write-Output "Saving modules"
+          Write-Output "Saving all modules"
           ${{ github.action_path }}/main.ps1 -Type SaveModule
         }
 outputs:

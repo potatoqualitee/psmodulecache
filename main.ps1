@@ -2,56 +2,56 @@ param (
    [string[]]$Module,
    [ValidateSet("KeyGen","ModulePath", "SaveModule")]
    [string]$Type,
-   [ValidateSet("pwsh","powershell")]
    [string]$Shell
 )
-
+$shells = $Shell.Split(",").Trim()
 switch ($Type) {
    'KeyGen' {
-      if ($Shell -eq "powershell" -and $PSVersionTable.Platform -eq "Win32NT") {
-         $versiontable = Invoke-Command -ScriptBlock { 
-            powershell -command { $PSVersionTable } 
-         }
-      } else {
-         $versiontable = $PSVersionTable
-      }
-      if ($versiontable.OS) {
-         $platform = $versiontable.Platform
-      } else {
-         $platform = "Windows"
-      }
       # all this splitting and joining accomodates for powershell and pwsh
-      Write-Output "v3-$env:RUNNER_OS-$platform-$($versiontable.PSVersion)-$(($Module.Split(",") -join '-').Replace(' ',''))"
+      Write-Output "$env:RUNNER_OS-v3.5-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
          $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
          if ($Shell -eq "powershell") {
-            $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
+            return $modpath.Replace("PowerShell","WindowsPowerShell")
          }
-         Write-Output $modpath
+         if ($Shell -eq "pwsh") {
+            return $modpath
+         }
+         if ($shells -contains "pwsh" -and $shells -contains "powershell") {
+            return $modpath.Replace("PowerShell","*PowerShell*")
+         }
       } else {
          ($env:PSModulePath.Split(":") | Select-Object -First 1)
       }
    }
    'SaveModule' {
       $moduleinfo = Import-CliXml -Path (Join-Path $home -ChildPath cache.xml)
-      Write-Output "Trusting PSGallery"
+      Write-Output "Trusting repository PSGallery"
       Set-PSRepository PSGallery -InstallationPolicy Trusted
-
-      $modulelist = $moduleinfo.Modules
-      Write-Output "Saving modules $modulelist to $($moduleinfo.ModulePath)"
-      $modules = $modulelist.Split(",").Trim()
+      $modules = $moduleinfo.Modules.Split(",").Trim()
+      $shells = $moduleinfo.Shell.Split(",").Trim()
       $force = [bool]($moduleinfo.force)
       $allowprerelease = [bool]($moduleinfo.allowprerelease)
 
       foreach ($module in $modules) {
-         Write-Output "Installing module $module on PowerShell $($PSVersionTable.PSVersion)"
-         $item, $version = $module.Split(":")
-         if ($version) {
-            Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $moduleinfo.ModulePath
-         } else {
-            Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $moduleinfo.ModulePath
+         foreach ($psshell in $shells) {
+            if ($env:RUNNER_OS -eq "Windows") {
+               $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
+               if ($psshell -eq "powershell") {
+                  $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
+               }
+            } else {
+               $modpath = ($env:PSModulePath.Split(":") | Select-Object -First 1)
+            } 
+            Write-Output "Saving module $module on $psshell to $modpath"
+            $item, $version = $module.Split(":")
+            if ($version) {
+               Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
+            } else {
+               Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
+            }
          }
       }
    }
