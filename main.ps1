@@ -28,7 +28,7 @@ switch ($Type) {
    }
    'SaveModule' {
       $moduleinfo = Import-CliXml -Path (Join-Path $home -ChildPath cache.xml)
-      Write-Output "Trusting PSGallery"
+      Write-Output "Trusting repository PSGallery"
       Set-PSRepository PSGallery -InstallationPolicy Trusted
       $modules = $moduleinfo.Modules.Split(",").Trim()
       $shells = $moduleinfo.Shell.Split(",").Trim()
