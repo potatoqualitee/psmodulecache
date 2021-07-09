@@ -20,7 +20,7 @@ switch ($Type) {
          if ($shells -contains "pwsh") {
             $modpaths += $modpath.Replace("PowerShell","WindowsPowerShell")
          }
-         Write-Output $modpaths -join "`n"
+         Write-Output ($modpaths -join "`n")
       } else {
          ($env:PSModulePath.Split(":") | Select-Object -First 1)
       }
