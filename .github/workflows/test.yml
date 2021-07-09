@@ -101,7 +101,7 @@ jobs:
           Import-Module PoshRSJob
 
 
-  run-on-both:
+  run-for-both-pwsh-and-powershell:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -109,7 +109,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v35
         with:
-          modules-to-cache: PoshRSJob
+          modules-to-cache: PoshRSJob, dbatools
           shell: powershell, pwsh
       - name: Run module cacher action
         id: cacher
@@ -129,5 +129,5 @@ jobs:
       - name: Show that the Action works on PowerShell
         shell: powershell
         run: |
-          Get-Module -Name PoshRSJob -ListAvailable | Select Path
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
           Import-Module PoshRSJob
