@@ -2,23 +2,23 @@ param (
    [string[]]$Module,
    [ValidateSet("KeyGen","ModulePath", "SaveModule")]
    [string]$Type,
-   [ValidateSet("pwsh","powershell")]
-   [string[]]$Shell
+   [string]$Shell
 )
-
+$Shell = $Shell.Replace(" ","")
+$shellarray = $Shell -split ","
 switch ($Type) {
    'KeyGen' {
       # all this splitting and joining accomodates for powershell and pwsh
-      Write-Output "$env:RUNNER_OS-$platform-$($Shell -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
+      Write-Output "$env:RUNNER_OS-$platform-$($shellarray -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
          $modpaths = @()
          $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
-         if ($Shell -contains "powershell") {
+         if ($shellarray -contains "powershell") {
             $modpaths += $modpath.Replace("PowerShell","WindowsPowerShell")
          }
-         if ($Shell -contains "pwsh") {
+         if ($shellarray -contains "pwsh") {
             $modpaths += $modpath.Replace("PowerShell","WindowsPowerShell")
          }
          Write-Output ($modpaths -join "`n            ")
@@ -38,7 +38,7 @@ switch ($Type) {
       $allowprerelease = [bool]($moduleinfo.allowprerelease)
 
       foreach ($module in $modules) {
-         foreach ($psshell in $Shell) {
+         foreach ($psshell in $shellarray) {
             Write-Output "Installing module $module on $psshell"
             $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
             if ($psshell -eq "powershell") {
