@@ -15,7 +15,7 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
 ```yaml
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v3
+      uses: potatoqualitee/psmodulecache@v3.5
       with:
         modules-to-cache: PSFramework, Pester, dbatools
     - name: Run module cacher action
@@ -26,7 +26,7 @@ Once GitHub supports [using actions in composite actions](https://github.com/act
         key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v3
+      uses: potatoqualitee/psmodulecache@v3.5
 ```
 
 ## Usage
@@ -63,7 +63,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v3
+      uses: potatoqualitee/psmodulecache@v3.5
       with:
         modules-to-cache: PSFramework, Pester, dbatools:1.0.0
     - name: Run module cacher action
@@ -74,7 +74,7 @@ jobs:
         key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v3
+      uses: potatoqualitee/psmodulecache@v3.5
     - name: Show that the Action works
       shell: pwsh
       run: |
@@ -93,7 +93,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v3
+      uses: potatoqualitee/psmodulecache@v3.5
       with:
         modules-to-cache: PSFramework, Pester, dbatools:1.0.0
     - name: Run module cacher action
@@ -104,7 +104,7 @@ jobs:
         key: ${{ steps.psmodulecache.outputs.keygen }}
     - name: Install PowerShell modules
       if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v3
+      uses: potatoqualitee/psmodulecache@v3.5
     - name: Show that the Action works
       shell: pwsh
       run: |
