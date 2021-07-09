@@ -37,7 +37,7 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 ### Inputs
 
 * `modules-to-cache` - A comma separated list of PowerShell modules to install or cache.
-* `shell` - The default shell to use. Defaults to pwsh. Options are pwsh or powershell.
+* `shell` - The default shell to use. Defaults to pwsh. Options are `pwsh`, `powershell` or `pwsh, powershell` for both pwsh and powershell on Windows.
 * `allow-prerelease` - Allow prerelease during Save-Module. Defaults to true.
 * `force` - Force during Save-Module. Defaults to true.
 
