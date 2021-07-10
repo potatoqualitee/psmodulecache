@@ -112,6 +112,44 @@ jobs:
           Import-Module PSFramework
 ```
 
+Install for both powershell and pwsh on Windows.
+
+```yaml
+on: [push]
+
+jobs:
+  run-for-both-pwsh-and-powershell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create variables for module cacher
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v3.5
+        with:
+          modules-to-cache: PoshRSJob, dbatools
+          shell: powershell, pwsh
+      - name: Run module cacher action
+        id: cacher
+        uses: actions/cache@v2
+        with:
+          key: ${{ steps.psmodulecache.outputs.keygen }}
+          path: |
+            ${{ steps.psmodulecache.outputs.modulepath }}
+      - name: Install PowerShell modules
+        if: steps.cacher.outputs.cache-hit != 'true'
+        uses: potatoqualitee/psmodulecache@v3.5
+      - name: Show that the Action works on pwsh
+        shell: pwsh
+        run: |
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
+          Import-Module PoshRSJob
+      - name: Show that the Action works on PowerShell
+        shell: powershell
+        run: |
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
+          Import-Module PoshRSJob
+```
+
 ## Cache Limits
 A repository can have up to 5GB of caches. Once the 5GB limit is reached, older caches will be evicted based on when the cache was last accessed.  Caches that are not accessed within the last week will also be evicted.
 
