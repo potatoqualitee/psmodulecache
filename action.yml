@@ -49,6 +49,8 @@ runs:
         path: ${{ steps.psoutput.outputs.modulepath }}
         key: ${{ steps.psoutput.outputs.keygen }}
     - name: Install PowerShell modules
+      id: finalstep
+      shell: pwsh
       if: steps.cacher.outputs.cache-hit != 'true'
       run: |
         Write-Output "Saving all modules"
