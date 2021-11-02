@@ -6,9 +6,9 @@ If you're using GitHub Actions to test projects that rely on PowerShell modules 
 
 ## Documentation
 
-Just copy the code below and modify the line **`modules-to-cache: PSFramework, Pester, dbatools`** with the modules you need.
+Just copy the code below and modify the line **`modules-to-cache: PSFramework, PoshRSJob, dbatools`** with the modules you need.
 
-If you need to use `RequiredVersion`, add a colon then the version: **`modules-to-cache: PSFramework, Pester:4.10.1, dbatools:1.0.0`**
+If you need to use `RequiredVersion`, add a colon then the version: **`modules-to-cache: PSFramework, Pester:4.10.1, dbatools:1.1.0`**
 
 ```yaml
     - name: Install and cache PowerShell modules
@@ -49,11 +49,11 @@ jobs:
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v4
       with:
-        modules-to-cache: PSFramework, Pester, dbatools:1.0.0
+        modules-to-cache: PSFramework, PoshRSJob, dbatools:1.0.0
     - name: Show that the Action works
       shell: pwsh
       run: |
-          Get-Module -Name PSFramework, Pester, dbatools -ListAvailable | Select Path
+          Get-Module -Name PSFramework, PoshRSJob, dbatools -ListAvailable | Select Path
 ```
 
 Using powershell on Windows. pwsh also works and is the default.
@@ -70,7 +70,7 @@ jobs:
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v4
       with:
-        modules-to-cache: PSFramework, Pester, dbatools:1.0.0
+        modules-to-cache: PSFramework, PoshRSJob, dbatools:1.0.0
     - name: Show that the Action works
       shell: pwsh
       run: |
