@@ -11,7 +11,7 @@ Just copy the code below and modify the line **`modules-to-cache: PSFramework, P
 If you need to use `RequiredVersion`, add a colon then the version: **`modules-to-cache: PSFramework, Pester:4.10.1, dbatools:1.0.0`**
 
 ```yaml
-    - name: Create variables for module cacher
+    - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v4
       with:
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Create variables for module cacher
+    - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v4
       with:
@@ -66,7 +66,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Create variables for module cacher
+    - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v4
       with:
@@ -88,7 +88,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create variables for module cacher
+      - name: Install and cache PowerShell modules
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v4
         with:
