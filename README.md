@@ -10,23 +10,12 @@ Just copy the code below and modify the line **`modules-to-cache: PSFramework, P
 
 If you need to use `RequiredVersion`, add a colon then the version: **`modules-to-cache: PSFramework, Pester:4.10.1, dbatools:1.0.0`**
 
-Once GitHub supports [using actions in composite actions](https://github.com/actions/runner/issues/646), there will be a lot less code (just the `Set required PowerShell modules` section). But until then, here's a sample workflow.
-
 ```yaml
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v3.5
+      uses: potatoqualitee/psmodulecache@v4
       with:
         modules-to-cache: PSFramework, Pester, dbatools
-    - name: Run module cacher action
-      id: cacher
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.psmodulecache.outputs.modulepath }}
-        key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install PowerShell modules
-      if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v3.5
 ```
 
 ## Usage
@@ -40,11 +29,6 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 * `shell` - The default shell you'll be using. Defaults to pwsh. Options are `pwsh`, `powershell` or `pwsh, powershell` for both pwsh and powershell on Windows.
 * `allow-prerelease` - Allow prerelease during Save-Module. Defaults to true.
 * `force` - Force during Save-Module. Defaults to true.
-
-### Outputs
-
-* `keygen` - Auto-generated cache key for actions/cache@v2 based on OS and needed modules
-* `modulepath` - The PowerShell module path directory
 
 ### Cache scopes
 The cache is scoped to the key and branch. The default branch cache is available to other branches. 
@@ -63,18 +47,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v3.5
+      uses: potatoqualitee/psmodulecache@v4
       with:
         modules-to-cache: PSFramework, Pester, dbatools:1.0.0
-    - name: Run module cacher action
-      id: cacher
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.psmodulecache.outputs.modulepath }}
-        key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install PowerShell modules
-      if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v3.5
     - name: Show that the Action works
       shell: pwsh
       run: |
@@ -93,18 +68,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Create variables for module cacher
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v3.5
+      uses: potatoqualitee/psmodulecache@v4
       with:
         modules-to-cache: PSFramework, Pester, dbatools:1.0.0
-    - name: Run module cacher action
-      id: cacher
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.psmodulecache.outputs.modulepath }}
-        key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install PowerShell modules
-      if: steps.cacher.outputs.cache-hit != 'true'
-      uses: potatoqualitee/psmodulecache@v3.5
     - name: Show that the Action works
       shell: pwsh
       run: |
@@ -124,20 +90,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create variables for module cacher
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v3.5
+        uses: potatoqualitee/psmodulecache@v4
         with:
           modules-to-cache: PoshRSJob, dbatools
           shell: powershell, pwsh
-      - name: Run module cacher action
-        id: cacher
-        uses: actions/cache@v2
-        with:
-          key: ${{ steps.psmodulecache.outputs.keygen }}
-          path: |
-            ${{ steps.psmodulecache.outputs.modulepath }}
-      - name: Install PowerShell modules
-        if: steps.cacher.outputs.cache-hit != 'true'
-        uses: potatoqualitee/psmodulecache@v3.5
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
@@ -158,15 +114,6 @@ Pull requests are welcome!
 
 ## TODO
 * Add support for additional custom repositories (may be out of scope?)
-* Once GitHub supports actions in composite actions, only the following will be required!
-
-```yaml
-    - name: Set required PowerShell modules
-      id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1
-      with:
-        modules-to-cache: PSFramework, Pester, dbatools
-```
 
 ## License
 The scripts and documentation in this project are released under the [MIT License](LICENSE)

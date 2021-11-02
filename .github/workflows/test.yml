@@ -100,7 +100,6 @@ jobs:
           Get-Module -Name PoshRSJob -ListAvailable | Select Path
           Import-Module PoshRSJob
 
-
   run-for-both-pwsh-and-powershell:
     runs-on: windows-latest
     steps:
@@ -128,6 +127,57 @@ jobs:
           Import-Module PoshRSJob
       - name: Show that the Action works on PowerShell
         shell: powershell
+        run: |
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
+          Import-Module PoshRSJob
+
+  new-version-on-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create variables for module cacher
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4
+        with:
+          modules-to-cache: PoshRSJob, dbatools
+          shell: powershell, pwsh
+      - name: Show that the Action works on pwsh
+        shell: pwsh
+        run: |
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
+          Import-Module PoshRSJob
+      - name: Show that the Action works on PowerShell
+        shell: powershell
+        run: |
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
+          Import-Module PoshRSJob
+
+  new-version-on-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create variables for module cacher
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4
+        with:
+          modules-to-cache: PoshRSJob, dbatools
+      - name: Show that the Action works on pwsh
+        shell: pwsh
+        run: |
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
+          Import-Module PoshRSJob
+
+  new-version-on-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create variables for module cacher
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4
+        with:
+          modules-to-cache: PoshRSJob, dbatools
+      - name: Show that the Action works on pwsh
+        shell: pwsh
         run: |
           Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
           Import-Module PoshRSJob
