@@ -15,7 +15,7 @@ If you need to use `RequiredVersion`, add a colon then the version: **`modules-t
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v4
       with:
-        modules-to-cache: PSFramework, Pester, dbatools
+        modules-to-cache: PSFramework, PoshRSJob, dbatools
 ```
 
 ## Usage
