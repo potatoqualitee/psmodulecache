@@ -12,7 +12,6 @@ If you need to use `RequiredVersion`, add a colon then the version: **`modules-t
 
 ```yaml
     - name: Install and cache PowerShell modules
-      id: psmodulecache
       uses: potatoqualitee/psmodulecache@v4
       with:
         modules-to-cache: PSFramework, PoshRSJob, dbatools
