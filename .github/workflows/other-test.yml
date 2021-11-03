@@ -6,7 +6,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install and cache PowerShell modules
-      id: psmodulecache
       uses: potatoqualitee/psmodulecache@v4
       with:
         modules-to-cache: PSFramework, Pester, dbatools:1.0.0
