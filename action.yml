@@ -32,3 +32,9 @@ runs:
         Write-Output "::set-output name=needed::$(${{ github.action_path }}/main.ps1 -Type Needed -Module ${{ inputs.modules-to-cache }})"
         Write-Output "::set-output name=keygen::$(${{ github.action_path }}/main.ps1 -Type KeyGen -Module ${{ inputs.modules-to-cache }})"
         Write-Output "::set-output name=modulepath::$(${{ github.action_path }}/main.ps1 -Type ModulePath -Module ${{ inputs.modules-to-cache }})"
+
+
+        # In PowerShell Core...
+        # .\main.ps1 -Module az.sql, az.storage, dbatools -Type Needed
+        # .\main.ps1 -Module az.sql, az.storage -Type KeyGen
+        # .\main.ps1 -Module az.sql, az.storage -Type ModulePath
