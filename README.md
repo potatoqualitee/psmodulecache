@@ -6,28 +6,15 @@ If you're using GitHub Actions to test projects that rely on PowerShell modules 
 
 ## Documentation
 
-Just copy the code below and modify the line **`modules-to-cache: PSFramework, Pester, dbatools`** with the modules you need.
+Just copy the code below and modify the line **`modules-to-cache: PSFramework, PoshRSJob, dbatools`** with the modules you need.
 
-Once GitHub supports [using actions in composite actions](https://github.com/actions/runner/issues/646), there will be a lot less code (just the `Set required PowerShell modules` section). But until then, here's a sample workflow.
+If you need to use `RequiredVersion`, add a colon then the version: **`modules-to-cache: PSFramework, Pester:4.10.1, dbatools:1.1.0`**
 
 ```yaml
-    - name: Set required PowerShell modules
-      id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1
+    - name: Install and cache PowerShell modules
+      uses: potatoqualitee/psmodulecache@v4
       with:
-        modules-to-cache: PSFramework, Pester, dbatools
-    - name: Setup PowerShell module cache
-      id: cacher
-      uses: actions/cache@v2
-      with:
-          path: ${{ steps.psmodulecache.outputs.modulepath }}
-          key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install required PowerShell modules
-      if: steps.cacher.outputs.cache-hit != 'true'
-      shell: pwsh
-      run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
+        modules-to-cache: PSFramework, PoshRSJob, dbatools
 ```
 
 ## Usage
@@ -37,19 +24,17 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 
 ### Inputs
 
-* `modules-to-cache` - A comma separated list of PowerShell modules to install or cache
-
-### Outputs
-
-* `needed` - All modules that need to be installed (some are already built-in, like Pester)
-* `keygen` - Auto-generated cache key for actions/cache@v2 based on OS and needed modules
-* `modulepath` - The PowerShell module path directory
-* `modules-to-cache` - A comma separated list of PowerShell modules to install or cache which can be used to confirm that the modules have been installed
+* `modules-to-cache` - A comma separated list of PowerShell modules to install or cache.
+* `shell` - The default shell you'll be using. Defaults to pwsh. Options are `pwsh`, `powershell` or `pwsh, powershell` for both pwsh and powershell on Windows.
+* `allow-prerelease` - Allow prerelease during Save-Module. Defaults to true.
+* `force` - Force during Save-Module. Defaults to true.
 
 ### Cache scopes
 The cache is scoped to the key and branch. The default branch cache is available to other branches. 
 
-### Example workflow
+### Example workflows
+
+Using pwsh on Ubuntu
 
 ```yaml
 on: [push]
@@ -59,28 +44,65 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set required PowerShell modules
+    - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1
+      uses: potatoqualitee/psmodulecache@v4
       with:
-        modules-to-cache: PSFramework, Pester, dbatools
-    - name: Setup PowerShell module cache
-      id: cacher
-      uses: actions/cache@v2
-      with:
-          path: ${{ steps.psmodulecache.outputs.modulepath }}
-          key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install required PowerShell modules
-      if: steps.cacher.outputs.cache-hit != 'true'
+        modules-to-cache: PSFramework, PoshRSJob, dbatools:1.0.0
+    - name: Show that the Action works
       shell: pwsh
       run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
+          Get-Module -Name PSFramework, PoshRSJob, dbatools -ListAvailable | Select Path
+```
+
+Using powershell on Windows. pwsh also works and is the default.
+
+```yaml
+on: [push]
+
+jobs:
+  run-on-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install and cache PowerShell modules
+      id: psmodulecache
+      uses: potatoqualitee/psmodulecache@v4
+      with:
+        modules-to-cache: PSFramework, PoshRSJob, dbatools:1.0.0
     - name: Show that the Action works
       shell: pwsh
       run: |
           Get-Module -Name ${{ steps.psmodulecache.outputs.modules-to-cache }} -ListAvailable | Select Path
           Import-Module PSFramework
+```
+
+Install for both powershell and pwsh on Windows.
+
+```yaml
+on: [push]
+
+jobs:
+  run-for-both-pwsh-and-powershell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install and cache PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4
+        with:
+          modules-to-cache: PoshRSJob, dbatools
+          shell: powershell, pwsh
+      - name: Show that the Action works on pwsh
+        shell: pwsh
+        run: |
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
+          Import-Module PoshRSJob
+      - name: Show that the Action works on PowerShell
+        shell: powershell
+        run: |
+          Get-Module -Name PoshRSJob, dbatools -ListAvailable | Select Path
+          Import-Module PoshRSJob
 ```
 
 ## Cache Limits
@@ -90,17 +112,7 @@ A repository can have up to 5GB of caches. Once the 5GB limit is reached, older 
 Pull requests are welcome!
 
 ## TODO
-* Add support for specific module versions
 * Add support for additional custom repositories (may be out of scope?)
-* Once GitHub supports actions in composite actions, only the following will be required!
-
-```yaml
-    - name: Set required PowerShell modules
-      id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1
-      with:
-        modules-to-cache: PSFramework, Pester, dbatools
-```
 
 ## License
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
