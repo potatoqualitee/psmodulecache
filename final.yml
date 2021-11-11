@@ -48,5 +48,9 @@ jobs:
           }
           Connect-TenService @splat
 
-          # notes for presentation:
+          
+          
+          
+          
+          
           # go check out azurite for reiteration: https://github.com/potatoqualitee/azuright
