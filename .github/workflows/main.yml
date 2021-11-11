@@ -43,3 +43,8 @@ jobs:
           if ($results.Result -ne "Passed") {
             throw "There were $($results.FailedCount) failed tests."
           }
+
+          <# In PowerShell Core...
+            . ./concept.ps1
+            Invoke-PSModuleCache -ModulesToCache PoshRSJob, dbatools
+          #>
