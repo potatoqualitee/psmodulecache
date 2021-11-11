@@ -21,21 +21,21 @@ jobs:
         env:
           NLICENSE: ${{secrets.LICENSE}}
 
-    - name: Set required PowerShell modules
-      id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v1
-      with:
-        modules-to-cache: PSFramework, Pester, dbatools
-    - name: Setup PowerShell module cache
-      id: cacher
-      uses: actions/cache@v2
-      with:
+      - name: Set required PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v1
+        with:
+          modules-to-cache: PSFramework, Pester, dbatools
+      - name: Setup PowerShell module cache
+        id: cacher
+        uses: actions/cache@v2
+        with:
           path: ${{ steps.psmodulecache.outputs.modulepath }}
           key: ${{ steps.psmodulecache.outputs.keygen }}
-    - name: Install required PowerShell modules
-      if: steps.cacher.outputs.cache-hit != 'true'
-      shell: pwsh
-      run: |
+      - name: Install required PowerShell modules
+        if: steps.cacher.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
 
@@ -48,9 +48,4 @@ jobs:
           }
           Connect-TenService @splat
 
-          
-          
-          
-          
-          
           # go check out azurite for reiteration: https://github.com/potatoqualitee/azuright
