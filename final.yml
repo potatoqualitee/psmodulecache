@@ -21,20 +21,23 @@ jobs:
         env:
           NLICENSE: ${{secrets.LICENSE}}
 
-      # setup powershell module cache https://github.com/marketplace/actions/cache
-
-      - name: Setup PowerShell module cache
-        id: cache-psmodules
-        uses: actions/cache@v2
-        with:
-          path: |
-            /home/runner/.local/share/powershell/Modules
-          key: ${{ runner.os }}-psmodules
-      - name: Install required PowerShell modules
-        if: steps.cache-psmodules.outputs.cache-hit != 'true'
-        run: |
+    - name: Set required PowerShell modules
+      id: psmodulecache
+      uses: potatoqualitee/psmodulecache@v1
+      with:
+        modules-to-cache: PSFramework, Pester, dbatools
+    - name: Setup PowerShell module cache
+      id: cacher
+      uses: actions/cache@v2
+      with:
+          path: ${{ steps.psmodulecache.outputs.modulepath }}
+          key: ${{ steps.psmodulecache.outputs.keygen }}
+    - name: Install required PowerShell modules
+      if: steps.cacher.outputs.cache-hit != 'true'
+      shell: pwsh
+      run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module PSFramework, PoshRSJob,dbatools -ErrorAction Stop
+          Install-Module ${{ steps.psmodulecache.outputs.needed }} -ErrorAction Stop
 
       - name: Import tentools and test connect to the container
         run: |
