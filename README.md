@@ -73,7 +73,7 @@ jobs:
     - name: Show that the Action works
       shell: pwsh
       run: |
-          Get-Module -Name ${{ steps.psmodulecache.outputs.modules-to-cache }} -ListAvailable | Select Path
+          Get-Module -Name PSFramework, PoshRSJob, dbatools -ListAvailable | Select Path
           Import-Module PSFramework
 ```
 
