@@ -12,7 +12,7 @@ switch ($Type) {
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
-         $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
+         $modpath = "$env:ProgramFiles\PowerShell\Modules"
          if ($Shell -eq "powershell") {
             return $modpath.Replace("PowerShell","WindowsPowerShell")
          }
@@ -38,7 +38,7 @@ switch ($Type) {
       foreach ($module in $modules) {
          foreach ($psshell in $shells) {
             if ($env:RUNNER_OS -eq "Windows") {
-               $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
+               $modpath = "$env:ProgramFiles\PowerShell\Modules"
                if ($psshell -eq "powershell") {
                   $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
                }
