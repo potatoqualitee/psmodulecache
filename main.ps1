@@ -23,7 +23,7 @@ switch ($Type) {
             return $modpath.Replace("PowerShell","*PowerShell*")
          }
       } else {
-         $modpath = "/usr/local/share/powershell/Modules"
+         return "/usr/local/share/powershell/Modules"
       }
    }
    'SaveModule' {
