@@ -23,7 +23,7 @@ switch ($Type) {
             return $modpath.Replace("PowerShell","*PowerShell*")
          }
       } else {
-         ($env:PSModulePath.Split(":") | Select-Object -First 1)
+         $modpath = "/usr/local/share/powershell/Modules"
       }
    }
    'SaveModule' {
@@ -43,7 +43,7 @@ switch ($Type) {
                   $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
                }
             } else {
-               $modpath = ($env:PSModulePath.Split(":") | Select-Object -First 1)
+               $modpath = "/usr/local/share/powershell/Modules"
             } 
             Write-Output "Saving module $module on $psshell to $modpath"
             $item, $version = $module.Split(":")
