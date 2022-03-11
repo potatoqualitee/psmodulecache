@@ -8,7 +8,7 @@ jobs:
       - name: Install and cache PowerShell modules
         uses: ./
         with:
-          modules-to-cache: PSFramework, Pester, dbatools:1.0.0
+          modules-to-cache: PSFramework, Pester, dbatools:1.0.0, SpeculationControl
       - name: Show that the Action works
         shell: pwsh
         run: |
