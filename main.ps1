@@ -54,13 +54,13 @@ switch ($Type) {
                   Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
                }
             } else {
-               mkdir /tmp/modules
+               mv $modpath /tmp/
                if ($version) {
                   Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path /tmp/modules
                } else {
                   Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path /tmp/modules
                }
-               sudo mv /tmp/modules/* $modpath
+               sudo mv /tmp/Modules $modpath
             }
          }
       }
