@@ -23,10 +23,9 @@ switch ($Type) {
             $modpath.Replace("PowerShell","*PowerShell*")
          }
       } else {
-         "/usr/local/share/powershell/Modules"
-      }
-      if (-not ($env:RUNNER_OS -eq "Windows")) {
+         $modpath = "/usr/local/share/powershell/Modules"
          sudo chmod 777 $modpath
+         $modpath
       }
    }
    'SaveModule' {
