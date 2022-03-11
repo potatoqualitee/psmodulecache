@@ -8,8 +8,9 @@ jobs:
       - name: Install and cache PowerShell modules
         uses: ./
         with:
-          modules-to-cache: PSFramework, Pester, dbatools:1.0.0
+          modules-to-cache: PSFramework, Pester, dbatools:1.0.0, SpeculationControl
       - name: Show that the Action works
         shell: pwsh
         run: |
-          Get-Module -Name PSFramework, Pester, dbatools -ListAvailable | Select Path
+          Get-Module -Name PSFramework, Pester, dbatools, SpeculationControl -ListAvailable | Select Path -OutVariable modules
+          $modules.Path.Count | Should -Be 4

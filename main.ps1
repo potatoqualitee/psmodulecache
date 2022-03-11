@@ -8,22 +8,24 @@ $shells = $Shell.Split(",").Trim()
 switch ($Type) {
    'KeyGen' {
       # all this splitting and joining accomodates for powershell and pwsh
-      Write-Output "$env:RUNNER_OS-v4.0-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
+      Write-Output "$env:RUNNER_OS-v4.5-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
          $modpath = "$env:ProgramFiles\PowerShell\Modules"
          if ($Shell -eq "powershell") {
-            return $modpath.Replace("PowerShell","WindowsPowerShell")
+            $modpath.Replace("PowerShell","WindowsPowerShell")
          }
          if ($Shell -eq "pwsh") {
-            return $modpath
+            $modpath
          }
          if ($shells -contains "pwsh" -and $shells -contains "powershell") {
-            return $modpath.Replace("PowerShell","*PowerShell*")
+            $modpath.Replace("PowerShell","*PowerShell*")
          }
       } else {
-         return "/usr/local/share/powershell/Modules"
+         $modpath = "/usr/local/share/powershell/Modules"
+         sudo chown -R runner $modpath
+         $modpath
       }
    }
    'SaveModule' {
