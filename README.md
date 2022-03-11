@@ -12,7 +12,7 @@ If you need to use `RequiredVersion`, add a colon then the version: **`modules-t
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v4
+      uses: potatoqualitee/psmodulecache@v4.5
       with:
         modules-to-cache: PSFramework, PoshRSJob, dbatools
 ```
@@ -46,7 +46,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v4
+      uses: potatoqualitee/psmodulecache@v4.5
       with:
         modules-to-cache: PSFramework, PoshRSJob, dbatools:1.0.0
     - name: Show that the Action works
@@ -67,7 +67,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v4
+      uses: potatoqualitee/psmodulecache@v4.5
       with:
         modules-to-cache: PSFramework, PoshRSJob, dbatools:1.0.0
     - name: Show that the Action works
@@ -89,7 +89,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install and cache PowerShell modules
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v4
+        uses: potatoqualitee/psmodulecache@v4.5
         with:
           modules-to-cache: PoshRSJob, dbatools
           shell: powershell, pwsh
