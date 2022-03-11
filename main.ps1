@@ -47,20 +47,13 @@ switch ($Type) {
             } 
             Write-Output "Saving module $module on $psshell to $modpath"
             $item, $version = $module.Split(":")
-            if ($env:RUNNER_OS -eq "Windows") {
-               if ($version) {
-                  Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
-               } else {
-                  Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
-               }
+            if (-not ($env:RUNNER_OS -eq "Windows")) {
+               sudo chmod 777 $modpath
+            }
+            if ($version) {
+               Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
             } else {
-               sudo mv $modpath /tmp/
-               if ($version) {
-                  Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path /tmp/modules
-               } else {
-                  Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path /tmp/modules
-               }
-               sudo mv /tmp/Modules $modpath
+               Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
             }
          }
       }
