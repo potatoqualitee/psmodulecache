@@ -27,7 +27,7 @@ runs:
       run: |
         Write-Output "Getting variables for cacher"
         $keygen = ${{ github.action_path }}/main.ps1 -Type KeyGen -Module "${{ inputs.modules-to-cache }}" -Shell "${{ inputs.shell }}"
-        $modulepath = ${{ github.action_path }}/main.ps1 -Type ModulePath  -Shell "${{ inputs.shell }}"
+        $modulepath = ${{ github.action_path }}/main.ps1 -Type ModulePath -Module "${{ inputs.modules-to-cache }}" -Shell "${{ inputs.shell }}"
 
         $inputs = [pscustomobject]@{
               ModulePath      = $modulepath
