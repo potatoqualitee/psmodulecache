@@ -141,16 +141,6 @@ jobs:
         with:
           modules-to-cache: PoshRSJob, dbatools, SpeculationControl
           shell: powershell, pwsh
-      - name: Run module cacher action
-        id: cacher
-        uses: actions/cache@v2
-        with:
-          key: ${{ steps.psmodulecache.outputs.keygen }}
-          path: |
-            ${{ steps.psmodulecache.outputs.modulepath }}
-      - name: Install PowerShell modules
-        if: steps.cacher.outputs.cache-hit != 'true'
-        uses: potatoqualitee/psmodulecache@v4.5
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
