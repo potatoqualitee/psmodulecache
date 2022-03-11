@@ -13,4 +13,4 @@ jobs:
         shell: pwsh
         run: |
           Get-Module -Name PSFramework, Pester, dbatools, SpeculationControl -ListAvailable | Select Path -OutVariable modules
-          $modules.Path.Count | Should -BeGreaterThan 1
+          $modules.Path.Count | Should -Be 4
