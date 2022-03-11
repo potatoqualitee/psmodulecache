@@ -14,18 +14,16 @@ switch ($Type) {
       if ($env:RUNNER_OS -eq "Windows") {
          $modpath = "$env:ProgramFiles\PowerShell\Modules"
          if ($Shell -eq "powershell") {
-            $modpath.Replace("PowerShell","WindowsPowerShell")
-         }
-         if ($Shell -eq "pwsh") {
-            $modpath
-         }
-         if ($shells -contains "pwsh" -and $shells -contains "powershell") {
-            $modpath.Replace("PowerShell","*PowerShell*")
+            return $modpath.Replace("PowerShell","WindowsPowerShell")
+         } elseif ($Shell -eq "pwsh") {
+            return $modpath
+         } else {
+            return $modpath.Replace("PowerShell","*PowerShell*")
          }
       } else {
          $modpath = "/usr/local/share/powershell/Modules"
-         sudo chown -R runner $modpath
-         $modpath
+         $null = sudo chown -R runner $modpath
+         return $modpath
       }
    }
    'SaveModule' {
