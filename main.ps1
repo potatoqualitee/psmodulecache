@@ -54,7 +54,7 @@ switch ($Type) {
                   Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
                }
             } else {
-               mv $modpath /tmp/
+               sudo mv $modpath /tmp/
                if ($version) {
                   Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path /tmp/modules
                } else {
