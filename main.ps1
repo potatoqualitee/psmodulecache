@@ -24,7 +24,7 @@ switch ($Type) {
          }
       } else {
          $modpath = "/usr/local/share/powershell/Modules"
-         sudo chmod 777 $modpath
+         sudo chown -R runner $modpath
          $modpath
       }
    }
