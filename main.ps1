@@ -12,7 +12,7 @@ switch ($Type) {
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
-         $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
+         $modpath = "$env:ProgramFiles\PowerShell\Modules"
          if ($Shell -eq "powershell") {
             return $modpath.Replace("PowerShell","WindowsPowerShell")
          }
@@ -23,7 +23,7 @@ switch ($Type) {
             return $modpath.Replace("PowerShell","*PowerShell*")
          }
       } else {
-         ($env:PSModulePath.Split(":") | Select-Object -First 1)
+         return "/usr/local/share/powershell/Modules"
       }
    }
    'SaveModule' {
@@ -38,12 +38,12 @@ switch ($Type) {
       foreach ($module in $modules) {
          foreach ($psshell in $shells) {
             if ($env:RUNNER_OS -eq "Windows") {
-               $modpath = ($env:PSModulePath.Split(";") | Select-Object -First 1)
+               $modpath = "$env:ProgramFiles\PowerShell\Modules"
                if ($psshell -eq "powershell") {
                   $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
                }
             } else {
-               $modpath = ($env:PSModulePath.Split(":") | Select-Object -First 1)
+               $modpath = "/usr/local/share/powershell/Modules"
             } 
             Write-Output "Saving module $module on $psshell to $modpath"
             $item, $version = $module.Split(":")

@@ -4,12 +4,12 @@ jobs:
   run-on-linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v4
-      with:
-        modules-to-cache: PSFramework, Pester, dbatools:1.0.0
-    - name: Show that the Action works
-      shell: pwsh
-      run: |
+      - uses: actions/checkout@v2
+      - name: Install and cache PowerShell modules
+        uses: ./
+        with:
+          modules-to-cache: PSFramework, Pester, dbatools:1.0.0
+      - name: Show that the Action works
+        shell: pwsh
+        run: |
           Get-Module -Name PSFramework, Pester, dbatools -ListAvailable | Select Path
