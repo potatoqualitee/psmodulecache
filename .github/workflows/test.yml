@@ -9,7 +9,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v2
         with:
-          modules-to-cache: PSFramework, Pester, dbatools:1.0.1
+          modules-to-cache: PSFramework, Pester, dbatools:1.0.1, SpeculationControl
       - name: Run module cacher action
         id: cacher
         uses: actions/cache@v2
@@ -35,7 +35,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
         with:
-          modules-to-cache: PSFramework, Pester, dbatools:1.0.1
+          modules-to-cache: PSFramework, Pester, dbatools:1.0.1, SpeculationControl
       - name: Run module cacher action
         id: cacher
         uses: actions/cache@v2
@@ -59,7 +59,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
         with:
-          modules-to-cache: PSFramework, Pester, dbatools:1.0.1
+          modules-to-cache: PSFramework, Pester, dbatools:1.0.1, SpeculationControl
       - name: Run module cacher action
         id: cacher
         uses: actions/cache@v2
@@ -83,7 +83,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
         with:
-          modules-to-cache: PoshRSJob
+          modules-to-cache: PoshRSJob, SpeculationControl
           shell: powershell
       - name: Run module cacher action
         id: cacher
@@ -108,7 +108,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
         with:
-          modules-to-cache: PoshRSJob, dbatools
+          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
           shell: powershell, pwsh
       - name: Run module cacher action
         id: cacher
@@ -139,7 +139,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob, dbatools
+          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
           shell: powershell, pwsh
       - name: Show that the Action works on pwsh
         shell: pwsh
@@ -160,7 +160,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob, dbatools
+          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
@@ -175,7 +175,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob, dbatools
+          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
