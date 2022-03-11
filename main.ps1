@@ -14,16 +14,19 @@ switch ($Type) {
       if ($env:RUNNER_OS -eq "Windows") {
          $modpath = "$env:ProgramFiles\PowerShell\Modules"
          if ($Shell -eq "powershell") {
-            return $modpath.Replace("PowerShell","WindowsPowerShell")
+            $modpath.Replace("PowerShell","WindowsPowerShell")
          }
          if ($Shell -eq "pwsh") {
-            return $modpath
+            $modpath
          }
          if ($shells -contains "pwsh" -and $shells -contains "powershell") {
-            return $modpath.Replace("PowerShell","*PowerShell*")
+            $modpath.Replace("PowerShell","*PowerShell*")
          }
       } else {
-         return "/usr/local/share/powershell/Modules"
+         "/usr/local/share/powershell/Modules"
+      }
+      if (-not ($env:RUNNER_OS -eq "Windows")) {
+         sudo chmod 777 $modpath
       }
    }
    'SaveModule' {
@@ -47,9 +50,6 @@ switch ($Type) {
             } 
             Write-Output "Saving module $module on $psshell to $modpath"
             $item, $version = $module.Split(":")
-            if (-not ($env:RUNNER_OS -eq "Windows")) {
-               sudo chmod 777 $modpath
-            }
             if ($version) {
                Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
             } else {
