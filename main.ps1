@@ -8,7 +8,7 @@ $shells = $Shell.Split(",").Trim()
 switch ($Type) {
    'KeyGen' {
       # all this splitting and joining accomodates for powershell and pwsh
-      Write-Output "$env:RUNNER_OS-v4.0-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
+      Write-Output "$env:RUNNER_OS-v4.5-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
       if ($env:RUNNER_OS -eq "Windows") {
@@ -47,10 +47,20 @@ switch ($Type) {
             } 
             Write-Output "Saving module $module on $psshell to $modpath"
             $item, $version = $module.Split(":")
-            if ($version) {
-               Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
+            if ($env:RUNNER_OS -eq "Windows") {
+               if ($version) {
+                  Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
+               } else {
+                  Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
+               }
             } else {
-               Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path $modpath
+               mkdir /tmp/modules
+               if ($version) {
+                  Save-Module $item -RequiredVersion $version -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path /tmp/modules
+               } else {
+                  Save-Module $item -ErrorAction Stop -Force:$force -AllowPrerelease:$allowprerelease -Path /tmp/modules
+               }
+               sudo mv /tmp/modules/* $modpath
             }
          }
       }
