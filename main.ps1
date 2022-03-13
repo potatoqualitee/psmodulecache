@@ -11,19 +11,25 @@ switch ($Type) {
       Write-Output "$env:RUNNER_OS-v4.5-$($shells -join "-")-$(($Module.Split(",") -join '-').Replace(' ',''))"
    }
    'ModulePath' {
-      if ($env:RUNNER_OS -eq "Windows") {
-         $modpath = "$env:ProgramFiles\PowerShell\Modules"
-         if ($Shell -eq "powershell") {
-            return $modpath.Replace("PowerShell","WindowsPowerShell")
-         } elseif ($Shell -eq "pwsh") {
-            return $modpath
+      $modules = $Module.Split(",").Trim()
+      foreach ($module in $modules) {
+         $item, $version = $module.Split(":")
+         if ($env:RUNNER_OS -eq "Windows") {
+            $modpath = "$env:ProgramFiles\PowerShell\Modules\"
+            if ($Shell -eq "powershell") {
+               $modpath = $modpath.Replace("PowerShell","WindowsPowerShell")
+               [System.IO.Path]::Combine($modpath, $item)
+            } elseif ($Shell -eq "pwsh") {
+               [System.IO.Path]::Combine($modpath, $item)
+            } else {
+               $modpath = $modpath.Replace("PowerShell","*PowerShell*")
+               [System.IO.Path]::Combine($modpath, $item)
+            }
          } else {
-            return $modpath.Replace("PowerShell","*PowerShell*")
+            $modpath = "/usr/local/share/powershell/Modules/"
+            $null = sudo chown -R runner $modpath
+            [System.IO.Path]::Combine($modpath, $item)
          }
-      } else {
-         $modpath = "/usr/local/share/powershell/Modules"
-         $null = sudo chown -R runner $modpath
-         return $modpath
       }
    }
    'SaveModule' {
