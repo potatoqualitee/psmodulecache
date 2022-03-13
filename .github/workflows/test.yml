@@ -139,7 +139,7 @@ jobs:
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v4.5
         with:
-          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
+          modules-to-cache: PoshRSJob:1.7.4.4, dbatools, SpeculationControl
           shell: powershell, pwsh
       - name: Show that the Action works on pwsh
         shell: pwsh
@@ -160,7 +160,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob
+          modules-to-cache: PoshRSJob:1.7.4.4, dbatools, SpeculationControl
           shell: powershell, pwsh
       - name: Show that the Action works on pwsh
         shell: pwsh
@@ -181,7 +181,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob
+          modules-to-cache: PoshRSJob:1.7.4.4, dbatools, SpeculationControl
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
@@ -196,7 +196,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob
+          modules-to-cache: PoshRSJob:1.7.4.4, dbatools, SpeculationControl
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
