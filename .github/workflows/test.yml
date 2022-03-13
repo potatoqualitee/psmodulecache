@@ -160,7 +160,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
+          modules-to-cache: PoshRSJob
           shell: powershell, pwsh
       - name: Show that the Action works on pwsh
         shell: pwsh
@@ -181,7 +181,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
+          modules-to-cache: PoshRSJob
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
@@ -196,7 +196,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
+          modules-to-cache: PoshRSJob
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
