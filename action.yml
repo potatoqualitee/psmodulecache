@@ -53,5 +53,7 @@ runs:
       shell: pwsh
       if: steps.cacher.outputs.cache-hit != 'true'
       run: |
+        Write-Warning "${{ steps.psoutput.outputs.modulepath }}"
+        Get-ChildItem "${{ steps.psoutput.outputs.modulepath }}"
         Write-Output "Saving all modules"
         ${{ github.action_path }}/main.ps1 -Type SaveModule
