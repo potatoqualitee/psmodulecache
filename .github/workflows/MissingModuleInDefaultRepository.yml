@@ -1,0 +1,36 @@
+
+name: MissingModuleInDefaultRepository
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Missing_module_in_default_repository:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set required PowerShell modules
+        id: psmodulecache
+        uses: ./
+        with:
+           # !! The setting is correct, but the creation of the cache will fail, because
+           # !!  the module 'DTW.PS.FileSystem' do not exist on PSGallery.
+          modules-to-cache: DTW.PS.FileSystem
+          shell: powershell,pwsh
+          updatable: "false"
+          prefixidentifier: "true"
+
+      - name: With Powershell, check the presence of the module
+        shell: powershell
+        run: |
+
+          Import-Module DTW.PS.FileSystem
+          Write-host "DTW '$(Get-Module DTW.PS.FileSystemSelect-Object Name,Version,RepositorySourceLocation)'"
+
+      - name: With PS Core, check the presence of the module
+        shell: pwsh
+        run: |
+
+          Import-Module DTW.PS.FileSystem
+          Write-host "DTW '$(Get-Module DTW.PS.FileSystem|Select-Object Name,Version,RepositorySourceLocation)'"

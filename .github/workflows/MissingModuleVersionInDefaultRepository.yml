@@ -1,0 +1,35 @@
+name: MissingModuleVersionInDefaultRepository
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Missing_module_version_in_default_repository:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set required PowerShell modules
+        id: psmodulecache
+        uses: ./
+        with:
+           # !! The setting is correct, but the creation of the cache will fail, because
+           # !!  for this syntax the existence of the module version is only checked when calling Save-ModuleCache.
+          modules-to-cache: InvokeBuild:20.2.15
+          shell: powershell,pwsh
+          updatable: "false"
+          prefixidentifier: "true"
+
+      - name: With Powershell, check the presence of the module
+        shell: powershell
+        run: |
+
+          Import-Module InvokeBuild
+          Write-host "InvokeBuild '$(Get-Module InvokeBuild|Select-Object Name,Version,RepositorySourceLocation)'"
+
+      - name: With PS core, check the presence of the module
+        shell: pwsh
+        run: |
+
+          Import-Module InvokeBuild
+          Write-host "InvokeBuild '$(Get-Module InvokeBuild|Select-Object Name,Version,RepositorySourceLocation)'"

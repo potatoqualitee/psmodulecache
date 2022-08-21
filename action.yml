@@ -2,56 +2,69 @@ name: "PowerShell Module Cache"
 branding:
   icon: "download"
   color: "gray-dark"
-description: "Cache modules from the PowerShell Gallery"
+description: "Caching modules from PSRepositories"
 inputs:
   modules-to-cache:
-    description: "The PowerShell modules to cache from the PowerShell Gallery"
+    description: "Name of PowerShell modules to cache from registered PsRepositories (PowerShell Gallery by default)"
+    required: false
+  modules-to-cache-prerelease:
+    description: "Name of prerelease PowerShell modules to cache from registered PsRepositories (PowerShell Gallery by default). Uses the -AllowPrerelease parameter during Save-Module."
     required: false
   shell:
-    description: "The default shell to use. Defaults to pwsh. Options are pwsh or powershell."
+    description: "The default shell to use. Options are 'powershell' or 'pwsh' (Default) or both."
     required: false
     default: "pwsh"
-  allow-prerelease:
-    description: "Allow prerelease during Save-Module"
+  updatable:
+    description: "Triggers an update of one or more modules."
     required: false
-    default: "true"
-  force:
-    description: "Force during Save-Module"
+    default: "false"
+  prefixidentifier:
+    description: "Prefixes the cache key name with the Workflow name ($env:GITHUB_WORKFLOW). Used to group cache keys."
     required: false
-    default: "true"
+    default: "false"
+
 runs:
   using: "composite"
   steps:
     - id: psoutput
       shell: pwsh
       run: |
+        Import-Module ${{ github.action_path }}/PSModuleCache.psd1
         Write-Output "Getting variables for cacher"
-        $keygen = ${{ github.action_path }}/main.ps1 -Type KeyGen -Module "${{ inputs.modules-to-cache }}" -Shell "${{ inputs.shell }}"
-        $modulepath = ${{ github.action_path }}/main.ps1 -Type ModulePath -Module "${{ inputs.modules-to-cache }}" -Shell "${{ inputs.shell }}"
 
-        $inputs = [pscustomobject]@{
-              ModulePath      = $modulepath
-              Modules         = ("${{ inputs.modules-to-cache }}" -split ",")
-              Force           = "${{ inputs.force }}"
-              AllowPrerelease = "${{ inputs.allow-prerelease }}"
-              Shell           = "${{ inputs.shell }}"
-          }
-        
-        Write-Output "::set-output name=keygen::$keygen"
-        Write-Output "::set-output name=modulepath::$modulepath"
+        $Parameters=@{
+          Modules="${{ inputs.modules-to-cache }}"
+          PrereleaseModules="${{ inputs.modules-to-cache-prerelease }}"
+          Shells="${{ inputs.shell }}"
+          Updatable=[boolean]::Parse("${{ inputs.updatable }}")
+          PrefixIdentifier=[boolean]::Parse("${{ inputs.prefixidentifier }}")
+        }
+        Write-Output "Action Parameters=$([PsCustomObject]$Parameters)"
 
-        $null = $inputs | Export-CliXml -Path (Join-Path $home -ChildPath cache.xml)
+        $ActionParameters=New-ModuleCacheParameter @Parameters
+
+        $ModuleCaches=Get-ModuleCache $ActionParameters
+        Write-Output "::set-output name=keygen::$($ModuleCaches.Key)"
+
+        $Paths=@(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
+        Write-Output "::set-output name=modulepath::$(ConvertTo-YamlLineBreak $Paths)"
+
+        $null = $ModuleCaches | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
 
     - name: Run module cacher action
       id: cacher
-      uses: actions/cache@v3.0.6
+      uses: actions/cache@v3.0.7
       with:
-        path: ${{ steps.psoutput.outputs.modulepath }}
         key: ${{ steps.psoutput.outputs.keygen }}
+        path: |
+          ${{ steps.psoutput.outputs.modulepath }}
+
     - name: Install PowerShell modules
       id: finalstep
       shell: pwsh
       if: steps.cacher.outputs.cache-hit != 'true'
       run: |
         Write-Output "Saving all modules"
-        ${{ github.action_path }}/main.ps1 -Type SaveModule
+
+        Import-Module ${{ github.action_path }}/PSModuleCache.psd1
+        Save-ModuleCache

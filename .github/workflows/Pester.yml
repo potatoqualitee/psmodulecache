@@ -1,0 +1,31 @@
+name: Pester
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-pwsh:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Pester tests (pwsh)
+        run: |
+            Write-host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
+            cd test
+            ./Run.ps1
+        shell: pwsh
+
+  test-posh:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Pester tests (PowerShell)
+        run: |
+            $global:iswindows=$true
+            Write-host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
+            cd test
+            .\Run.ps1
+        shell: powershell
