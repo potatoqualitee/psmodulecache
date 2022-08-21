@@ -13,6 +13,7 @@
 * The 'main.ps1' script is replaced by a Powershell module (psmodulecache.psm1)
 * Add Pester test.
 * Rewrite test Actions.
+* Add Pester Actions.
 * Fixed typecasting of boolean type parameters.
 * Fix: Each module directory name to be cached is now passed as a parameter to 'action/cache'.
 

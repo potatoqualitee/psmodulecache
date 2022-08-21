@@ -11,7 +11,7 @@ inputs:
     description: "Name of prerelease PowerShell modules to cache from registered PsRepositories (PowerShell Gallery by default). Uses the -AllowPrerelease parameter during Save-Module."
     required: false
   shell:
-    description: "The default shell to use. Options are 'powershell' or 'pwsh' (Default) or both."
+    description: "The default shell to use. Options are 'powershell' or 'pwsh' (default) or both."
     required: false
     default: "pwsh"
   updatable:
