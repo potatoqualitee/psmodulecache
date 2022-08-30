@@ -20,8 +20,8 @@ jobs:
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
-          'PoshRSJob', 'dbatools', 'SpeculationControl'|
-           Foreach {
-              Import-Module $_
-              Write-host "$_ '$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)'"
-          }
+          'PoshRSJob', 'dbatools', 'SpeculationControl' |
+              foreach {
+                  Import-Module $_
+                  Write-Host "$_ '$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)'"
+              }

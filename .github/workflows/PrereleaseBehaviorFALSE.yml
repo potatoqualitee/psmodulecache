@@ -20,7 +20,9 @@ jobs:
         shell: powershell
         run: |
           # save the last stable version
-          Import-Module PnP.PowerShell,safeguard-ps,InvokeBuild
+          Import-Module PnP.PowerShell, safeguard-ps, InvokeBuild
 
-          'PnP.PowerShell','safeguard-ps','InvokeBuild'|
-            Foreach-Object { Write-host "$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)" }
+          'PnP.PowerShell','safeguard-ps','InvokeBuild' |
+            ForEach-Object {
+              Write-Host "$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)"
+            }

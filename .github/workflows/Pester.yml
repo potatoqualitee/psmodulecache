@@ -13,9 +13,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run Pester tests (pwsh)
         run: |
-            Write-host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
-            cd test
-            ./Run.ps1
+          Write-Host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
+          cd test
+          ./Run.ps1
         shell: pwsh
 
   test-posh:
@@ -24,8 +24,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run Pester tests (PowerShell)
         run: |
-            $global:iswindows=$true
-            Write-host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
-            cd test
-            .\Run.ps1
+          $global:iswindows=$true
+          Write-Host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
+          cd test
+          .\Run.ps1
         shell: powershell
