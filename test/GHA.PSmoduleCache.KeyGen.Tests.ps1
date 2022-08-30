@@ -102,9 +102,9 @@ foreach ($Repository in $Repositories) {
   try {
     Get-PSRepository $Name -ErrorAction Stop >$null
   } catch {
-    if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
-    { throw $_ }
-    else {
+    if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
+      throw $_
+    } else {
       $Parameters = @{
         Name               = $Name
         SourceLocation     = $Repository.SourceLocation
