@@ -1,0 +1,35 @@
+name: WindowsInstallModulesWithDefaultRepositoryOnBothPsVersion
+on:
+  workflow_dispatch:
+
+jobs:
+  WindowsInstallModulesWithDefaultRepositoryOnBothPsVersion:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set required PowerShell modules
+        id: psmodulecache
+        uses: ./
+        with:
+          modules-to-cache: PoshRSJob, dbatools, SpeculationControl
+          shell: powershell,pwsh
+          updatable: "false"
+          prefixidentifier: "true"
+
+      - name: Show that the Action works on pwsh
+        shell: pwsh
+        run: |
+          'PoshRSJob', 'dbatools', 'SpeculationControl'|
+           Foreach {
+              Import-Module $_
+              Write-host "$_ '$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)'"
+          }
+      - name: Show that the Action works on PowerShell
+        shell: powershell
+        run: |
+          'PoshRSJob', 'dbatools', 'SpeculationControl'|
+           Foreach {
+              Import-Module $_
+              Write-host "$_ '$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)'"
+          }
