@@ -97,7 +97,7 @@ $Repositories = @(
     sourcelocation  = 'https://www.myget.org/F/ottomatt/api/v2'
   }
 )
-Foreach ($Repository in $Repositories) {
+foreach ($Repository in $Repositories) {
   $Name = $Repository.Name
   try {
     Get-PSRepository $Name -ErrorAction Stop >$null

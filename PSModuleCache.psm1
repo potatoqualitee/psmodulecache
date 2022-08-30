@@ -337,7 +337,7 @@ function Test-FunctionnalError {
       } else {
          Write-Host "$($PSStyle.Foreground.Red)List of errors :$($PSStyle.Reset)"
       }
-      $script:FunctionnalErrors | foreach-Object $sbProcess
+      $script:FunctionnalErrors | ForEach-Object $sbProcess
       throw "Check the setting of the 'psmodulecache' Action."
    }
 }
@@ -539,7 +539,7 @@ function New-ModuleCacheParameter {
    { throw $PSModuleCacheResources.MustDefineAtLeastOneShell }
 
    $tab = $Shells.Split(',',[System.StringSplitOptions]::RemoveEmptyEntries)
-   [string[]]$tab = $tab | foreach-Object { $_.Trim() } | Where-Object { $_ -ne [string]::Empty }
+   [string[]]$tab = $tab | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne [string]::Empty }
 
    if ($tab.Count -eq 0) {
       throw $PSModuleCacheResources.MustDefineAtLeastOneShell
