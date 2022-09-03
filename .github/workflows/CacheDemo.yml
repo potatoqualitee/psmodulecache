@@ -1,110 +1,70 @@
 name: CacheDemo
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    CacheDemo:
-        runs-on: windows-latest
-        steps:
-            - uses: actions/checkout@v3
+ CacheDemo:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
 
-            - name: Set Required repositories PS Win
-              shell: powershell
-              run: |
-                  $Repositories = @(
-                      [PsCustomObject]@{
-                          name            = 'OttoMatt'
-                          publishlocation = 'https://www.myget.org/F/ottomatt/api/v2/package'
-                          sourcelocation  = 'https://www.myget.org/F/ottomatt/api/v2'
-                      },
-                      [PsCustomObject]@{
-                          name            = 'DevOttoMatt'
-                          publishlocation = 'https://www.myget.org/F/devottomatt/api/v2/package'
-                          sourcelocation  = 'https://www.myget.org/F/devottomatt/api/v2'
-                      }
-                  )
+      - name: Set Required repositories PS Win
+        shell: powershell
+        run: |
+            $Repositories=@(
+              [PsCustomObject]@{
+                  name='OttoMatt'
+                  publishlocation='https://www.myget.org/F/ottomatt/api/v2/package'
+                  sourcelocation='https://www.myget.org/F/ottomatt/api/v2'
+              },
+              [PsCustomObject]@{
+                  name='DevOttoMatt'
+                  publishlocation='https://www.myget.org/F/devottomatt/api/v2/package'
+                  sourcelocation='https://www.myget.org/F/devottomatt/api/v2'
+              }
+            )
+            Foreach ($Repository in $Repositories)
+            {
+              $Name=$Repository.Name
+              try{
 
-                  foreach ($Repository in $Repositories) {
-                      $Name = $Repository.Name
-                      try {
-                          Get-PSRepository $Name -ErrorAction Stop >$null
-                      } catch {
-                          if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
-                            throw $_
-                          } else {
-                              $Parameters = @{
-                                  Name               = $Name
-                                  SourceLocation     = $Repository.SourceLocation
-                                  PublishLocation    = $Repository.PublishLocation
-                                  InstallationPolicy = 'Trusted'
-                              }
-                              Write-Output "Register repository '$($Repository.Name)'"
-                              # An invalid Web Uri is managed by Register-PSRepository
-                              # A valid but incorrect Web Uri throw a exception.
-                              Register-PSRepository @Parameters
-                          }
-                      }
+                  Get-PSRepository $Name -EA Stop >$null
+              }catch {
+                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
+                  { throw $_ }
+                  else
+                  {
+                    $Parameters=@{
+                        Name=$Name
+                        SourceLocation=$Repository.SourceLocation
+                        PublishLocation=$Repository.PublishLocation
+                        InstallationPolicy='Trusted'
+                    }
+                    Write-Output "Register repository '$($Repository.Name)'"
+                     # An invalid Web Uri is managed by Register-PSRepository
+                     # A valid but incorrect Web Uri throw a exception.
+                    Register-PSRepository @Parameters
                   }
+              }
+            }
 
-            - name: Set Required repositories PS Core
-              shell: pwsh
-              run: |
-                  $Repositories = @(
-                      [PsCustomObject]@{
-                          name            = 'OttoMatt'
-                          publishlocation = 'https://www.myget.org/F/ottomatt/api/v2/package'
-                          sourcelocation  = 'https://www.myget.org/F/ottomatt/api/v2'
-                      },
-                      [PsCustomObject]@{
-                          name            = 'DevOttoMatt'
-                          publishlocation = 'https://www.myget.org/F/devottomatt/api/v2/package'
-                          sourcelocation  = 'https://www.myget.org/F/devottomatt/api/v2'
-                      }
-                  )
-                  foreach ($Repository in $Repositories) {
-                      $Name = $Repository.Name
-                      try {
-                          Get-PSRepository $Name -ErrorAction Stop >$null
-                      } catch {
-                          if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
-                          throw $_
-                          } else {
-                              $Parameters = @{
-                                  Name               = $Name
-                                  SourceLocation     = $Repository.SourceLocation
-                                  PublishLocation    = $Repository.PublishLocation
-                                  InstallationPolicy = 'Trusted'
-                              }
-                              Write-Output "Register repository '$($Repository.Name)'"
-                              Register-PSRepository @Parameters
-                          }
-                      }
-                  }
+      - name: Cache modules
+        id: psmodulecache
+        uses: ./
+        with:
+          modules-to-cache: DTW.PS.FileSystem,PnP.PowerShell,InvokeBuild
+          modules-to-cache-prerelease: "PnP.PowerShell::"
+          shell: powershell
+          updatable: "true"
+          prefixidentifier: "true"
 
-            - name: Cache modules
-              id: psmodulecache
-              uses: ./
-              with:
-                  modules-to-cache: DTW.PS.FileSystem,PnP.PowerShell,InvokeBuild
-                  shell: powershell,pwsh
-                  updatable: "false"
-                  prefixidentifier: "true"
+      - name: Get required modules on Windows PowerShell
+        shell: powershell
+        run: |
+          'DTW.PS.FileSystem','PnP.PowerShell','InvokeBuild'|
+          Foreach {
+             Import-Module $_
+             Write-host "$_ '$(Get-Module $_ -ListAvailabLe|Select-Object Name,Version,@{Name='PreRelease';e={$_.PrivateData.PSData.Prerelease}},RepositorySourceLocation)'"
+          }
 
-            - name: Get required modules on Windows PowerShell
-              shell: powershell
-              run: |
-                  'DTW.PS.FileSystem','PnP.PowerShell','InvokeBuild' |
-                      foreach {
-                          Import-Module $_
-                          Write-Host "$_ '$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)'"
-                      }
-
-            - name: Get required modules on PowerShell Core
-              shell: pwsh
-              run: |
-                  'DTW.PS.FileSystem','PnP.PowerShell','InvokeBuild' |
-                      foreach {
-                          Import-Module $_
-                          Write-Host "$_ '$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)'"
-                      }

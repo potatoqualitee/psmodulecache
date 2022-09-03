@@ -10,22 +10,23 @@ jobs:
       - name: Runs test Workflows
         shell: pwsh
         run: |
-          #Owner/Repository
-          $Repo='potatoqualitee/psmodulecache'
+           #Owner/Repository
+           $Repo=$env:GITHUB_REPOSITORY
 
-          # !!!!!! Avoid recursive calls inside a CONSOLE : $env:GITHUB_WORKFLOW='CleanWorkFlowsHistory'
-          #Retrieve All Workflow except 4
-          $Exclude=@($env:GITHUB_WORKFLOW,'Pester','MissingModuleInDefaultRepository','MissingModuleVersionInDefaultRepository')
-          #We know the name of the worklfow
-          $Workflows = gh workflow list --repo $Repo --all|
-                       ForEach-Object {$_ -replace "`t",';'} |
-                       ConvertFrom-CSV -Header Name,Status,ID -Delimiter ';' |
-                       Where-Object {$_.name -notIn $Exclude}
+           # !!!!!! Avoid recursive calls inside a CONSOLE : $env:GITHUB_WORKFLOW='RunWorkFlows'
+           #Retrieve All Workflow except 4
+           $Exclude=@($env:GITHUB_WORKFLOW,'CleanWorkFlowsHistory','Pester')
+           #We know the name of the worklfow
+           $Workflows=gh workflow list --repo $Repo --all|
+                      Foreach-Object {$_ -replace "`t",';'}|
+                      ConvertFrom-CSV -Header Name,Status,ID -Delimiter ';'|
+                      Where-Object {$_.name -notIn $Exclude}
 
-          foreach ($Workflow in $Workflows) {
-             $WorkflowName=$Workflow.Name
-             Write-Host "Execute the workflow '$WorkflowName'."
-             gh workflow run $WorkflowName --repo $Repo
-          }
+           Foreach ($Workflow in $Workflows)
+           {
+              $WorkflowName=$Workflow.Name
+              Write-Host "Execute the workflow '$WorkflowName'."
+              gh workflow run $WorkflowName --repo $Repo
+           }
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}

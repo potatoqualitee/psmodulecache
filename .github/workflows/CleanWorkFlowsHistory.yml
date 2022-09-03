@@ -1,4 +1,5 @@
 name: CleanWorkFlowsHistory
+
 on:
   workflow_dispatch:
 
@@ -9,51 +10,56 @@ jobs:
       - name: Runs for the Workflows
         shell: pwsh
         run: |
-          # !!!!!! Avoid recursive calls inside a CONSOLE : $env:GITHUB_WORKFLOW='CleanWorkFlowsHistory'
-          #Owner/Repository
-          $Repo = 'potatoqualitee/psmodulecache'
+           # !!!!!! Avoid recursive calls inside a CONSOLE : $env:GITHUB_WORKFLOW='CleanWorkFlowsHistory'
+            #Owner/Repository
+           $Repo=$env:GITHUB_REPOSITORY
 
-          #Retrieve All Workflow except 3
-          #We know the name of the worklfow
-          $Workflows = gh workflow list --repo $Repo --all |
-              ForEach-Object { $_ -replace "`t",';' } |
-              ConvertFrom-CSV -Header Name,Status,ID -Delimiter ';' |
-              Where-Object { $_.name -notIn @($env:GITHUB_WORKFLOW,'RunWorkFlows','Pester') }
 
-          #Retrieve the list of the caches
-          #We know by extraction the name of the workflow
-          $AllCaches = (gh api -H "Accept: application/vnd.github+json" /repos/$Repo/actions/caches --paginate | ConvertFrom-Json).actions_caches
-          foreach ($Cache in $AllCaches) {
+           #Retrieve All Workflow except 3
+           #We know the name of the worklfow
+           $Workflows=gh workflow list --repo $Repo --all|
+                      Foreach-Object {$_ -replace "`t",';'}|
+                      ConvertFrom-CSV -Header Name,Status,ID -Delimiter ';'|
+                      Where-Object {$_.name -notIn @($env:GITHUB_WORKFLOW,'RunWorkFlows','Pester') }
+
+           #Retrieve the list of the caches
+           #We know by extraction the name of the workflow
+           $AllCaches=(gh api  -H "Accept: application/vnd.github+json" /repos/$Repo/actions/caches --paginate|ConvertFrom-Json).actions_caches
+           Foreach ($Cache in $AllCaches)
+           {
               #The 'prefixidentifier' parameter of the psmoduleCache Action must be 'true'
-              $WkfName = $Cache.key -replace '^(.*?)-.*$','$1'
-              Add-Member -InputObject $Cache -MemberType NoteProperty -Name WorkflowName -Value $wkfName
-          }
-          $Caches = $AllCaches | Group-Object WorkflowName -AsHashTable
+             $WkfName=$Cache.key -replace '^(.*?)-.*$','$1'
+             Add-Member -InputObject $Cache -MemberType NoteProperty -Name WorkflowName -Value $wkfName
+           }
+           $Caches=$AllCaches|Group-Object WorkflowName -AsHashTable
 
-          #Retrieve all run from the repository
-          #We know the ID of the workflow
-          $Runs = ( gh api -H "Accept: application/vnd.github+json" /repos/$Repo/actions/runs --paginate | ConvertFrom-Json).workflow_runs |
-              Group-Object workflow_id -AsHashTable
+           #Retrieve all run from the repository
+           #We know the ID of the workflow
+           $Runs=( gh api -H "Accept: application/vnd.github+json" /repos/$Repo/actions/runs --paginate|ConvertFrom-Json).workflow_runs|
+                Group-Object workflow_id -AsHashTable
 
-          foreach ($Workflow in $Workflows) {
-              #Beware https://github.com/PowerShell/PowerShell/issues/14264
-              # -as [int] for PS v5.1
-              $wkfID = $Workflow.ID -as [int64]
-              $wkfName = $Workflow.Name
+           Foreach ($Workflow in $Workflows)
+           {
+               #Beware https://github.com/PowerShell/PowerShell/issues/14264
+               # -as [int] for PS v5.1
+              $wkfID=$Workflow.ID -as [int64]
+              $wkfName=$Workflow.Name
 
-              foreach ($RunID in $Runs.$wkfID.id) {
-                  Write-Host "Delete the old runs for the workflow '$wkfName'."
-                  gh api --method DELETE -H "Accept: application/vnd.github+json" /repos/$Repo/actions/runs/$RunID
+              Foreach ($RunID in $Runs.$wkfID.id)
+              {
+                Write-Host "Delete the old runs for the workflow '$wkfName'."
+                gh api --method DELETE -H "Accept: application/vnd.github+json" /repos/$Repo/actions/runs/$RunID
               }
 
-              foreach ($CacheID in $Caches.$wkfName.ID) {
-                  Write-Host "Delete the caches for the workflow '$wkfName'."
-                  gh api --method DELETE -H "Accept: application/vnd.github+json" /repos/$Repo/actions/caches/$CacheID
+              Foreach ($CacheID in $Caches.$wkfName.ID)
+              {
+                Write-Host "Delete the caches for the workflow '$wkfName'."
+                gh api --method DELETE -H "Accept: application/vnd.github+json" /repos/$Repo/actions/caches/$CacheID
               }
 
               Write-Host "Execute the workflow '$wkfName'."
               gh workflow run $wkfName --repo $Repo
-              # !! To check the result, you must run the workflow a second time without deleting anything.
-          }
+               # !! To check the result, you must run the workflow a second time without deleting anything.
+            }
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}

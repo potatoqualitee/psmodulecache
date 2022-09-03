@@ -12,20 +12,127 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run Pester tests (pwsh)
-        run: |
-          Write-Host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
-          cd test
-          ./Run.ps1
         shell: pwsh
+        run: |
+            Write-host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
+
+            #Register additionnal repositories without credential
+            $Repositories=@(
+              [PsCustomObject]@{
+                  name='OttoMatt'
+                  publishlocation='https://www.myget.org/F/ottomatt/api/v2/package'
+                  sourcelocation='https://www.myget.org/F/ottomatt/api/v2'
+              }
+            )
+            Foreach ($Repository in $Repositories)
+            {
+              $Name=$Repository.Name
+              try{
+                  Get-PSRepository $Name -EA Stop >$null
+              }catch {
+                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
+                  { throw $_ }
+                  else
+                  {
+                    $Parameters=@{
+                        Name=$Name
+                        SourceLocation=$Repository.SourceLocation
+                        PublishLocation=$Repository.PublishLocation
+                        InstallationPolicy='Trusted'
+                    }
+                    Write-Output "Register repository '$($Repository.Name)'"
+                    Register-PSRepository @Parameters
+                  }
+              }
+            }
+
+
+             #Informations is shared between steps using environment variables
+            $CloudsmithRepositoryName='privatepsmodulecache'
+            $CloudsmithUriLocation='https://nuget.cloudsmith.io/actionpsmodulecache/privatepsmodulecache/v2/'
+            $RepositoriesAuthenticationFileName='RepositoriesCredential.Datas.ps1xml'
+
+            $Env:CloudsmithRepositoryName=$CloudsmithRepositoryName
+            $Env:PSModuleCacheCredentialFileName=$RepositoriesAuthenticationFileName
+            $Env:CLOUDSMITHACCOUNTNAME='${{ secrets.CLOUDSMITHACCOUNTNAME }}'
+            $Env:CLOUDSMITHPASSWORD='${{ secrets.CLOUDSMITHPASSWORD }}'
+
+             #Create credentials via Github secret repository
+            $RepositoriesCredential=@{}
+            $Credential=New-Object PSCredential('${{ secrets.CLOUDSMITHACCOUNTNAME }}',$(ConvertTo-SecureString '${{ secrets.CLOUDSMITHPASSWORD }}' -AsPlainText -Force) )
+            $RepositoriesCredential.$CloudsmithRepositoryName=$Credential
+
+             #Register additionnal repositories with credential
+            Register-PackageSource -Name $CloudsmithRepositoryName -Location $CloudsmithUriLocation -Trusted -Credential $credential -ProviderName NuGet > $null
+            Register-PSRepository -Name $CloudsmithRepositoryName -SourceLocation $CloudsmithUriLocation -PublishLocation $CloudsmithUriLocation -InstallationPolicy 'trusted' -Credential $credential
+
+             #Save credential datas into the filesystem
+            $RepositoriesCredential | Export-CliXml -Path (Join-Path $home -ChildPath $RepositoriesAuthenticationFileName)
+
+            cd test
+            ./Run.ps1
 
   test-posh:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - name: Run Pester tests (PowerShell)
-        run: |
-          $global:iswindows=$true
-          Write-Host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
-          cd test
-          .\Run.ps1
         shell: powershell
+        run: |
+            $global:iswindows=$true
+            Write-host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
+
+            #Register additionnal repositories without credential
+            $Repositories=@(
+              [PsCustomObject]@{
+                  name='OttoMatt'
+                  publishlocation='https://www.myget.org/F/ottomatt/api/v2/package'
+                  sourcelocation='https://www.myget.org/F/ottomatt/api/v2'
+              }
+            )
+            Foreach ($Repository in $Repositories)
+            {
+              $Name=$Repository.Name
+              try{
+                  Get-PSRepository $Name -EA Stop >$null
+              }catch {
+                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
+                  { throw $_ }
+                  else
+                  {
+                    $Parameters=@{
+                        Name=$Name
+                        SourceLocation=$Repository.SourceLocation
+                        PublishLocation=$Repository.PublishLocation
+                        InstallationPolicy='Trusted'
+                    }
+                    Write-Output "Register repository '$($Repository.Name)'"
+                    Register-PSRepository @Parameters
+                  }
+              }
+            }
+
+             #Informations is shared between steps using environment variables
+            $CloudsmithRepositoryName='privatepsmodulecache'
+            $CloudsmithUriLocation='https://nuget.cloudsmith.io/actionpsmodulecache/privatepsmodulecache/v2/'
+            $RepositoriesAuthenticationFileName='RepositoriesCredential.Datas.ps1xml'
+
+            $Env:CloudsmithRepositoryName=$CloudsmithRepositoryName
+            $Env:PSModuleCacheCredentialFileName=$RepositoriesAuthenticationFileName
+            $Env:CLOUDSMITHACCOUNTNAME='${{ secrets.CLOUDSMITHACCOUNTNAME }}'
+            $Env:CLOUDSMITHPASSWORD='${{ secrets.CLOUDSMITHPASSWORD }}'
+
+             #Create credentials via Github secret repository
+            $RepositoriesCredential=@{}
+            $Credential=New-Object PSCredential('${{ secrets.CLOUDSMITHACCOUNTNAME }}',$(ConvertTo-SecureString '${{ secrets.CLOUDSMITHPASSWORD }}' -AsPlainText -Force) )
+            $RepositoriesCredential.$CloudsmithRepositoryName=$Credential
+
+             #Register additionnal repositories with credential
+            Register-PackageSource -Name $CloudsmithRepositoryName -Location $CloudsmithUriLocation -Trusted -Credential $credential -ProviderName NuGet > $null
+            Register-PSRepository -Name $CloudsmithRepositoryName -SourceLocation $CloudsmithUriLocation -PublishLocation $CloudsmithUriLocation -InstallationPolicy 'trusted' -Credential $credential
+
+             #Save credential datas into the filesystem
+            $RepositoriesCredential | Export-CliXml -Path (Join-Path $home -ChildPath $RepositoriesAuthenticationFileName)
+
+            cd test
+            .\Run.ps1
