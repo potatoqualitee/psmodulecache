@@ -1,6 +1,7 @@
 name: WindowsUpdatableModulesWithRepositoriesOnBothPsVersion
 on:
   workflow_dispatch:
+
 jobs:
   WindowsUpdatableModulesWithRepositoriesOnBothPsVersion:
     runs-on: windows-latest
@@ -10,85 +11,82 @@ jobs:
       - name: Set Required repositories PS Win
         shell: powershell
         run: |
-            $Repositories=@(
+          $Repositories = @(
               [PsCustomObject]@{
-                  name='OttoMatt'
-                  publishlocation='https://www.myget.org/F/ottomatt/api/v2/package'
-                  sourcelocation='https://www.myget.org/F/ottomatt/api/v2'
+                  name            = 'OttoMatt'
+                  publishlocation = 'https://www.myget.org/F/ottomatt/api/v2/package'
+                  sourcelocation  = 'https://www.myget.org/F/ottomatt/api/v2'
               },
               [PsCustomObject]@{
-                  name='DevOttoMatt'
-                  publishlocation='https://www.myget.org/F/devottomatt/api/v2/package'
-                  sourcelocation='https://www.myget.org/F/devottomatt/api/v2'
+                  name            = 'DevOttoMatt'
+                  publishlocation = 'https://www.myget.org/F/devottomatt/api/v2/package'
+                  sourcelocation  = 'https://www.myget.org/F/devottomatt/api/v2'
               }
-            )
-            Foreach ($Repository in $Repositories)
-            {
-              $Name=$Repository.Name
-              try{
+          )
+          foreach ($Repository in $Repositories) {
+              $Name = $Repository.Name
+              try {
 
-                  Get-PSRepository $Name -EA Stop >$null
-              }catch {
-                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
-                  { throw $_ }
-                  else
-                  {
-                    $Parameters=@{
-                        Name=$Name
-                        SourceLocation=$Repository.SourceLocation
-                        PublishLocation=$Repository.PublishLocation
-                        InstallationPolicy='Trusted'
-                    }
-                    Write-Output "Register repository '$($Repository.Name)'"
-                     # An invalid Web Uri is managed by Register-PSRepository
-                    Register-PSRepository @Parameters
+                  Get-PSRepository $Name -ErrorAction Stop >$null
+              } catch {
+                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
+                      throw $_
+                  } else {
+                      $Parameters = @{
+                          Name               = $Name
+                          SourceLocation     = $Repository.SourceLocation
+                          PublishLocation    = $Repository.PublishLocation
+                          InstallationPolicy = 'Trusted'
+                      }
+                      Write-Output "Register repository '$($Repository.Name)'"
+                      # An invalid Web Uri is managed by Register-PSRepository
+                      Register-PSRepository @Parameters
                   }
               }
-            }
+          }
 
       - name: Set Required repositories PS Core
         shell: pwsh
         run: |
-            $Repositories=@(
+          $Repositories = @(
               [PsCustomObject]@{
-                  name='OttoMatt'
-                  publishlocation='https://www.myget.org/F/ottomatt/api/v2/package'
-                  sourcelocation='https://www.myget.org/F/ottomatt/api/v2'
+                  name            = 'OttoMatt'
+                  publishlocation = 'https://www.myget.org/F/ottomatt/api/v2/package'
+                  sourcelocation  = 'https://www.myget.org/F/ottomatt/api/v2'
               },
               [PsCustomObject]@{
-                  name='DevOttoMatt'
-                  publishlocation='https://www.myget.org/F/devottomatt/api/v2/package'
-                  sourcelocation='https://www.myget.org/F/devottomatt/api/v2'
+                  name            = 'DevOttoMatt'
+                  publishlocation = 'https://www.myget.org/F/devottomatt/api/v2/package'
+                  sourcelocation  = 'https://www.myget.org/F/devottomatt/api/v2'
               }
-            )
-            Foreach ($Repository in $Repositories)
-            {
-              $Name=$Repository.Name
-              try{
-                  Get-PSRepository $Name -EA Stop >$null
-              }catch {
-                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
-                  { throw $_ }
-                  else
-                  {
-                    $Parameters=@{
-                        Name=$Name
-                        SourceLocation=$Repository.SourceLocation
-                        PublishLocation=$Repository.PublishLocation
-                        InstallationPolicy='Trusted'
-                    }
-                    Write-Output "Register repository '$($Repository.Name)'"
-                    Register-PSRepository @Parameters
+          )
+          foreach ($Repository in $Repositories) {
+              $Name = $Repository.Name
+              try {
+                  Get-PSRepository $Name -ErrorAction Stop >$null
+              } catch {
+                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
+                    throw $_
+                  } else {
+                      $Parameters = @{
+                          Name               = $Name
+                          SourceLocation     = $Repository.SourceLocation
+                          PublishLocation    = $Repository.PublishLocation
+                          InstallationPolicy = 'Trusted'
+                      }
+                      Write-Output "Register repository '$($Repository.Name)'"
+                      Register-PSRepository @Parameters
                   }
               }
-            }
+          }
 
       - name: Set required PowerShell modules
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: PSScriptAnalyzer:1.20.0,PnP.PowerShell::,DTW.PS.FileSystem
-           #Install only on Windows Powershell but works for Powershell Core.
+          modules-to-cache:
+            PSScriptAnalyzer:1.20.0,PnP.PowerShell::,DTW.PS.FileSystem
+            #Install only on Windows Powershell but works for Powershell Core.
           shell: powershell
           updatable: "true"
           prefixidentifier: "true"
@@ -96,16 +94,17 @@ jobs:
       - name: Show that the Action works on pwsh
         shell: pwsh
         run: |
-          'PSScriptAnalyzer','PnP.PowerShell','DTW.PS.FileSystem'|
-           Foreach {
-              Import-Module $_
-              Write-host "$_ '$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)'"
-          }
+          'PSScriptAnalyzer','PnP.PowerShell','DTW.PS.FileSystem' |
+              foreach {
+                  Import-Module $_
+                  Write-Host "$_ '$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)'"
+              }
+
       - name: Show that the Action works on PowerShell
         shell: powershell
         run: |
-          'PSScriptAnalyzer','PnP.PowerShell','DTW.PS.FileSystem'|
-           Foreach {
-              Import-Module $_
-              Write-host "$_ '$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)'"
-          }
+          'PSScriptAnalyzer','PnP.PowerShell','DTW.PS.FileSystem' |
+              foreach {
+                  Import-Module $_
+                  Write-Host "$_ '$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)'"
+              }

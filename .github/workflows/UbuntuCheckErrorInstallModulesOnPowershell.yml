@@ -1,4 +1,3 @@
-
 name: UbuntuCheckErrorInstallModulesOnPowershell
 on:
   workflow_dispatch:
@@ -21,9 +20,9 @@ jobs:
       - name: Show that the Action works on powershell
         shell: powershell
         run: |
-           Write-Warning "PSVersionTable `r`n$($PSVersionTable.GetEnumerator()|Out-String -width 512)"
-           'PoshRSJob', 'dbatools', 'SpeculationControl'|
-           Foreach {
-              Import-Module $_
-              Write-host "$_ '$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)'"
-           }
+          Write-Warning "PSVersionTable `r`n$($PSVersionTable.GetEnumerator()|Out-String -width 512)"
+          'PoshRSJob', 'dbatools', 'SpeculationControl' |
+          foreach {
+             Import-Module $_
+             Write-Host "$_ '$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)'"
+          }

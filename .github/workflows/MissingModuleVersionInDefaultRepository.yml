@@ -13,8 +13,8 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-           # !! The setting is correct, but the creation of the cache will fail, because
-           # !!  for this syntax the existence of the module version is only checked when calling Save-ModuleCache.
+          # !! The setting is correct, but the creation of the cache will fail, because
+          # !!  for this syntax the existence of the module version is only checked when calling Save-ModuleCache.
           modules-to-cache: InvokeBuild:20.2.15
           shell: powershell,pwsh
           updatable: "false"
@@ -25,11 +25,11 @@ jobs:
         run: |
 
           Import-Module InvokeBuild
-          Write-host "InvokeBuild '$(Get-Module InvokeBuild|Select-Object Name,Version,RepositorySourceLocation)'"
+          Write-Host "InvokeBuild '$(Get-Module InvokeBuild | Select-Object Name, Version, RepositorySourceLocation)'"
 
       - name: With PS core, check the presence of the module
         shell: pwsh
         run: |
 
           Import-Module InvokeBuild
-          Write-host "InvokeBuild '$(Get-Module InvokeBuild|Select-Object Name,Version,RepositorySourceLocation)'"
+          Write-Host "InvokeBuild '$(Get-Module InvokeBuild | Select-Object Name, Version, RepositorySourceLocation)'"

@@ -21,15 +21,15 @@ jobs:
         shell: pwsh
         run: |
           'PoshRSJob', 'dbatools', 'SpeculationControl'|
-           Foreach {
+           foreach {
               Import-Module $_
-              Write-host "$_ '$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)'"
+              Write-Host "$_ '$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)'"
           }
       - name: Show that the Action works on PowerShell
         shell: powershell
         run: |
           'PoshRSJob', 'dbatools', 'SpeculationControl'|
-           Foreach {
+           foreach {
               Import-Module $_
-              Write-host "$_ '$(Get-Module $_|Select-Object Name,Version,RepositorySourceLocation)'"
+              Write-Host "$_ '$(Get-Module $_ | Select-Object Name, Version, RepositorySourceLocation)'"
           }
