@@ -3,21 +3,24 @@
 ## Release Notes
 
 ### v5.0
+
 * Add support for multiple PSRepositories.
+* Ability to use PSRepositories credentials.
 * Add module update for each execution of an Action (`Pester, dbatools::`)
 * Add the 'modules-to-cache-prerelease' parameter.
 * Add the 'updatable' parameter.
 * Add the 'prefixidentifier' parameter.
+* Add the 'userepositorieswithcredential' parameter.
 * Checking the consistency of the values of the 'shell' parameter.
 * Syntax check for 'module-to-cache' and 'modules-to-cache-prerelease' parameters.
 * The 'main.ps1' script is replaced by a Powershell module (psmodulecache.psm1)
 * Add Pester test.
 * Rewrite test Actions.
-* Add Pester Actions.
 * Fixed typecasting of boolean type parameters.
 * Fix: Each module directory name to be cached is now passed as a parameter to 'action/cache'.
 
-*Breaking change*
+#### Breaking change
+
 * The 'modules-to-cache' parameter no longer supports prerelease version.
 * The 'allow-prerelease' parameter is removed. Now use the parameter 'modules-to-cache-prerelease'.
 * The 'force' parameter is removed. Now Save-Module use always -Force.

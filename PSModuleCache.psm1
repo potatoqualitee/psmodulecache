@@ -14,592 +14,738 @@
 
 # Debug : Write-Warning "FunctionName `r`n$($PSBoundParameters.GetEnumerator()|Out-String -width 512)"
 
-$script:WarningPreference = 'Continue'
+$script:WarningPreference='Continue'
 
 Enum CacheType{
-   Immutable
-   Updatable
+  Immutable
+  Updatable
 }
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls11,[Net.SecurityProtocolType]::Tls12
 
-$PSModuleCacheResources = Import-PowerShellDataFile "$PsScriptRoot/PSModuleCache.Resources.psd1" -ErrorAction Stop
+$PSModuleCacheResources=Import-PowerShellDataFile "$PsScriptRoot/PSModuleCache.Resources.psd1" -EA Stop
 
-New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '5.0'
+New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -value '5.0'
 
-New-Variable -Name Delimiter -Option ReadOnly -Scope Script -Value '-'
+New-Variable -Name Delimiter -Option ReadOnly -Scope Script -value '-'
 
-#Lists the names of registered repositories, by default PsGallery.
-#Additional repositories are added beforehand in a dedicated 'Step'.
-New-Variable -Name RepositoryNames -Option ReadOnly -Scope Script -Value @(Get-PSRepository | Select-Object -ExpandProperty Name)
+   #Lists the names of registered repositories, by default PsGallery.
+   #Additional repositories are added beforehand in a dedicated 'Step'.
+New-Variable -Name RepositoryNames -Option ReadOnly -Scope Script -value @(Get-PSRepository|Select-Object -ExpandProperty Name)
 
-#PS v5.1 does not have a class to manipulate a semver, and that of PsCore seems defective (:https://github.com/PowerShell/PowerShell/issues/14605)
-#The regex is adapted from https://regex101.com/r/Ly7O1x/196 ( change syntax for named capture group)
-New-Variable -Name SemverRegex -Option ReadOnly -Scope Script -Value '^(=|>=|<=|=>|=<|>|<|!=|~|~>|\^)?(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$'
+  #PS v5.1 does not have a class to manipulate a semver, and that of PsCore seems defective (:https://github.com/PowerShell/PowerShell/issues/14605)
+  #The regex is adapted from https://regex101.com/r/Ly7O1x/196 ( change syntax for named capture group)
+New-Variable -Name SemverRegex -Option ReadOnly -Scope Script -value '^(=|>=|<=|=>|=<|>|<|!=|~|~>|\^)?(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$'
 
-New-Variable -Name PsWindowsModulePath -Option ReadOnly -Scope Script -Value "$env:ProgramFiles\WindowsPowerShell\Modules"
-New-Variable -Name PsWindowsCoreModulePath -Option ReadOnly -Scope Script -Value "$env:ProgramFiles\PowerShell\Modules"
-New-Variable -Name PsLinuxCoreModulePath -Option ReadOnly -Scope Script -Value '/usr/local/share/powershell/Modules/'
+New-Variable -Name PsWindowsModulePath -Option ReadOnly -Scope Script -value "$env:ProgramFiles\WindowsPowerShell\Modules"
+New-Variable -Name PsWindowsCoreModulePath -Option ReadOnly -Scope Script -value "$env:ProgramFiles\PowerShell\Modules"
+New-Variable -Name PsLinuxCoreModulePath -Option ReadOnly -Scope Script -value '/usr/local/share/powershell/Modules/'
 
-New-Variable -Name CacheFileName -Option ReadOnly -Scope Script -Value 'PSModuleCache.Datas.xml'
+New-Variable -Name CacheFileName -Option ReadOnly -Scope Script -value 'PSModuleCache.Datas.ps1xml'
 
-#Contains strings detailing syntax rules that are violated in the content of the 'module-to-cache' parameter.
-$script:FunctionnalErrors = [System.Collections.ArrayList]::New()
+ #Contains strings detailing syntax rules that are violated in the content of the 'module-to-cache' parameter.
+$script:FunctionnalErrors=[System.Collections.ArrayList]::new()
 
 #region Keygen
-function Add-FunctionnalError {
+function Add-FunctionnalError{
    #Log functional errors.
    #GHA (GitHub Action) stop the step as soon as an error is triggered.
    #We want to analyze all the module information before stopping the processing.
    #See default : https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference
    #So we can't use Write-Error (the behavior of a non-critical error in this context).
-   Param($Message)
+  Param($Message)
 
-   $script:FunctionnalErrors.Add($Message) > $null
+  $script:FunctionnalErrors.Add($Message) > $null
 }
 
-function Test-Version {
-   #return $true for a valid version or a valid semantic version.
+function Test-Version{
+  #return $true for a valid version or a valid semantic version.
    param(
-      [string]$Version
-   )
+     [string]$Version
+    )
    return $Version -match $script:SemverRegex
 }
 
-function Test-PrereleaseVersion {
-   #return $true for a semantic version with a prerelease
-   param( [string]$Version )
+function Test-PrereleaseVersion{
+  #return $true for a semantic version with a prerelease
+  param( [string]$Version )
 
-   if ($Version -match $script:SemverRegex) {
-      return $matches.ContainsKey('prerelease')
-   } else {
-      return $false
-   }
+  if ($Version -match $script:SemverRegex)
+  { return $matches.ContainsKey('prerelease') }
+  else
+  { return $false}
 }
 
 function ConvertTo-Version {
-   #return a version number without the prerelease
-   param(
-      [string]$Version
-   )
+  #return a version number without the prerelease
+   param( [string]$Version )
 
-   if ($Version -match $script:SemverRegex) {
-      return ('{0}.{1}.{2}' -f $matches.major, $matches.minor, $matches.patch)
-   } else {
-      return $Version
-   }
+   if ($Version -match $script:SemverRegex)
+   { return ('{0}.{1}.{2}' -f $matches.major, $matches.minor, $matches.patch) }
+   else
+   { return $Version}
+ }
+
+
+ Function Test-RepositoriesCredential{
+<#
+ Check if a serialized object matches the expected structure
+ rules:
+    if UseRepositoriesWithCredential THEN
+     - file must exist,
+     - the XML file must be valid,
+     - it must contain a hashtable
+     - It must contain at least one entry
+     - all entries must be of type [Key=string,Value=credential]
+     - a key must not be an empty string
+     -for each key name a corresponding psrepository must exist
+#>
+param ($InputObject)
+
+  function Test-TrueforAll{
+    param([scriptblock] $Validation)
+
+   $NumberOfValidObject=($InputObject.GetEnumerator().Where($Validation,'Default')).Count
+   return ( $NumberOfValidObject -eq $InputObject.Count )
+  }
+
+  $ValidationTypes= { ($_.Key -is [System.String]) -and ($_.Value -is [System.Management.Automation.PSCredential]) }
+  $ValidationKeys= { $_.Key -ne [string]::Empty }
+  $ValidationRepositories= { $null -ne (Get-PsRepository -Name $_.Key -ErrorAction SilentlyContinue) }
+  $Result=$false
+
+  if ($InputObject -is [System.Collections.Hashtable])
+  {
+    if ($InputObject.Count -ge 1)
+    {
+      if (Test-TrueforAll -Validation $ValidationTypes )
+      {
+         if (Test-TrueforAll -Validation $ValidationKeys )
+         {
+            if (Test-TrueforAll -Validation $ValidationRepositories )
+            { $result=$true }
+            else
+            { Add-FunctionnalError -Message $PSModuleCacheResources.ValidationUnknownRepository }
+         }
+         else
+         { Add-FunctionnalError -Message $PSModuleCacheResources.ValidationInvalidKey }
+      }
+      else
+      { Add-FunctionnalError -Message $PSModuleCacheResources.ValidationWrongItemType }
+    }
+    else
+    { Add-FunctionnalError -Message $PSModuleCacheResources.ValidationMustContainAtLeastOneEntry }
+  }
+  else
+  { Add-FunctionnalError -Message $PSModuleCacheResources.ValidationMustBeHashtable }
+  return $Result
 }
 
-function New-ModuleToCacheInformation {
-   #creates an object containing the information of a module
+Function New-ModuleToCacheInformation{
+ #creates an object containing the information of a module
    param(
-      #Module name
-      [Parameter(Mandatory,position = 0)]
+       #Module name
+      [Parameter(Mandatory=$True,position=0)]
       [string]$Name,
 
-      #Versioning management, for this module
-      # Allows to build the key for this module (with or without version).
-      # Only $Action.Updatable determines the cache type.
-      [Parameter(Mandatory,position = 1)]
+       #Versioning management, for this module
+       # Allows to build the key for this module (with or without version).
+       # Only $Action.Updatable determines the cache type.
+      [Parameter(Mandatory=$True,position=1)]
       [CacheType]$Type,
 
-      #Requested version or an empty string.
-      #Can be in [Version] (PS v5.1) or [semver] format (PS >= v6.0 ) or empty.
-      [Parameter(position = 2)]
-      [string]$Version,
+       #Requested version or an empty string.
+       #Can be in [Version] (PS v5.1) or [semver] format (PS >= v6.0 ) or empty.
+      [Parameter(position=2)]
+     [string]$Version,
 
       #Save either a prerelease version for the module ($true) or a stable version ($false).
-      [switch]$AllowPrerelease
+     [switch] $AllowPrerelease
    )
 
    [pscustomobject]@{
-      PSTypeName      = 'ModuleToCacheInformation'
-      Name            = $Name
-      Type            = $Type
-      Version         = $Version
-      AllowPrerelease = $AllowPrerelease
-      ModuleSavePaths = $null
+     PSTypeName='ModuleToCacheInformation';
+     Name=$Name;
+     Type=$Type;
+     Version=$Version;
+     AllowPrerelease=$AllowPrerelease
+     ModuleSavePaths=$null
    }
 }
 
-function Split-ModuleCacheInformation {
-   # Split a string containing versioning information for a module and check the syntax rules.
-   # Example: ModuleName or ModuleName:1.0.1 or ModuleName::
-   Param(
-      $ModuleCacheInformation,
-      [switch]$AllowPrerelease
-   )
+Function Split-ModuleCacheInformation{
+  # Split a string containing versioning information for a module and check the syntax rules.
+  # Example: ModuleName or ModuleName:1.0.1 or ModuleName::
+  Param(
+   $ModuleCacheInformation,
+   $RepositoriesAuthentication,
+   [switch] $AllowPrerelease
+ )
 
-   if ($ModuleCacheInformation -eq [string]::Empty) {
-      Add-FunctionnalError -Message ($PSModuleCacheResources.EmptyModuleName -F $ModuleCacheInformation)
+  if ($ModuleCacheInformation -eq [string]::Empty)
+  {
+     Add-FunctionnalError -Message ($PSModuleCacheResources.EmptyModuleName -F $ModuleCacheInformation)
       #The processing of the other module information is continued, which makes it possible to list all the syntax errors.
-      return
-   }
+     return
+  }
 
-   if ($ModuleCacheInformation -match '^(?<Name>.*?)::(?<Version>.*){0,1}$') {
+  If ($ModuleCacheInformation -match '^(?<Name>.*?)::(?<Version>.*){0,1}$')
+  {
       #We are looking for the latest version available in the module repository
-      $Name = $Matches.Name
-      if ($Name -eq [string]::Empty) {
-         Add-FunctionnalError -Message ($PSModuleCacheResources.EmptyModuleName -F $ModuleCacheInformation)
-         return #In this case the following instructions will fail
-      }
-      if ($Matches.Version -ne [string]::Empty) {
-         Add-FunctionnalError -Message ($PSModuleCacheResources.UpdatableModuleCannotContainVersionInformation -F $ModuleCacheInformation)
-         #Here we are not trying to find out if the version text is really a version type.
-         return
-      }
+     $Name = $Matches.Name
+     if ($Name -eq [string]::Empty)
+     {
+        Add-FunctionnalError -Message ($PSModuleCacheResources.EmptyModuleName -F $ModuleCacheInformation)
+        return #In this case the following instructions will fail
+     }
+     if ($Matches.Version -ne [string]::Empty)
+     {
+        Add-FunctionnalError -Message ($PSModuleCacheResources.UpdatableModuleCannotContainVersionInformation -F $ModuleCacheInformation)
+          #Here we are not trying to find out if the version text is really a version type.
+        return
+     }
       #We are looking for the version currently published in the repositories.
       #In case of new version, the cache key changes and will trigger the creation of a new cache.
-      $parameters = @{
-         Name            = $Name
-         AllowPrerelease = $AllowPrerelease
-         Repository      = $script:RepositoryNames
+      $Parameters=@{
+         Name= $Name
+         AllowPrerelease=$Allowprerelease
+         Repository=$script:RepositoryNames
+         RepositoriesAuthentication= $RepositoriesAuthentication
       }
 
-      #if there is no prerelease, using AllowPrerelease returns the latest stable release.
-      $RepoItemInfo = Find-ModuleCache @Parameters
+       #If there is no prerelease, using AllowPrerelease returns the latest stable release.
+      $RepoItemInfo=Find-ModuleCache @Parameters
+      if ($null -ne $RepoItemInfo)
+      { $Version=$RepoItemInfo.Version }
+      else
+      { $Version=$null }
 
-      if ($null -ne $RepoItemInfo) {
-         $Version = $RepoItemInfo.Version
-      } else {
-         $Version = $null
-      }
-
-      $cacheinfo = New-ModuleToCacheInformation -Type 'Updatable' -Name $Name -Version $Version -AllowPrerelease:$AllowPrerelease
-   } else {
+      $MCI=New-ModuleToCacheInformation -Type 'Updatable' -Name $Name -Version $Version -AllowPrerelease:$AllowPrerelease
+  }
+  else
+  {
       #We use the string as it is
-      $Name, $Version = $ModuleCacheInformation.Split(':')
-      #if a version is specified, it must be filled in.
-      if ($ModuleCacheInformation -match ':') {
-         if ($Name -eq [string]::Empty) {
-            Add-FunctionnalError -Message ($PSModuleCacheResources.EmptyModuleName -F $ModuleCacheInformation)
-            return  #In this case the following instructions will fail
-         }
-         if ($Version -eq [string]::Empty) {
-            Add-FunctionnalError -Message ($PSModuleCacheResources.MissingRequiredVersion -F $ModuleCacheInformation)
-            return
-         }
-         if (-not (Test-Version -Version $Version)) {
-            Add-FunctionnalError -Message ($PSModuleCacheResources.InvalidVersionNumberSyntax -F $Version,$ModuleCacheInformation)
-            return
-         }
+     $Name,$Version = $ModuleCacheInformation.Split(':')
+      #If a version is specified, it must be filled in.
+     if ($ModuleCacheInformation -match ':')
+     {
+       if ($Name -eq [string]::Empty)
+       {
+         Add-FunctionnalError -Message ($PSModuleCacheResources.EmptyModuleName -F $ModuleCacheInformation)
+         return  #In this case the following instructions will fail
+       }
+       if ($Version -eq [string]::Empty)
+       {
+          Add-FunctionnalError -Message ($PSModuleCacheResources.MissingRequiredVersion -F $ModuleCacheInformation)
+          return
+       }
+       if (-not (Test-Version -Version $Version) )
+       {
+          Add-FunctionnalError -Message ($PSModuleCacheResources.InvalidVersionNumberSyntax -F $Version,$ModuleCacheInformation)
+          return
+       }
 
-         $isPrereleaseVersion = Test-PrereleaseVersion -Version $Version
+       $isPrereleaseVersion=Test-PrereleaseVersion -Version $Version
 
-         if ($AllowPrerelease) {
-            #We want to install a prerelease, example 'PnP.PowerShell:1.11.22-nightly'
-            #if the module is a prerelease and a version exists, it must be a prerelease.
-            if (-not $isPrereleaseVersion) {
-               Add-FunctionnalError -Message ($PSModuleCacheResources.ModuleMustContainPrerelease -F $version)
-               return
-            }
-         } elseif ($isPrereleaseVersion) {
-            #if the module is not a prerelease and a version exists, it must not be a prerelease.
-            Add-FunctionnalError -Message ($PSModuleCacheResources.ModuleCannotContainPrerelease -F $version)
+       if ($AllowPrerelease)
+       {
+          #We want to install a prerelease, example 'PnP.PowerShell:1.11.22-nightly'
+          #If the module is a prerelease and a version exists, it must be a prerelease.
+          if (-not $isPrereleaseVersion)
+          {
+            Add-FunctionnalError -Message ($PSModuleCacheResources.ModuleMustContainPrerelease -F $version)
             return
-         }
-      }
+          }
+       }
+       elseif ($isPrereleaseVersion)
+       {
+          #If the module is not a prerelease and a version exists, it must not be a prerelease.
+         Add-FunctionnalError -Message ($PSModuleCacheResources.ModuleCannotContainPrerelease -F $version)
+         return
+       }
+     }
       #We can specify a module without version information, neither updatable nor required
-      $cacheinfo = New-ModuleToCacheInformation -Type 'Immutable' -Name $Name -Version $Version -AllowPrerelease:$AllowPrerelease
-   }
+     $MCI=New-ModuleToCacheInformation -Type 'Immutable' -Name $Name -Version $Version -AllowPrerelease:$AllowPrerelease
+  }
 
-   return $cacheinfo
+  return $MCI
 }
 
-function New-ModuleCache {
-   #Build a modulecache object from Action parameters.
+Function New-ModuleCache{
+ #Build a modulecache object from Action parameters.
    param (
-      #pscustomobject with pstypename 'ModuleCacheParameter'
+       #pscustomobject with pstypename 'ModuleCacheParameter'
       $Action
    )
 
-   function New-Key {
-      #Either an existing cache key name or a new cache key name is returned.
-      #In this case if there is a cache with the old key, the release rule will apply:
-      # GitHub will remove any cache entries that have not been accessed in over 7 days.
-      param($ModuleCacheInformation)
-      if (($ModuleCacheInformation.Type -eq [CacheType]::Immutable) -and ($ModuleCacheInformation.Version -eq [string]::Empty)) {
+   function New-Key{
+    #Either an existing cache key name or a new cache key name is returned.
+    #In this case if there is a cache with the old key, the release rule will apply:
+    # GitHub will remove any cache entries that have not been accessed in over 7 days.
+     param($ModuleCacheInformation)
+      if ( ($ModuleCacheInformation.Type -eq [CacheType]::Immutable) -and ($ModuleCacheInformation.Version -eq [string]::Empty) )
+      {
          #An immutable module with no version number required
-         return $ModuleCacheInformation.Name
-      } else {
+        return $ModuleCacheInformation.Name
+      }
+      else
+      {
          #An updatable module or an immutable module with a version number required
-         '{0}:{1}' -f $ModuleCacheInformation.Name,$ModuleCacheInformation.Version
+        '{0}:{1}' -f $ModuleCacheInformation.Name,$ModuleCacheInformation.Version
       }
    }
 
-   function Split-ModuleParameter {
-      #return one or more 'ModuleToCacheInformation' objects.
+   Function Split-ModuleParameter {
+    #return one or more 'ModuleToCacheInformation' objects.
       param(
-         $modules,
-         $ShellsParameter,
-         [switch]$AllowPrerelease
+          $modules,
+          $ShellsParameter,
+          $RepositoriesAuthentication,
+          [switch] $AllowPrerelease
       )
-      foreach ($module in $modules) {
-         #Check syntax rules
-         $cacheinfo = Split-ModuleCacheInformation -ModuleCacheInformation $module -AllowPrerelease:$AllowPrerelease
+        foreach ($module in $modules)
+        {
+           #Check syntax rules
+          $MCI=Split-ModuleCacheInformation -ModuleCacheInformation $module -AllowPrerelease:$AllowPrerelease -RepositoriesAuthentication $RepositoriesAuthentication
 
-         if ($null -ne $cacheinfo) {
-            #To save a module, we use the PSModulePath associated with the shells,the module name and the version (not a semver).
-            $cacheinfo.ModuleSavePaths = Get-ModuleSavePath -Shells $ShellsParameter
-         }
-         Write-Output $cacheinfo
-      }
+          if ($null -ne $MCI)
+          {
+             #To save a module, we use the PSModulePath associated with the shells,the module name and the version (not a semver).
+            $MCI.ModuleSavePaths=Get-ModuleSavePath -Shells $ShellsParameter
+          }
+          Write-Output  $MCI
+        }
    }
 
-   function Join-ModuleName {
-      #Build the cache key
-      #Use the caller variables
-      param()
+   Function Join-ModuleName{
+     #Build the cache key
+     #Use the caller variables
+     param()
 
-      $KeyName = [System.Text.StringBuilder]::New()
+      $KeyName= [System.Text.StringBuilder]::New()
 
-      if ($Action.PrefixIdentifier) {
-         $KeyName.Append($env:GITHUB_WORKFLOW + $Delimiter) > $null
-      }
+      if ($Action.PrefixIdentifier)
+      { $KeyName.Append($env:GITHUB_WORKFLOW + $Delimiter) > $null }
 
-      $Prefix = "${env:RUNNER_OS}$Delimiter$($ActionVersion)$Delimiter$($Action.CacheType)$Delimiter$($Action.ShellsParameter -join $Delimiter)"
+      $Prefix="${env:RUNNER_OS}$Delimiter$($ActionVersion)$Delimiter$($Action.CacheType)$Delimiter$($Action.ShellsParameter -join $Delimiter)"
       $KeyName.Append($Prefix) > $null
       $KeyName.Append($Delimiter) > $null
 
-      $OFS = $Delimiter
-      if ($Action.Updatable) {
-         #Builds the key specifying the latest available version number if requested
-         #Note : Prerelease information is not used to build a key name.
-         $Keys = foreach ($current in $ModuleCacheInformations) {
-            New-Key -ModuleCacheInformation $current
-         }
+      $OFS=$Delimiter
+      if ($Action.Updatable)
+      {
+          #Builds the key specifying the latest available version number if requested
+          #Note : Prerelease information is not used to build a key name.
+         $Keys=Foreach ($Current in $ModuleCacheInformations){ New-Key -ModuleCacheInformation $Current }
          $KeyName.Append("$Keys") > $null
-      } else {
-         #We use the string as it is.
-         # All this splitting and joining accomodates for powershell and pwsh
-         if ($StableModules.Count -gt 0) {
-            $KeyName.Append("$StableModules") > $null
-         }
+      }
+      else
+      {
+          #We use the string as it is.
+          # All this splitting and joining accomodates for powershell and pwsh
+         if ($StableModules.Count -gt 0)
+         { $KeyName.Append("$StableModules") > $null }
 
-         if ($PrereleaseModules.Count -gt 0) {
-            if ($StableModules.Count -gt 0) {
-               $KeyName.Append($Delimiter) > $null
-            }
+         if ($PrereleaseModules.Count -gt 0)
+         {
+            if ($StableModules.Count -gt 0)
+            { $KeyName.Append($Delimiter) > $null }
             $KeyName.Append("$PrereleaseModules") > $null
          }
       }
-      return $KeyName.ToString()
+      Return $KeyName.ToString()
    }
 
-   if (-not $Action.ShellsParameter.IsAuthorizedShells) {
-      Add-FunctionnalError -Message ($PSModuleCacheResources.MustBeAnAuthorizedShell -F $Action.ShellsParameter)
+   If (-not $Action.ShellsParameter.IsAuthorizedShells )
+   { Add-FunctionnalError -Message ($PSModuleCacheResources.MustBeAnAuthorizedShell -F $Action.ShellsParameter)  }
+
+   $SyntaxError=@()
+   if ($Action.ModulesParameter -ne [string]::Empty)
+   { $SyntaxError +=$Action.ModulesParameter }
+
+   if ($Action.PrereleaseModulesParameter -ne [string]::Empty)
+   { $SyntaxError +=$Action.PrereleaseModulesParameter }
+
+   $ofs=' / '
+   if ($Action.CacheType -eq 'Immutable' -and $Action.isCacheUpdatable )
+   { Add-FunctionnalError -Message ($PSModuleCacheResources.ImmutableCacheCannotContainUpdatableInformation -F "$SyntaxError") }
+
+   if ($Action.CacheType -eq 'Updatable' -and (-not $Action.isCacheUpdatable) )
+   { Add-FunctionnalError -Message ($PSModuleCacheResources.UpdatableCacheMustContainUpdatableInformation -F "$SyntaxError") }
+
+   $StableModules=$Action.ModulesParameter.ToArray()
+   $PrereleaseModules=$Action.PrereleaseModulesParameter.ToArray()
+
+   $RepositoriesCredential=$null
+   if ($Action.UseRepositoriesWithCredential)
+   {
+      $RepositoriesCredential=Import-CliXml -Path (Join-Path $home -ChildPath $Action.RepositoriesAuthenticationFileName)
+      if ( (Test-RepositoriesCredential -InputObject $RepositoriesCredential) -eq $false)
+      { return } #In this case the code after this line will fail
    }
 
-   $SyntaxError = @()
-
-   if ($Action.ModulesParameter -ne [string]::Empty) {
-      $SyntaxError += $Action.ModulesParameter
-   }
-
-   if ($Action.PrereleaseModulesParameter -ne [string]::Empty) {
-      $SyntaxError += $Action.PrereleaseModulesParameter
-   }
-
-   $ofs = ' / '
-
-   if ($Action.CacheType -eq 'Immutable' -and $Action.isCacheUpdatable) {
-      Add-FunctionnalError -Message ($PSModuleCacheResources.ImmutableCacheCannotContainUpdatableInformation -F "$SyntaxError")
-   }
-
-   if ($Action.CacheType -eq 'Updatable' -and (-not $Action.isCacheUpdatable)) {
-      Add-FunctionnalError -Message ($PSModuleCacheResources.UpdatableCacheMustContainUpdatableInformation -F "$SyntaxError")
-   }
-
-   $StableModules = $Action.ModulesParameter.ToArray()
-   $PrereleaseModules = $Action.PrereleaseModulesParameter.ToArray()
-
-   $ModuleCacheInformations = @(
-      Split-ModuleParameter -modules $StableModules -ShellsParameter $Action.ShellsParameter
-      Split-ModuleParameter -modules $PrereleaseModules -ShellsParameter $Action.ShellsParameter -AllowPrerelease
+   $ModuleCacheInformations=@(
+      Split-ModuleParameter -modules $StableModules -ShellsParameter $Action.ShellsParameter -RepositoriesAuthentication $RepositoriesCredential
+      Split-ModuleParameter -modules $PrereleaseModules -ShellsParameter $Action.ShellsParameter -AllowPrerelease -RepositoriesAuthentication $RepositoriesCredential
    )
 
-   #The serialization depth use default value 2
-   return  [pscustomobject]@{
-      PSTypeName              = 'ModuleCache'
-      Key                     = Join-ModuleName
-      ModuleCacheInformations = $ModuleCacheInformations
-      PrefixIdentifier        = $Action.PrefixIdentifier
-   }
+    #The serialization depth use default value 2
+   Return  [pscustomobject]@{
+              PSTypeName='ModuleCache';
+              Key= Join-ModuleName;
+              ModuleCacheInformations=$ModuleCacheInformations;
+              PrefixIdentifier=$Action.PrefixIdentifier;
+              RepositoriesAuthenticationFileName=$Action.RepositoriesAuthenticationFileName
+           }
 }
 
-function Test-FunctionnalError {
-   if ($script:FunctionnalErrors.Count -gt 0) {
-      $sbProcess = { Write-Host "$($PSStyle.Foreground.Red)$PSItem$($PSStyle.Reset)" }
+Function Test-FunctionnalError{
+   if ($script:FunctionnalErrors.Count -gt 0)
+   {
+      $sbProcess={ Write-Host "$($PSStyle.Foreground.Red)$PSItem$($PSStyle.Reset)" }
 
-      if ($PSEdition -eq 'Desktop') {
+      if ($PSEdition -eq 'Desktop')
+      {
          Write-Warning 'List of errors :'
-         $sbProcess = { Write-Warning $_ }
-      } else {
-         Write-Host "$($PSStyle.Foreground.Red)List of errors :$($PSStyle.Reset)"
+         $sbProcess={ Write-Warning $_ }
       }
-      $script:FunctionnalErrors | ForEach-Object $sbProcess
-      throw "Check the setting of the 'psmodulecache' Action."
+      else
+      { Write-Host "$($PSStyle.Foreground.Red)List of errors :$($PSStyle.Reset)"}
+      $script:FunctionnalErrors|ForEach-Object $sbProcess
+      Throw "Check the setting of the 'psmodulecache' Action."
    }
 }
 
-function Get-ModuleCache {
-   <#
+Function Get-ModuleCache{
+<#
 .Synopsis
    Called from 'Action.yml'.
-   return a 'ModuleCache' object from Action parameters or a errord list.
+   Return a 'ModuleCache' object from Action parameters or a errord list.
 #>
-   param (
-      #pscustomobject with pstypename 'ModuleCacheParameter'
-      $Action,
-      [switch]$Pester
-   )
-   $script:FunctionnalErrors.Clear()
-   $ModulesCache = New-ModuleCache -Action $Action
 
-   if ($Pester) {
+ param (
+    #pscustomobject with pstypename 'ModuleCacheParameter'
+   $Action,
+   [switch] $Pester
+ )
+  $script:FunctionnalErrors.Clear()
+  $ModulesCache=New-ModuleCache -Action $Action
+
+  if ($Pester)
+  {
       #Since we choose not to modify the default error behavior, for Pester we will test strings and not ErrorRecords.
-      return ,$script:FunctionnalErrors
-   }
-   Test-FunctionnalError
-   Write-Output $ModulesCache
+     Return ,$script:FunctionnalErrors
+  }
+  Test-FunctionnalError
+  Write-Output $ModulesCache
 }
 #endregion
 
 #region ModulePath
-function Get-ModuleSavePath {
-   <#
+function Get-ModuleSavePath{
+<#
 .Synopsis
-   return one or more module full paths
+   Return one or more module full paths
    It is assumed that the parameters are valid and have been tested before calling this function.
 #>
-   param(
+  param(
       #Depending on the implicit rule of the 'Shell' parameter of the Action, contains either 'powershell' or 'pwsh' or both.
-      [string[]]$Shells
+      [string[]] $Shells
    )
 
-   if ($env:RUNNER_OS -eq 'Windows') {
-      if ('powershell' -in $Shells) {
-         Write-Output $script:PsWindowsModulePath
-      }
+   if ($env:RUNNER_OS -eq 'Windows')
+   {
+      if ('powershell' -in $Shells )
+      { Write-Output $script:PsWindowsModulePath }
 
-      if ('pwsh' -in $Shells) {
-         Write-Output $script:PsWindowsCoreModulePath
-      }
+      if ('pwsh' -in $Shells)
+      { Write-Output $script:PsWindowsCoreModulePath }
 
-   } elseif ($env:RUNNER_OS -in @('Linux','MacOS')) {
+   } elseif ($env:RUNNER_OS -in @('Linux','MacOS') )
+   {
       $null = sudo chown -R runner $script:PsLinuxCoreModulePath
       Write-Output $script:PsLinuxCoreModulePath
-   } else {
-      throw "`$env:RUNNER_OS ('$env:RUNNER_OS') is empty or unknown."
    }
+  else
+  { throw "`$env:RUNNER_OS ('$env:RUNNER_OS') is empty or unknown." }
 }
 
-function New-ModuleSavePath {
-   <#
+function New-ModuleSavePath{
+<#
 .Synopsis
-   return one or more module full paths.
+   Return one or more module full paths.
 #>
-   param( $modulecacheinfo )
+ param( $MCIs )
 
-   foreach ($cacheinfo in $modulecacheinfo) {
-      $ModuleName = $cacheinfo.Name
-      # For the management of a new version in the directory of an EXISTING module (see the image of the runner)
-      # the new version number is added to the name of the save path, if it is specified.
-      # We manage the following cases:
-      #     'Pester::' , 'Pester:5.3.0-rc1', 'Pester:5.3.0'
-      #
-      # But we do not manage the following case: 'Pester'
-      $Version = $cacheinfo.Version
-      $isVersion = $Version -ne [String]::Empty
+ foreach ($Mci in $MCIs)
+ {
+   $ModuleName=$Mci.Name
+   # For the management of a new version in the directory of an EXISTING module (see the image of the runner)
+   # the new version number is added to the name of the save path, if it is specified.
+   # We manage the following cases:
+   #     'Pester::' , 'Pester:5.3.0-rc1', 'Pester:5.3.0'
+   #
+   # But we do not manage the following case: 'Pester'
+   $Version=$Mci.Version
+   $isVersion=$Version -ne [String]::Empty
+   if ($isVersion)
+   { $Version=ConvertTo-Version $Version }
 
-      if ($isVersion) {
-         $Version = ConvertTo-Version $Version
-      }
-
-      foreach ($ModuleSavePath in $cacheinfo.ModuleSavePaths) {
-         $Path = [System.IO.Path]::Combine($ModuleSavePath, $ModuleName)
-         if ($isVersion) {
-            [System.IO.Path]::Combine($Path, $Version)
-         } else {
-            $Path
-         }
-      }
+   foreach ($ModuleSavePath in $Mci.ModuleSavePaths)
+   {
+     $Path=[System.IO.Path]::Combine($ModuleSavePath, $ModuleName)
+     if ($isVersion)
+     { [System.IO.Path]::Combine($Path, $Version) }
+     else
+     { $Path }
    }
+ }
 }
 
-function ConvertTo-YamlLineBreak {
-   <#
+function ConvertTo-YamlLineBreak{
+<#
 .Synopsis
    Convert an array of string to a unique YAML string.
 #>
    param ($Collection)
    #https://github.com/orgs/community/discussions/26288
 
-   $ofs = '%0A' #https://yaml.org/spec/1.2.2/#54-line-break-characters
+   $ofs='%0A' #https://yaml.org/spec/1.2.2/#54-line-break-characters
    return "$Collection"
 }
 
-function Find-ModuleCache {
-   #if a module name is present in several repositories we sort the elements by version number then we select the first of the list.
-   #note : Find-Module returns the newest version of a module if no parameters are used that limit the version.
+Function Test-ModuleNotFoundException {
+ #Test a exception raised by Find-Module
+  param($Exception)
+  ($Exception.CategoryInfo.Category -eq 'ObjectNotFound') -and ($Exception.FullyQualifiedErrorId -Match '^NoMatchFoundForCriteria')
+}
+
+function Find-ModuleInRepository {
+<#
+Notes about one exception raised by Find-Module
+ - when a module does not exist in a repository Find-Module throws an exception and not a boolean.
+ - the same exception is raised when the requested version does not exist.
+ - if the URI of a repository is wrong, Find-Module generates a warning then the same exception.
+We therefore do not know the real cause of the error.
+#>
    [CmdletBinding()]
    param(
-      $Name,
-      $Repository,
-      $RequiredVersion,
-      [switch]$AllowPrerelease
+     $Name,
+     $Repository,
+     $RequiredVersion,
+     $RepositoriesAuthentication,
+     [switch] $allowprerelease
    )
-   try {
-      Find-Module @PSBoundParameters -ErrorAction Stop |
-         Sort-Object Version -Descending |
-         Select-Object -First 1
-   } catch [System.Exception] {
-      #Same exception for cases where the module does not exist or the requested version does not exist.
-      if (($_.CategoryInfo.Category -eq 'ObjectNotFound') -and ($_.FullyQualifiedErrorId -Match '^NoMatchFoundForCriteria')) {
-         #if the URI of a repository is wrong, Find-Module generates a warning then an exception.
-         # We therefore do not know the real cause of the error.
-         Add-FunctionnalError -Message ($PSModuleCacheResources.UnknownModuleName -F $Name, "$RepositoryNames")
-         return $null
-      } else {
-         throw  $_
+   $RepositoriesWithCredential=$RepositoriesAuthentication
+    #[PSBoundParametersDictionary].Remove() return a boolean
+   $PSBoundParameters.Remove('RepositoriesAuthentication') > $null
+
+   if ($null -ne $RepositoriesAuthentication )
+   {
+      #We search for the module in each repository, we must determine which ones require credentials
+      $Repositories=$Repository
+      $PSBoundParameters.Remove('Repository')  > $null
+
+      foreach ($RepositoryName in $Repositories)
+      {
+        if ($RepositoryName -in $RepositoriesWithCredential.Keys)
+        { $PSBoundParameters.Credential=$RepositoriesWithCredential."$RepositoryName" }
+        try {
+           Find-Module @PSBoundParameters -Repository $RepositoryName -ErrorAction Stop
+        } catch [System.Exception] {
+           if ( (Test-ModuleNotFoundException -Exception $_) -eq $false)
+           { Throw  $_ }
+           #else Next repository
+        } finally {
+           $PSBoundParameters.Remove('Credential') > $null
+        }
       }
    }
+   else
+   {
+    #We search in all repositories, without credential management
+     try {
+        Find-Module @PSBoundParameters -ErrorAction Stop
+     } catch [System.Exception] {
+        if ( (Test-ModuleNotFoundException -Exception $_) -eq $false)
+        { Throw  $_ }
+        #else  return $null
+    }
+   }
+}
+
+function Find-ModuleCache{
+ #If a module name is present in several repositories we sort the elements by version number then we select the first of the list.
+ #note : Find-Module returns the newest version of a module if no parameters are used that limit the version.
+ [CmdletBinding()]
+ param(
+   $Name,
+   $Repository,
+   $RequiredVersion,
+   $RepositoriesAuthentication,
+   [switch] $allowprerelease
+ )
+  $Result=Find-ModuleInRepository @PSBoundParameters
+  if ($Null -eq $Result)
+  {
+    Add-FunctionnalError -Message ($PSModuleCacheResources.UnknownModuleName -F $Name, "$RepositoryNames")
+    return $null
+  }
+  $Result|
+    Sort-Object Version -Descending|
+    Select-Object -First 1
 }
 #endregion
 
 #region SaveModule
-function Save-ModuleCache {
-   <#
+Function Save-ModuleCache{
+<#
 .Synopsis
    Called from 'Action.yml'.
    Save the modules declared in 'module-to-cache' and 'module-to-cache-prerelease'
 #>
 
-   param()
+ param()
 
-   if (Test-Path env:CI) {
-      Write-Output "Existing repositories '$RepositoryNames'"
-   }
+   if (Test-Path env:CI)
+   { Write-Output  "Existing repositories '$RepositoryNames'" }
    $ModuleCache = Import-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
+
+   $RepositoriesCredential=$null
+   if ($ModuleCache.RepositoriesAuthenticationFileName -ne [string]::Empty)
+   { $RepositoriesCredential=Import-CliXml -Path (Join-Path $home -ChildPath $ModuleCache.RepositoriesAuthenticationFileName) }
 
    Set-PSRepository PSGallery -InstallationPolicy Trusted
 
-   foreach ($ModuleCacheInformation in $ModuleCache.ModuleCacheInformations) {
-      foreach ($ModulePath in $ModuleCacheInformation.ModuleSavePaths) {
-         if (Test-Path env:CI) {
-            Write-output "Saving module '$($ModuleCacheInformation.Name)' version '$($ModuleCacheInformation.Version)' to '$Modulepath'. Search in the following repositories '$RepositoryNames'"
+   foreach ($ModuleCacheInformation in $ModuleCache.ModuleCacheInformations)
+   {
+      foreach ($ModulePath in $ModuleCacheInformation.ModuleSavePaths)
+      {
+         if (Test-Path env:CI)
+         { Write-output "Saving module '$($ModuleCacheInformation.Name)' version '$($ModuleCacheInformation.Version)' to '$Modulepath'. Search in the following repositories '$RepositoryNames'" }
+
+         $Parameters=@{
+            Name= $ModuleCacheInformation.Name
+            AllowPrerelease=$ModuleCacheInformation.Allowprerelease
+            Repository=$script:RepositoryNames
          }
 
-         $parameters = @{
-            Name            = $ModuleCacheInformation.Name
-            AllowPrerelease = $ModuleCacheInformation.Allowprerelease
-            Repository      = $script:RepositoryNames
-         }
+         if ($Null -ne $ModuleCacheInformation.Version)
+         { $Parameters.Add('RequiredVersion',$ModuleCacheInformation.Version) }
 
-         if ($Null -ne $ModuleCacheInformation.Version) {
-            $parameters.Add('RequiredVersion',$ModuleCacheInformation.Version)
-         }
+         $RepoItemInfo=Find-ModuleCache @Parameters -RepositoriesAuthentication $RepositoriesCredential
+         if ($null -ne $RepoItemInfo)
+         {
+            $RepositoryName=$RepoItemInfo.Repository
+            $Parameters.Repository=$RepositoryName
+            if ($RepoItemInfo.Repository -in $RepositoriesCredential.Keys)
+            { $Parameters.Credential=$RepositoriesCredential.$RepositoryName }
 
-         $RepoItemInfo = Find-ModuleCache @Parameters
-         if ($null -ne $RepoItemInfo) {
-            $parameters.Repository = $RepoItemInfo.Repository
             if (Test-Path env:CI)
-            { Write-Output ("`tModule '{0}' version '{1}' found in '{2}'." -F $RepoItemInfo.Name,$RepoItemInfo.Version,$RepoItemInfo.Repository) }
-            Save-Module @Parameters -Path $ModulePath -Force -ErrorAction Stop
+            { Write-Output ("`tModule '{0}' version '{1}' found in '{2}'." -F $RepoItemInfo.Name,$RepoItemInfo.Version,$RepositoryName)}
+            Save-Module @Parameters -Path $ModulePath -Force  -ErrorAction Stop
+             #No exception is thrown when the 'Credential' key is not exist
+            $Parameters.Remove('Credential')
          }
       }
    }
-   Test-FunctionnalError
+  Test-FunctionnalError
 }
 
 #endregion
-function New-ModuleCacheParameter {
-   <#
+Function New-ModuleCacheParameter{
+<#
 .Synopsis
   Create an object from GitHub Action parameter values
 #>
-   param(
-      [Parameter(Mandatory = $false,position = 0)]
-      [string]$Modules,
+  param(
+      [Parameter(Mandatory=$false,position=0)]
+    [string]$Modules,
 
-      [Parameter(Mandatory = $false,position = 1)]
-      [string]$PrereleaseModules,
+      [Parameter(Mandatory=$false,position=1)]
+    [string] $PrereleaseModules,
 
-      [Parameter(Mandatory = $false,position = 2)]
-      [string]$Shells,
+      [Parameter(Mandatory=$false,position=2)]
+    [string] $Shells,
 
-      [switch]$Updatable,
-      [switch]$PrefixIdentifier
-   )
+      [Parameter(Mandatory=$false,position=3)]
+    [string] $RepositoriesAuthenticationFileName,
 
-   if (($Modules.Trim() -eq [string]::Empty) -and ($PrereleaseModules.Trim() -eq [string]::Empty) )
-   { throw $PSModuleCacheResources.MustDefineAtLeastOneModule }
+    [switch] $Updatable,
+    [switch] $PrefixIdentifier,
+    [switch] $UseRepositoriesWithCredential
+  )
 
-   if ($Shells.Trim() -eq [string]::Empty )
-   { throw $PSModuleCacheResources.MustDefineAtLeastOneShell }
+  if ($UseRepositoriesWithCredential -and ($RepositoriesAuthenticationFileName.Trim() -eq [string]::Empty))
+  {
+     #Invalid Chars (> : ? etc) or invalid filenames (COM1, LPT1,CON, etc) are managed by Powershell
+    throw $PSModuleCacheResources.EmptyCredentialFileName
+  }
 
-   $tab = $Shells.Split(',',[System.StringSplitOptions]::RemoveEmptyEntries)
-   [string[]]$tab = $tab | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne [string]::Empty }
+  if ( ($Modules.Trim() -eq [string]::Empty) -and ($PrereleaseModules.Trim() -eq [string]::Empty) )
+  { throw $PSModuleCacheResources.MustDefineAtLeastOneModule }
 
-   if ($tab.Count -eq 0) {
-      throw $PSModuleCacheResources.MustDefineAtLeastOneShell
-   }
+  if ( $Shells.Trim() -eq [string]::Empty )
+  { throw $PSModuleCacheResources.MustDefineAtLeastOneShell }
 
-   [String[]]$Shells = [Linq.Enumerable]::Distinct($tab,[System.StringComparer]::CurrentCultureIgnoreCase)
+  $Tab=$Shells.Split(',',[System.StringSplitOptions]::RemoveEmptyEntries)
+  [string[]]$Tab=$Tab|ForEach-Object {$_.Trim()}|Where-Object{$_ -ne [string]::Empty}
+  if ( $Tab.Count -eq 0)
+  { throw $PSModuleCacheResources.MustDefineAtLeastOneShell }
 
-   $modulecacheparam = [pscustomobject]@{
-      PSTypeName                 = 'ModuleCacheParameter';
-      ModulesParameter           = $Modules -as [pscustomobject];
-      PrereleaseModulesParameter = $PrereleaseModules -as [pscustomobject];
-      ShellsParameter            = $Shells -as [pscustomobject];
-      CacheType                  = [CacheType]$(if ($Updatable.IsPresent) { [CacheType]::Updatable } else { [CacheType]::Immutable } )
-      Updatable                  = $Updatable;
-      PrefixIdentifier           = $PrefixIdentifier
-   }
+  [String[]]$Shells=[Linq.Enumerable]::Distinct($Tab,[System.StringComparer]::CurrentCultureIgnoreCase)
 
-   $sbToArray = {
-      if ($this.Trim() -eq [string]::Empty) {
-         ,[string[]]@()
-      } else {
-         ,([string[]]($this.Split(',').Trim()))
-      }
-   }
+  $MCP=[pscustomobject]@{
+    PSTypeName='ModuleCacheParameter';
+    ModulesParameter=$Modules -as [pscustomobject];
+    PrereleaseModulesParameter=$PrereleaseModules -as [pscustomobject];
+    ShellsParameter=$Shells -as [pscustomobject];
+    CacheType=[CacheType]$(if ($Updatable.IsPresent) {[CacheType]::Updatable} else {[CacheType]::Immutable} )
+    Updatable=$Updatable;
+    PrefixIdentifier=$PrefixIdentifier
+    RepositoriesAuthenticationFileName=$RepositoriesAuthenticationFileName
+    UseRepositoriesWithCredential=$UseRepositoriesWithCredential
+  }
 
-   Add-Member -InputObject $modulecacheparam.ModulesParameter -MemberType ScriptMethod -Name ToArray -Value $sbToArray
-   $AMParameters = @{
-      MemberType  = 'ScriptProperty'
-      Name        = 'isCacheContainUpdatableInformation'
-      Value       = { $this -match '::' }
-      SecondValue = { throw 'IsCacheContainUpdatableInformation is a read only property.' }
-   }
-   Add-Member -InputObject $modulecacheparam.ModulesParameter @AMParameters
+  $sbToArray={
+   if ($this.Trim() -eq [string]::Empty)
+   { ,[string[]]@() }
+   else
+   { ,([string[]]($this.Split(',').Trim())) }
+  }
 
-   Add-Member -InputObject $modulecacheparam.PrereleaseModulesParameter -MemberType ScriptMethod -Name ToArray -Value $sbToArray
-   Add-Member -InputObject $modulecacheparam.PrereleaseModulesParameter @AMParameters
+  Add-Member -InputObject $MCP.ModulesParameter -MemberType ScriptMethod -Name ToArray -Value $sbToArray
+  $AMParameters=@{
+   MemberType='ScriptProperty'
+   Name='isCacheContainUpdatableInformation'
+   Value={ $this -match '::' }
+   SecondValue={Throw 'IsCacheContainUpdatableInformation is a read only property.'}
+  }
+  Add-Member -InputObject $MCP.ModulesParameter @AMParameters
 
-   $sbIsUpdatable = {
-      $this.ModulesParameter.isCacheContainUpdatableInformation -or
-      $this.PrereleaseModulesParameter.isCacheContainUpdatableInformation
-   }
+  Add-Member -InputObject $MCP.PrereleaseModulesParameter -MemberType ScriptMethod -Name ToArray -Value $sbToArray
+  Add-Member -InputObject $MCP.PrereleaseModulesParameter @AMParameters
 
-   Add-Member -InputObject $modulecacheparam -MemberType ScriptProperty -Name isCacheUpdatable -Value $sbIsUpdatable -SecondValue { throw 'isCacheUpdatable is a read only property.' }
+  $sbIsUpdatable={
+   $this.ModulesParameter.isCacheContainUpdatableInformation -or
+   $this.PrereleaseModulesParameter.isCacheContainUpdatableInformation
+  }
 
-   $AMParameters = @{
-      MemberType  = 'ScriptProperty'
-      Name        = 'IsAuthorizedShells'
-      Value       = {
-         $MustBeAnAuthorizedShell = [System.Predicate[string]] { param($Name) $Name -match 'pwsh|powershell' }
-         return [System.Array]::TrueForAll($this,$MustBeAnAuthorizedShell)
-      }
-      SecondValue = { throw 'IsAuthorizedShells is a read only property.' }
-   }
-   Add-Member -InputObject $modulecacheparam.ShellsParameter @AMParameters
+  Add-Member -InputObject $MCP -MemberType ScriptProperty -Name isCacheUpdatable -Value $sbIsUpdatable -SecondValue {Throw 'isCacheUpdatable is a read only property.'}
 
-   return $modulecacheparam
+  $AMParameters=@{
+   MemberType='ScriptProperty'
+   Name='IsAuthorizedShells'
+   Value= {
+            $MustBeAnAuthorizedShell=[System.Predicate[string]]{param($Name) $Name -match 'pwsh|powershell'}
+            Return [System.Array]::TrueForAll($this,$MustBeAnAuthorizedShell)
+          }
+   SecondValue={Throw 'IsAuthorizedShells is a read only property.'}
+  }
+  Add-Member -InputObject $MCP.ShellsParameter @AMParameters
+
+  Return $MCP
 }
 
-$parms = @{
-   Function = 'New-ModuleCacheParameter','Get-ModuleCache','Get-ModuleSavePath','New-ModuleSavePath','Save-ModuleCache','ConvertTo-YamlLineBreak'
-   Variable = 'CacheFileName','RepositoryNames','PsWindowsModulePath','PsWindowsCoreModulePath','PsLinuxCoreModulePath'
-}
-Export-ModuleMember @parms
+Export-ModuleMember -Function 'New-ModuleCacheParameter','Get-ModuleCache','Get-ModuleSavePath','New-ModuleSavePath','Save-ModuleCache','ConvertTo-YamlLineBreak' `
+                    -Variable 'CacheFileName','RepositoryNames','PsWindowsModulePath','PsWindowsCoreModulePath','PsLinuxCoreModulePath'

@@ -11,11 +11,15 @@ inputs:
     description: "Name of prerelease PowerShell modules to cache from registered PsRepositories (PowerShell Gallery by default). Uses the -AllowPrerelease parameter during Save-Module."
     required: false
   shell:
-    description: "The default shell to use. Options are 'powershell' or 'pwsh' (default) or both."
+    description: "The default shell to use. Options are 'powershell' or 'pwsh' (Default) or both."
     required: false
     default: "pwsh"
   updatable:
     description: "Triggers an update of one or more modules."
+    required: false
+    default: "false"
+  userepositorieswithcredential:
+    description: "Indicates the use of credential when accessing the PSRepository requiring authentication (account name / password)."
     required: false
     default: "false"
   prefixidentifier:
@@ -31,25 +35,25 @@ runs:
       run: |
         Import-Module ${{ github.action_path }}/PSModuleCache.psd1
         Write-Output "Getting variables for cacher"
-
         $Parameters=@{
           Modules="${{ inputs.modules-to-cache }}"
           PrereleaseModules="${{ inputs.modules-to-cache-prerelease }}"
           Shells="${{ inputs.shell }}"
+          RepositoriesAuthenticationFileName=$Env:PSModuleCacheCredentialFileName
           Updatable=[boolean]::Parse("${{ inputs.updatable }}")
           PrefixIdentifier=[boolean]::Parse("${{ inputs.prefixidentifier }}")
+          UseRepositoriesWithCredential=[boolean]::Parse("${{ inputs.UseRepositoriesWithCredential }}")
         }
         Write-Output "Action Parameters=$([PsCustomObject]$Parameters)"
 
         $ActionParameters=New-ModuleCacheParameter @Parameters
+        $ModulesCache=Get-ModuleCache $ActionParameters
+        Write-Output "::set-output name=keygen::$($ModulesCache.Key)"
 
-        $ModuleCaches=Get-ModuleCache $ActionParameters
-        Write-Output "::set-output name=keygen::$($ModuleCaches.Key)"
-
-        $Paths=@(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
+        $Paths=@(New-ModuleSavePath $ModulesCache.ModuleCacheInformations)
         Write-Output "::set-output name=modulepath::$(ConvertTo-YamlLineBreak $Paths)"
 
-        $null = $ModuleCaches | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
+        $null = $ModulesCache | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
 
     - name: Run module cacher action
       id: cacher
