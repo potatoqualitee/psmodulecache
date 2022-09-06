@@ -572,140 +572,140 @@ Function Save-ModuleCache {
     try {
         Get-PSRepository PSGallery -EA Stop > $null
         Set-PSRepository PSGallery -InstallationPolicy Trusted
-        catch {
-            if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
-            { throw $_ }
-        }
-
-        foreach ($ModuleCacheInformation in $ModuleCache.ModuleCacheInformations) {
-            foreach ($ModulePath in $ModuleCacheInformation.ModuleSavePaths) {
-                if (Test-Path env:CI)
-                { Write-Output "Saving module '$($ModuleCacheInformation.Name)' version '$($ModuleCacheInformation.Version)' to '$Modulepath'. Search in the following repositories '$RepositoryNames'" }
-
-                $Parameters = @{
-                    Name            = $ModuleCacheInformation.Name
-                    AllowPrerelease = $ModuleCacheInformation.Allowprerelease
-                    Repository      = $script:RepositoryNames
-                }
-
-                if ($Null -ne $ModuleCacheInformation.Version)
-                { $Parameters.Add('RequiredVersion', $ModuleCacheInformation.Version) }
-
-                $RepoItemInfo = Find-ModuleCache @Parameters -RepositoriesAuthentication $RepositoriesCredential
-                if ($null -ne $RepoItemInfo) {
-                    $RepositoryName = $RepoItemInfo.Repository
-                    $Parameters.Repository = $RepositoryName
-                    if ($RepoItemInfo.Repository -in $RepositoriesCredential.Keys)
-                    { $Parameters.Credential = $RepositoriesCredential.$RepositoryName }
-
-                    if (Test-Path env:CI)
-                    { Write-Output ("`tModule '{0}' version '{1}' found in '{2}'." -F $RepoItemInfo.Name, $RepoItemInfo.Version, $RepositoryName) }
-                    Save-Module @Parameters -Path $ModulePath -Force  -ErrorAction Stop
-                    #No exception is thrown when the 'Credential' key is not exist
-                    $Parameters.Remove('Credential')
-                }
-            }
-        }
-        Test-FunctionnalError
+    } catch {
+        if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
+        { throw $_ }
     }
 
-    #endregion
-    Function New-ModuleCacheParameter {
-        <#
+    foreach ($ModuleCacheInformation in $ModuleCache.ModuleCacheInformations) {
+        foreach ($ModulePath in $ModuleCacheInformation.ModuleSavePaths) {
+            if (Test-Path env:CI)
+            { Write-Output "Saving module '$($ModuleCacheInformation.Name)' version '$($ModuleCacheInformation.Version)' to '$Modulepath'. Search in the following repositories '$RepositoryNames'" }
+
+            $Parameters = @{
+                Name            = $ModuleCacheInformation.Name
+                AllowPrerelease = $ModuleCacheInformation.Allowprerelease
+                Repository      = $script:RepositoryNames
+            }
+
+            if ($Null -ne $ModuleCacheInformation.Version)
+            { $Parameters.Add('RequiredVersion', $ModuleCacheInformation.Version) }
+
+            $RepoItemInfo = Find-ModuleCache @Parameters -RepositoriesAuthentication $RepositoriesCredential
+            if ($null -ne $RepoItemInfo) {
+                $RepositoryName = $RepoItemInfo.Repository
+                $Parameters.Repository = $RepositoryName
+                if ($RepoItemInfo.Repository -in $RepositoriesCredential.Keys)
+                { $Parameters.Credential = $RepositoriesCredential.$RepositoryName }
+
+                if (Test-Path env:CI)
+                { Write-Output ("`tModule '{0}' version '{1}' found in '{2}'." -F $RepoItemInfo.Name, $RepoItemInfo.Version, $RepositoryName) }
+                Save-Module @Parameters -Path $ModulePath -Force  -ErrorAction Stop
+                #No exception is thrown when the 'Credential' key is not exist
+                $Parameters.Remove('Credential')
+            }
+        }
+    }
+    Test-FunctionnalError
+}
+
+#endregion
+Function New-ModuleCacheParameter {
+    <#
 .Synopsis
   Create an object from GitHub Action parameter values
 #>
-        param(
-            [Parameter(Mandatory = $false, position = 0)]
-            [string]$Modules,
+    param(
+        [Parameter(Mandatory = $false, position = 0)]
+        [string]$Modules,
 
-            [Parameter(Mandatory = $false, position = 1)]
-            [string] $PrereleaseModules,
+        [Parameter(Mandatory = $false, position = 1)]
+        [string] $PrereleaseModules,
 
-            [Parameter(Mandatory = $false, position = 2)]
-            [string] $Shells,
+        [Parameter(Mandatory = $false, position = 2)]
+        [string] $Shells,
 
-            [Parameter(Mandatory = $false, position = 3)]
-            [string] $RepositoriesAuthenticationFileName,
+        [Parameter(Mandatory = $false, position = 3)]
+        [string] $RepositoriesAuthenticationFileName,
 
-            [switch] $Updatable,
-            [switch] $PrefixIdentifier,
-            [switch] $UseRepositoriesWithCredential
-        )
+        [switch] $Updatable,
+        [switch] $PrefixIdentifier,
+        [switch] $UseRepositoriesWithCredential
+    )
 
-        if ($UseRepositoriesWithCredential -and ($RepositoriesAuthenticationFileName.Trim() -eq [string]::Empty)) {
-            #Invalid Chars (> : ? etc) or invalid filenames (COM1, LPT1,CON, etc) are managed by Powershell
-            throw $PSModuleCacheResources.EmptyCredentialFileName
-        }
-
-        if ( ($Modules.Trim() -eq [string]::Empty) -and ($PrereleaseModules.Trim() -eq [string]::Empty) )
-        { throw $PSModuleCacheResources.MustDefineAtLeastOneModule }
-
-        if ( $Shells.Trim() -eq [string]::Empty )
-        { throw $PSModuleCacheResources.MustDefineAtLeastOneShell }
-
-        $Tab = $Shells.Split(',', [System.StringSplitOptions]::RemoveEmptyEntries)
-        [string[]]$Tab = $Tab | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne [string]::Empty }
-        if ( $Tab.Count -eq 0)
-        { throw $PSModuleCacheResources.MustDefineAtLeastOneShell }
-
-        [String[]]$Shells = [Linq.Enumerable]::Distinct($Tab, [System.StringComparer]::CurrentCultureIgnoreCase)
-
-        $modulecacheparam = [pscustomobject]@{
-            PSTypeName                         = 'ModuleCacheParameter';
-            ModulesParameter                   = $Modules -as [pscustomobject];
-            PrereleaseModulesParameter         = $PrereleaseModules -as [pscustomobject];
-            ShellsParameter                    = $Shells -as [pscustomobject];
-            CacheType                          = [CacheType]$(if ($Updatable.IsPresent) { [CacheType]::Updatable } else { [CacheType]::Immutable } )
-            Updatable                          = $Updatable;
-            PrefixIdentifier                   = $PrefixIdentifier
-            RepositoriesAuthenticationFileName = $RepositoriesAuthenticationFileName
-            UseRepositoriesWithCredential      = $UseRepositoriesWithCredential
-        }
-
-        $sbToArray = {
-            if ($this.Trim() -eq [string]::Empty)
-            { , [string[]]@() }
-            else
-            { , ([string[]]($this.Split(',').Trim())) }
-        }
-
-        Add-Member -InputObject $modulecacheparam.ModulesParameter -MemberType ScriptMethod -Name ToArray -Value $sbToArray
-        $AMParameters = @{
-            MemberType  = 'ScriptProperty'
-            Name        = 'isCacheContainUpdatableInformation'
-            Value       = { $this -match '::' }
-            SecondValue = { Throw 'IsCacheContainUpdatableInformation is a read only property.' }
-        }
-        Add-Member -InputObject $modulecacheparam.ModulesParameter @AMParameters
-
-        Add-Member -InputObject $modulecacheparam.PrereleaseModulesParameter -MemberType ScriptMethod -Name ToArray -Value $sbToArray
-        Add-Member -InputObject $modulecacheparam.PrereleaseModulesParameter @AMParameters
-
-        $sbIsUpdatable = {
-            $this.ModulesParameter.isCacheContainUpdatableInformation -or
-            $this.PrereleaseModulesParameter.isCacheContainUpdatableInformation
-        }
-
-        Add-Member -InputObject $modulecacheparam -MemberType ScriptProperty -Name isCacheUpdatable -Value $sbIsUpdatable -SecondValue { Throw 'isCacheUpdatable is a read only property.' }
-
-        $AMParameters = @{
-            MemberType  = 'ScriptProperty'
-            Name        = 'IsAuthorizedShells'
-            Value       = {
-                $MustBeAnAuthorizedShell = [System.Predicate[string]] { param($Name) $Name -match 'pwsh|powershell' }
-                Return [System.Array]::TrueForAll($this, $MustBeAnAuthorizedShell)
-            }
-            SecondValue = { Throw 'IsAuthorizedShells is a read only property.' }
-        }
-        Add-Member -InputObject $modulecacheparam.ShellsParameter @AMParameters
-
-        Return $modulecacheparam
+    if ($UseRepositoriesWithCredential -and ($RepositoriesAuthenticationFileName.Trim() -eq [string]::Empty)) {
+        #Invalid Chars (> : ? etc) or invalid filenames (COM1, LPT1,CON, etc) are managed by Powershell
+        throw $PSModuleCacheResources.EmptyCredentialFileName
     }
 
+    if ( ($Modules.Trim() -eq [string]::Empty) -and ($PrereleaseModules.Trim() -eq [string]::Empty) )
+    { throw $PSModuleCacheResources.MustDefineAtLeastOneModule }
 
-    $params = @{
-        Function = 'New-ModuleCacheParameter', 'Get-ModuleCache', 'Get-ModuleSavePath', 'New-ModuleSavePath', 'Save-ModuleCache', 'ConvertTo-YamlLineBreak'
-        Variable = 'CacheFileName', 'RepositoryNames', 'PsWindowsModulePath', 'PsWindowsCoreModulePath', 'PsLinuxCoreModulePath'
+    if ( $Shells.Trim() -eq [string]::Empty )
+    { throw $PSModuleCacheResources.MustDefineAtLeastOneShell }
+
+    $Tab = $Shells.Split(',', [System.StringSplitOptions]::RemoveEmptyEntries)
+    [string[]]$Tab = $Tab | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne [string]::Empty }
+    if ( $Tab.Count -eq 0)
+    { throw $PSModuleCacheResources.MustDefineAtLeastOneShell }
+
+    [String[]]$Shells = [Linq.Enumerable]::Distinct($Tab, [System.StringComparer]::CurrentCultureIgnoreCase)
+
+    $modulecacheparam = [pscustomobject]@{
+        PSTypeName                         = 'ModuleCacheParameter';
+        ModulesParameter                   = $Modules -as [pscustomobject];
+        PrereleaseModulesParameter         = $PrereleaseModules -as [pscustomobject];
+        ShellsParameter                    = $Shells -as [pscustomobject];
+        CacheType                          = [CacheType]$(if ($Updatable.IsPresent) { [CacheType]::Updatable } else { [CacheType]::Immutable } )
+        Updatable                          = $Updatable;
+        PrefixIdentifier                   = $PrefixIdentifier
+        RepositoriesAuthenticationFileName = $RepositoriesAuthenticationFileName
+        UseRepositoriesWithCredential      = $UseRepositoriesWithCredential
     }
-    Export-ModuleMember @params
+
+    $sbToArray = {
+        if ($this.Trim() -eq [string]::Empty)
+        { , [string[]]@() }
+        else
+        { , ([string[]]($this.Split(',').Trim())) }
+    }
+
+    Add-Member -InputObject $modulecacheparam.ModulesParameter -MemberType ScriptMethod -Name ToArray -Value $sbToArray
+    $AMParameters = @{
+        MemberType  = 'ScriptProperty'
+        Name        = 'isCacheContainUpdatableInformation'
+        Value       = { $this -match '::' }
+        SecondValue = { Throw 'IsCacheContainUpdatableInformation is a read only property.' }
+    }
+    Add-Member -InputObject $modulecacheparam.ModulesParameter @AMParameters
+
+    Add-Member -InputObject $modulecacheparam.PrereleaseModulesParameter -MemberType ScriptMethod -Name ToArray -Value $sbToArray
+    Add-Member -InputObject $modulecacheparam.PrereleaseModulesParameter @AMParameters
+
+    $sbIsUpdatable = {
+        $this.ModulesParameter.isCacheContainUpdatableInformation -or
+        $this.PrereleaseModulesParameter.isCacheContainUpdatableInformation
+    }
+
+    Add-Member -InputObject $modulecacheparam -MemberType ScriptProperty -Name isCacheUpdatable -Value $sbIsUpdatable -SecondValue { Throw 'isCacheUpdatable is a read only property.' }
+
+    $AMParameters = @{
+        MemberType  = 'ScriptProperty'
+        Name        = 'IsAuthorizedShells'
+        Value       = {
+            $MustBeAnAuthorizedShell = [System.Predicate[string]] { param($Name) $Name -match 'pwsh|powershell' }
+            Return [System.Array]::TrueForAll($this, $MustBeAnAuthorizedShell)
+        }
+        SecondValue = { Throw 'IsAuthorizedShells is a read only property.' }
+    }
+    Add-Member -InputObject $modulecacheparam.ShellsParameter @AMParameters
+
+    Return $modulecacheparam
+}
+
+
+$params = @{
+    Function = 'New-ModuleCacheParameter', 'Get-ModuleCache', 'Get-ModuleSavePath', 'New-ModuleSavePath', 'Save-ModuleCache', 'ConvertTo-YamlLineBreak'
+    Variable = 'CacheFileName', 'RepositoryNames', 'PsWindowsModulePath', 'PsWindowsCoreModulePath', 'PsLinuxCoreModulePath'
+}
+Export-ModuleMember @params
