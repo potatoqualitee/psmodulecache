@@ -1,7 +1,5 @@
 name: Pester
-
-on:
-  workflow_dispatch:
+on: [push, pull_request]
 
 jobs:
   test-pwsh:
@@ -24,7 +22,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run Pester tests (PowerShell)
         run: |
-          $global:iswindows=$true
+          $global:iswindows = $true
           Write-Host $PSVersionTable.PSVersion.Major $PSVersionTable.PSRemotingProtocolVersion.Minor
           cd test
           .\Run.ps1
