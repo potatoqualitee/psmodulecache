@@ -68,7 +68,7 @@ jobs:
                           Get-PSRepository $Name -ErrorAction Stop >$null
                       } catch {
                           if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
-                          throw $_
+                            throw $_
                           } else {
                               $Parameters = @{
                                   Name               = $Name
@@ -87,7 +87,7 @@ jobs:
               uses: ./
               with:
                   modules-to-cache: DTW.PS.FileSystem,PnP.PowerShell,InvokeBuild
-                  shell: powershell,pwsh
+                  shell: powershell, pwsh
                   updatable: "false"
                   prefixidentifier: "true"
 
