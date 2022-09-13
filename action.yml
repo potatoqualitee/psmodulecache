@@ -32,22 +32,22 @@ runs:
         Import-Module ${{ github.action_path }}/PSModuleCache.psd1
         Write-Output "Getting variables for cacher"
 
-        $Parameters=@{
-          Modules="${{ inputs.modules-to-cache }}"
-          PrereleaseModules="${{ inputs.modules-to-cache-prerelease }}"
-          Shells="${{ inputs.shell }}"
-          Updatable=[boolean]::Parse("${{ inputs.updatable }}")
-          PrefixIdentifier=[boolean]::Parse("${{ inputs.prefixidentifier }}")
+        $Parameters = @{
+          Modules = "${{ inputs.modules-to-cache }}"
+          PrereleaseModules = "${{ inputs.modules-to-cache-prerelease }}"
+          Shells = "${{ inputs.shell }}"
+          Updatable = [boolean]::Parse("${{ inputs.updatable }}")
+          PrefixIdentifier = [boolean]::Parse("${{ inputs.prefixidentifier }}")
         }
-        Write-Output "Action Parameters=$([PsCustomObject]$Parameters)"
+        Write-Output "Action Parameters = $([PsCustomObject]$Parameters)"
 
-        $ActionParameters=New-ModuleCacheParameter @Parameters
+        $ActionParameters = New-ModuleCacheParameter @Parameters
 
-        $ModuleCaches=Get-ModuleCache $ActionParameters
-        Write-Output "::set-output name=keygen::$($ModuleCaches.Key)"
+        $ModuleCaches = Get-ModuleCache $ActionParameters
+        Write-Output "::set-output name = keygen::$($ModuleCaches.Key)"
 
-        $Paths=@(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
-        Write-Output "::set-output name=modulepath::$(ConvertTo-YamlLineBreak $Paths)"
+        $Paths = @(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
+        Write-Output "::set-output name = modulepath::$(ConvertTo-YamlLineBreak $Paths)"
 
         $null = $ModuleCaches | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
 
