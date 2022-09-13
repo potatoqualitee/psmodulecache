@@ -78,45 +78,45 @@ To declare PsRepositories again, you must save them before calling the 'Cache' s
 
 The search order is made according to the list returned by Get-PSRepository, in the event of multiple presence of the same module, its most recent version is retrieved.
 
-### Syntaxe for 'modules-to-cache' parameter
+### Syntax for 'modules-to-cache' parameter
 
-`InvokeBuild`
+#### InvokeBuild
 
 Simple module name, we save the last stable version found. For this syntax, we do not specify a version number.
 
 The cache content for this module is not updated until the cache lifetime has expired. An Updatable cache will force its update.
 
-`InvokeBuild:5.0.0`
+#### InvokeBuild:5.0.0
 
 A simple module name followed by a single colon and a three-part version number (mandatory), the requested stable version is recorded.
 
 The cache content for this module will always be the same, regardless of the cache lifetime.
 
-`PnP.PowerShell::`
+#### PnP.PowerShell::
 
-Simple module name followed by two colons.For this syntax, we do not specify a version number. The last stable version found is saved.
+Simple module name followed by two colons. For this syntax, we do not specify a version number. The last stable version found is saved.
 
 An update search is started each time your Action is executed.
 
 The cache content is updated as soon as a new version is released or the cache lifetime has expired.
 
-### Syntaxe for 'modules-to-cache-prerelease' parameter
+### Syntax for 'modules-to-cache-prerelease' parameter
 
 The syntax is the same as for the 'module-to-cache' parameter but concerns only prerelease versions.
 
-`InvokeBuild`
+#### InvokeBuild
 
 Simple module name, we save the last prerelease version found. For this syntax, we do not specify a version number.
 
 The cache content for this module is not updated until the cache lifetime has expired. An Updatable cache will force its update.
 
-`PnP.PowerShell:1.11.22-nightly`
+#### PnP.PowerShell:1.11.22-nightly
 
 A simple module name followed by a single colon and a four-part version number (mandatory), the requested prerelease is saved.
 
 The cache content for this module will always be the same, regardless of the cache lifetime.
 
-`PnP.PowerShell::`
+#### PnP.PowerShell::
 
 Simple module name followed by two colons. For this syntax, we do not specify a version number. The last prerelease found is saved or the latest stable version if there is no prerelease.
 
@@ -130,8 +130,10 @@ Duplicate module name are allowed.
 
 We may want to install a stable version and the last prerelease :
 
-`modules-to-cache: PnP.PowerShell:1.11.0`
-`modules-to-cache-prerelease: PnP.PowerShell`
+```
+modules-to-cache: PnP.PowerShell:1.11.0
+modules-to-cache-prerelease: PnP.PowerShell
+```
 
 Or a previous version and the latest version :
 
@@ -139,8 +141,10 @@ Or a previous version and the latest version :
 
 You can also force the update for prereleases :
 
-`modules-to-cache: PnP.PowerShell:1.11.0`
-`modules-to-cache-prerelease: PnP.PowerShell::`
+```
+modules-to-cache: PnP.PowerShell:1.11.0
+modules-to-cache-prerelease: PnP.PowerShell::
+```
 
 All other syntax duplications will run installs of the affected module names multiple times.
 
@@ -150,25 +154,27 @@ Note : YAML may need to use double quotation marks: **`modules-to-cache: "Pester
 
 GitHub Action stop a step as soon as [an error is triggered](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference).
 
-`The creation of a cache is effective if there was no error during the execution of the workflow`.
+> The creation of a cache is effective if there was no error during the execution of the workflow.
 
 We analyze all the module information before stopping the processing.
 
 Syntax errors or incorrect parameter values will be displayed as a warning followed by an exception.
 
-##### Notes :
-- The following setting :
+##### Notes
+
+- The following setting:
 
    `@{Modules=UnknownModule; Shells=powershell,pwsh}`
 
 Generates two identical errors, one for each shell.
 
-- Duplicate shell names are silently removed and therefore do not generate an error :
+- Duplicate shell names are silently removed and therefore do not generate an error:
+
    `@{PrereleaseModules='PSScriptAnalyzer'; Shells='powershell,pwsh,pwsh,Powershell'}`
 
 - The following error is thrown:
 
-_Find-Package: No match was found for the specified search criteria and the updatable module name 'MyModule' (repositories 'PSGallery')._
+> Find-Package: No match was found for the specified search criteria and the updatable module name 'MyModule' (repositories 'PSGallery').
 
 When
 
@@ -176,9 +182,10 @@ When
 * the requested version does not exist in the configured repositories,
 * the URI of one of the configured repositories is wrong.
 
-Using pwsh on Ubuntu.
+### Using pwsh on Ubuntu.
 
 For these modules, the cache will contain the current versions when the cache is created.
+
 The contents of the cache will be identical as long as its retention period is not exceeded. It may be different during its next creation.
 
 ```yaml
@@ -200,7 +207,7 @@ jobs:
           Get-Module -Name PSFramework, PoshRSJob -ListAvailable | Select Path
 ```
 
-Using powershell on Windows. pwsh also works and is the default.
+Using `powershell` on Windows. `pwsh` also works and is the default.
 
 For these modules, the cache will contain the current versions when the cache is created.
 
@@ -226,9 +233,7 @@ jobs:
           Import-Module PSFramework
 ```
 
-Install for both powershell and pwsh on Windows.
-
-For these modules, the cache will contain the current versions when the cache is created.
+Install for both `powershell` and `pwsh` on Windows. For these modules, the cache will contain the current versions when the cache is created.
 
 The contents of the cache will be identical as long as its retention period is not exceeded. It may be different during its next creation.
 
@@ -258,9 +263,7 @@ jobs:
           Import-Module PoshRSJob
 ```
 
-Install a module with a required version, using powershell on Windows.
-
-For this module, the cache will always contain this version.
+Install a module with a required version, using powershell on Windows. For this module, the cache will always contain this version.
 
 The cache content will be identical regardless of creation cycles due to retention period exceeded.
 
@@ -311,9 +314,9 @@ jobs:
           Import-Module dbatools
 ```
 
-Using powershell on Windows.
+#### Using PowerShell on Windows.
 
-In this example, the version of the 'Pester' module is fixed, we always use the latest version for the 'dbatools' module and the version of the 'PSScriptAnalyzer' module does not matter, we use the one available when creating the cache.
+In this example, the version of the `Pester` module is fixed, we always use the latest version for the `dbatools` module and the version of the `PSScriptAnalyzer` module does not matter, we use the one available when creating the cache.
 
 ```yaml
 on: [push]
