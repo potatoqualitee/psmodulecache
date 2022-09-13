@@ -44,10 +44,10 @@ runs:
         $ActionParameters = New-ModuleCacheParameter @Parameters
 
         $ModuleCaches = Get-ModuleCache $ActionParameters
-        Write-Output "::set-output name = keygen::$($ModuleCaches.Key)"
+        Write-Output "::set-output name=keygen::$($ModuleCaches.Key)"
 
         $Paths = @(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
-        Write-Output "::set-output name = modulepath::$(ConvertTo-YamlLineBreak $Paths)"
+        Write-Output "::set-output name=modulepath::$(ConvertTo-YamlLineBreak $Paths)"
 
         $null = $ModuleCaches | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
 
