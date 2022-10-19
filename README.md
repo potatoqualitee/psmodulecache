@@ -1,8 +1,11 @@
 # psmodulecache
 
-This action makes caching PowerShell modules from the PowerShell Gallery easy for Linux, Windows and macOS runners. Basically, it builds all of the required input for [actions/cache@v3.0.7](https://github.com/actions/cache).
+This action makes caching PowerShell modules from the PowerShell Gallery easy for Linux, Windows and macOS runners. Basically, it builds all of the required input for [actions/cache](https://github.com/actions/cache).
 
 If you're using GitHub Actions to test projects that rely on PowerShell modules like PSFramework or dbatools, this caches those modules so they aren't downloaded from the PowerShell Gallery over and over again.
+
+> **Warning**
+> GitHub will [deprecate](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/) all versions of this Action earlier than v5.1 on June 1, 2023. It is recommended that you update all of your workflows now.
 
 ## Documentation
 
