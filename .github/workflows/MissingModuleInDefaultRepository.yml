@@ -7,7 +7,7 @@ jobs:
   Missing_module_in_default_repository:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
 
       - name: Set required PowerShell modules
         id: psmodulecache
