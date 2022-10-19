@@ -195,7 +195,7 @@ jobs:
   run-on-linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v5.0
@@ -220,7 +220,7 @@ jobs:
   run-on-windows:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v5.0
@@ -244,7 +244,7 @@ jobs:
   run-for-both-pwsh-and-powershell:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Install and cache PowerShell modules
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v5.0
@@ -274,7 +274,7 @@ jobs:
   run-for-powershell-on-windows-with-required-v ersion:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Install a module with a required version
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v5.0
@@ -299,7 +299,7 @@ jobs:
   run-for-pwsh-on-macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Install a module with a required version
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v5.0
@@ -325,7 +325,7 @@ jobs:
   run-on-windows:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v5.0

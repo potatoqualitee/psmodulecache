@@ -4,7 +4,7 @@ jobs:
   run-v2-on-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v2
@@ -30,7 +30,7 @@ jobs:
   run-on-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
@@ -54,7 +54,7 @@ jobs:
   run-on-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
@@ -78,7 +78,7 @@ jobs:
   run-on-windows-powershell:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
@@ -103,7 +103,7 @@ jobs:
   run-for-both-pwsh-and-powershell:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
@@ -134,7 +134,7 @@ jobs:
   run-for-both-pwsh-and-powershell45:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v4.5
@@ -155,7 +155,7 @@ jobs:
   new-version-on-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: ./
@@ -176,7 +176,7 @@ jobs:
   new-version-on-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: ./
@@ -191,7 +191,7 @@ jobs:
   new-version-on-macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.5.0
       - name: Create variables for module cacher
         id: psmodulecache
         uses: ./
