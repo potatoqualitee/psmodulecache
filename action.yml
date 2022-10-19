@@ -44,16 +44,16 @@ runs:
         $ActionParameters = New-ModuleCacheParameter @Parameters
 
         $ModuleCaches = Get-ModuleCache $ActionParameters
-        Write-Output "::set-output name=keygen::$($ModuleCaches.Key)"
+        $GITHUB_OUTPUT += "{keygen}={$($ModuleCaches.Key)}"
 
         $Paths = @(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
-        Write-Output "::set-output name=modulepath::$(ConvertTo-YamlLineBreak $Paths)"
+        $GITHUB_OUTPUT += "{modulepath}={$(ConvertTo-YamlLineBreak $Paths)}"
 
         $null = $ModuleCaches | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
 
     - name: Run module cacher action
       id: cacher
-      uses: actions/cache@v3.0.7
+      uses: actions/cache@v3.0.11
       with:
         key: ${{ steps.psoutput.outputs.keygen }}
         path: |
