@@ -27,7 +27,9 @@ If you need to use `RequiredVersion`, add a colon then the version: **`modules-t
         modules-to-cache: PSFramework, dbatools:1.1.0
 ```
 
-For a cache with an update search each time your Action is executed, add two colon: **`modules-to-cache: PSFramework, Pester::, dbatools::1.1.0`**
+For a cache with an update search each time your Action is executed, add two 
+
+: **`modules-to-cache: PSFramework, Pester::, dbatools::1.1.0`**
 
 In this case set the updatable parameter to true.
 
@@ -364,7 +366,7 @@ A repository can have up to 5GB of caches. Once the 5GB limit is reached, older 
 
 ## Contributing
 
-Pull requests are welcome!
+Pull requests are welcome! Special thanks to [@LaurentDardenne](/LaurentDardenne) for the massive 5.0 rewrite which introduced a ton of features and fixed a several bugs.
 
 ## License
 
