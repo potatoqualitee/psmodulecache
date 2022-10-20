@@ -366,7 +366,7 @@ A repository can have up to 5GB of caches. Once the 5GB limit is reached, older 
 
 ## Contributing
 
-Pull requests are welcome! Special thanks to [@LaurentDardenne](/LaurentDardenne) for the massive 5.0 rewrite which introduced a ton of features and fixed a several bugs.
+Pull requests are welcome! Special thanks to [@LaurentDardenne](https://github.com/LaurentDardenne) for the massive 5.0 rewrite which introduced a ton of features and fixed a several bugs.
 
 ## License
 
