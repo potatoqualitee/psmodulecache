@@ -59,11 +59,25 @@ function Add-FunctionnalError {
 }
 
 function Test-Version {
-   #return $true for a valid version or a valid semantic version.
-   param(
-      [string]$Version
-   )
-   return $Version -match $script:SemverRegex
+    #return $true for a valid version (without prerelease) or a valid semantic version (with or without prerelease).
+    param(
+        [string]$Version
+    )
+     #On ne sait pas encore quel format de version on manipule
+    $isCLRVersion=$false
+    
+    #Est-ce une Semver ou une [Version] sur 3 digits ?
+    $isSemverOrCLRVersion=$Version -match $script:SemverRegex
+
+    if ($isSemverOrCLRVersion -eq $false)
+    {
+      #Ce n'est pas une Semver, mais est-ce une [Version] sur 4 digits?
+     try { $Version=[Version]$Version } catch {$Version=$null}
+     #$isCLRVersion est à $true si le cast réussi
+     $isCLRVersion= $null -ne $Version
+    }
+     #Si ce n'est ni une Semver ni une version valide on renvoie $false
+    return ($isSemverOrCLRVersion -OR $isCLRVersion)
 }
 
 function Test-PrereleaseVersion {
