@@ -47,7 +47,11 @@ runs:
         "keygen=$($ModuleCaches.Key)" >> $env:GITHUB_OUTPUT
 
         $Paths = @(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
-        "modulepath=${$Paths}" >> $env:GITHUB_OUTPUT
+
+        "modulepath = |<<EOF" >> $env:GITHUB_OUTPUT
+        $Paths >> $env:GITHUB_OUTPUT
+        "EOF" >> $env:GITHUB_OUTPUT
+
         $null = $ModuleCaches | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
 
     - name: Run module cacher action
