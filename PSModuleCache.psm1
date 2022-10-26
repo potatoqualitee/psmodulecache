@@ -434,7 +434,8 @@ function ConvertTo-YamlLineBreak {
 
 #>
    param ($Collection)
-   return "$Collection"
+   $newcoll = $Collection -join "`n"
+   return $newcoll
    #https://github.com/orgs/community/discussions/26288
 
    ### NOTE: This may not be needed anymore with the new method
