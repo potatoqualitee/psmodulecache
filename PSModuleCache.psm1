@@ -434,6 +434,7 @@ function ConvertTo-YamlLineBreak {
 
 #>
    param ($Collection)
+   return "$Collection"
    #https://github.com/orgs/community/discussions/26288
 
    ### NOTE: This may not be needed anymore with the new method
