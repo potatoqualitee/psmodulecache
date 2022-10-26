@@ -48,6 +48,7 @@ runs:
 
         $Paths = @(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
 
+        # Accommodate multi-line
         "modulepath<<EOF" >> $env:GITHUB_OUTPUT
         $Paths >> $env:GITHUB_OUTPUT
         "EOF" >> $env:GITHUB_OUTPUT
