@@ -434,13 +434,11 @@ function ConvertTo-YamlLineBreak {
 
 #>
    param ($Collection)
-   $newcoll = $Collection -join "`n"
-   return $newcoll
    #https://github.com/orgs/community/discussions/26288
 
    ### NOTE: This may not be needed anymore with the new method
-   $ofs = '`n' #https://yaml.org/spec/1.2.2/#54-line-break-characters
-   return "$Collection".Trim()
+   $ofs = "`n" #https://yaml.org/spec/1.2.2/#54-line-break-characters
+   return "$Collection"
 }
 
 function Find-ModuleCache {
