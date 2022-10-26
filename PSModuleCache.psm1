@@ -431,12 +431,15 @@ function ConvertTo-YamlLineBreak {
    <#
 .Synopsis
    Convert an array of string to a unique YAML string.
+
+   ### NOTE: This may not be needed anymore with the new method
 #>
    param ($Collection)
    #https://github.com/orgs/community/discussions/26288
 
-   $ofs = '%0A' #https://yaml.org/spec/1.2.2/#54-line-break-characters
-   return "$Collection"
+   ### NOTE: This may not be needed anymore with the new method
+   #$ofs = '%0A' #https://yaml.org/spec/1.2.2/#54-line-break-characters
+   return "$Collection".TrimEnd()
 }
 
 function Find-ModuleCache {
