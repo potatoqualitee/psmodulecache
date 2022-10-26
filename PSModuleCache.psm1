@@ -431,13 +431,11 @@ function ConvertTo-YamlLineBreak {
    <#
 .Synopsis
    Convert an array of string to a unique YAML string.
-
 #>
    param ($Collection)
    #https://github.com/orgs/community/discussions/26288
 
-   ### NOTE: This may not be needed anymore with the new method
-   $ofs = "`n" #https://yaml.org/spec/1.2.2/#54-line-break-characters
+   $ofs = '%0A' #https://yaml.org/spec/1.2.2/#54-line-break-characters
    return "$Collection"
 }
 
