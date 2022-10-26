@@ -88,8 +88,10 @@
    '+justmeta',
    '9.8.7+meta+meta',
    '9.8.7-whatever+meta+meta',
-   '99999999999999999999999.999999999999999999.99999999999999999----RC-SNAPSHOT.12.09.1--------------------------------..12'
+   '99999999999999999999999.999999999999999999.99999999999999999----RC-SNAPSHOT.12.09.1--------------------------------..12',
+   '2022.1.2.3'
 )
+#The version number '2022.1.2.3' is a invalid Semver but a valid clr version.
 
 Import-Module "$PSScriptRoot/../PSModuleCache.psd1" -Force
 $ModuleContext = get-module psmodulecache
