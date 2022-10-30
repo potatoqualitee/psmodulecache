@@ -13,6 +13,11 @@ $ModuleToCacheBasic = @(
   @{Modules = 'PSScriptAnalyzer'; PrereleaseModules = 'InvokeBuild'; Shells = 'pwsh'; Updatable = $False }
   @{Modules = 'PSScriptAnalyzer'; PrereleaseModules = 'InvokeBuild'; Shells = 'powershell,pwsh'; Updatable = $False }
 
+  @{Modules = 'DbaTools-Library:022.10.25.1,dbatools-core-library:2022.10.25.1'; Shells = 'powershell,pwsh'; Updatable = $False }
+  @{Modules = 'DbaTools-Library:022.10.25.1'; Shells = 'powershell,pwsh'; Updatable = $False }
+  @{Modules = 'DbaTools-Library:22.010.25.1'; Shells = 'powershell,pwsh'; Updatable = $False }
+  @{Modules = 'dbatools-core-library:2022.10.25.1'; Shells = 'powershell,pwsh'; Updatable = $False }
+
   @{Modules = 'PSScriptAnalyzer:1.20.0,PnP.PowerShell'; Shells = 'powershell,pwsh'; Updatable = $False }
   @{PrereleaseModules = 'PSScriptAnalyzer:1.20.0,PnP.PowerShell'; Shells = 'powershell,pwsh'; Updatable = $False }
 
@@ -21,8 +26,29 @@ $ModuleToCacheBasic = @(
   @{PrereleaseModules = 'PnP.PowerShell:1.11.22-nightly,DTW.PS.FileSystem'; Shells = 'powershell,pwsh'; Updatable = $true }
   @{PrereleaseModules = "PSScriptAnalyzer,PnP.PowerShell:1.11.22-nightly,DTW.PS.FileSystem"; Shells = "powershell,pwsh"; Updatable = $true }
   @{PrereleaseModules = "PnP.PowerShell:1.11.22-nightly"; Shells = "powershell, pwsh"; Updatable = $true }
-  @{PrereleaseModules = "PnP.PowerShell:1.11.0"; Shells = "powershell, pwsh"; Updatable = $true }
 )
+
+$ModuleToCacheValidCLRVersion = '0.0.0',
+'0.0.0.0', #Valid but not tested with Pusblish-Module
+'0.0.-0', #Valid but not tested with Pusblish-Module
+'0.0.4',
+'1.0',
+'1.2',
+'1.2.3',
+'10.20.30',
+'1.0.0',
+'2.0.0',
+'1.1.7',
+'01.1.1',
+'1.01.1',
+'1.1.01',
+'2022.1.2.3',
+'02.1.2.3',
+'2.10.2.03' |
+ForEach-Object {
+  @{Modules = "Test:$_"; Shells = 'powershell,pwsh'; Updatable = $false }
+  @{Modules = "Test:$_"; Shells = 'powershell,pwsh'; Updatable = $true }
+}
 
 $ModuleToCacheEmptyModuleName = @(
   @{PrereleaseModules = "PSScriptAnalyzer::,"; Shells = "powershell, pwsh"; Updatable = $true }
@@ -53,8 +79,12 @@ $ModuleToCacheInvalidVersionNumberSyntax = @(
   @{PrereleaseModules = "PSScriptAnalyzer:."; Shells = "powershell"; Updatable = $false }
   @{PrereleaseModules = "PSScriptAnalyzer:1"; Shells = "pwsh"; Updatable = $false }
   @{PrereleaseModules = "PSScriptAnalyzer:1."; Shells = "powershell "; Updatable = $false }
-  @{PrereleaseModules = "PSScriptAnalyzer:1.20"; Shells = " pwsh"; Updatable = $false }
   @{PrereleaseModules = "PSScriptAnalyzer:Test"; Shells = " powershell,pwsh "; Updatable = $false }
+  #Semver with constraint
+  @{Modules = "dbatools-core-library:=0.2.3"; Shells = " powershell,pwsh "; Updatable = $false }
+  @{Modules = "PnP.PowerShell:!=2.0.0+build.1848"; Shells = "powershell, pwsh"; Updatable = $false }
+  @{PrereleaseModules = "dbatools-core-library:=0.2.3"; Shells = " powershell,pwsh "; Updatable = $false }
+  @{PrereleaseModules = "PnP.PowerShell:!=2.0.0+build.1848"; Shells = "powershell, pwsh"; Updatable = $false }
 )
 
 $ModuleToCacheImmutableCacheCannotContainUpdatableInformation = @(
@@ -73,12 +103,15 @@ $ModuleToCacheUpdatableModuleCannotContainVersionInformation = @(
   @{PrereleaseModules = "PSScriptAnalyzer::1.20"; Shells = "powershell"; Updatable = $true }
   @{PrereleaseModules = "PSScriptAnalyzer::1.20.0"; Shells = "powershell"; Updatable = $true }
   @{PrereleaseModules = "PSScriptAnalyzer::texte"; Shells = "powershell"; Updatable = $true }
+  @{PrereleaseModules = "dbatools-core-library::2022.10.25.1"; Shells = "powershell"; Updatable = $true }
+
 
   @{Modules = "PSScriptAnalyzer::1"; Shells = "pwsh"; Updatable = $true }
   @{Modules = "PSScriptAnalyzer::1."; Shells = "pwsh"; Updatable = $true }
   @{Modules = "PSScriptAnalyzer::1.20"; Shells = "pwsh"; Updatable = $true }
   @{Modules = "PSScriptAnalyzer::1.20.0"; Shells = "pwsh"; Updatable = $true }
   @{Modules = "PSScriptAnalyzer::texte"; Shells = "pwsh"; Updatable = $true }
+  @{Modules = "dbatools-core-library::2022.10.25.1"; Shells = "powershell"; Updatable = $true }
 )
 
 $ModuleToCacheUnknownModuleName = @(
@@ -121,7 +154,7 @@ foreach ($Repository in $Repositories) {
 Describe 'Github Action "psmodulecache" module. When there is no error.' -Tag 'KeyGen' {
 
   Context "Syntax for the 'module-to-cache' or 'module-to-cache-prerelease' parameter." {
-    It "Syntax for the 'module-to-cache' or 'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" -TestCases $ModuleToCacheBasic {
+    It "Syntax for the 'module-to-cache' or 'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" -TestCases @($ModuleToCacheBasic; $ModuleToCacheValidCLRVersion) {
       param(
         $Modules,
         $PrereleaseModules,
