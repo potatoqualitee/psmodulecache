@@ -72,9 +72,9 @@ function Test-Version {
 
    if ($isSemverOrCLRVersion -eq $false) {
       #It's not a Semver, but is it a 4-digit [Version]?
-      try { $Version = [Version]$Version } catch { $Version = $null }
+      try { $TypeCastVersion = [Version]$Version } catch { $TypeCastVersion = $null }
       #$isCLRVersion is $true if the cast succeeds
-      $isCLRVersion = $null -ne $Version
+      $isCLRVersion = $null -ne $TypeCastVersion
    } elseif ($matches.ContainsKey('constraint')) {
       #Here we validate a version number in the context of a powershell module publication.
       #The version number cannot contain a semver constraint.
@@ -104,10 +104,12 @@ function Test-PrereleaseVersion {
 
 function ConvertTo-Version {
    #return a version number without the prerelease
+   #Save-Module uses a [Version] as directory name for a prerelease module.
    param(
       [string]$Version
    )
-   #todo constraint ? clrversion ?
+   #Note : Here one should only receive valid and authorized version numbers.
+   #       We therefore do not manage the Constraint part nor the Semver/ClrVersion distinction
    if ($Version -match $script:SemverRegex) {
       return ('{0}.{1}.{2}' -f $matches.major, $matches.minor, $matches.patch)
    } else {
@@ -371,7 +373,7 @@ function Get-ModuleCache {
    <#
 .Synopsis
    Called from 'Action.yml'.
-   return a 'ModuleCache' object from Action parameters or a errord list.
+   return a 'ModuleCache' object from Action parameters or a error list.
 #>
    param (
       #pscustomobject with pstypename 'ModuleCacheParameter'
@@ -420,7 +422,7 @@ function Get-ModuleSavePath {
 }
 
 function New-ModuleSavePath {
-<#
+   <#
 .Synopsis
    return one or more module full paths.
    Called from Action.yml
@@ -439,6 +441,7 @@ function New-ModuleSavePath {
       $isVersion = $Version -ne [String]::Empty
 
       if ($isVersion) {
+         #Adapting the version number for the call of Save-Module cmdlet.
          $Version = ConvertTo-Version $Version
       }
 
