@@ -33,10 +33,6 @@ New-Variable -Name Delimiter -Option ReadOnly -Scope Script -Value '-'
 #Additional repositories are added beforehand in a dedicated 'Step'.
 New-Variable -Name RepositoryNames -Option ReadOnly -Scope Script -Value @(Get-PSRepository | Select-Object -ExpandProperty Name)
 
-#PS v5.1 does not have a class to manipulate a semver, and that of PsCore seems defective (:https://github.com/PowerShell/PowerShell/issues/14605)
-#The regex is adapted from https://regex101.com/r/Ly7O1x/196 ( change syntax for named capture group)
-New-Variable -Name SemverRegex -Option ReadOnly -Scope Script -Value '^(?<constraint>=|>=|<=|=>|=<|>|<|!=|~|~>|\^)?(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$'
-
 New-Variable -Name PsWindowsModulePath -Option ReadOnly -Scope Script -Value "$env:ProgramFiles\WindowsPowerShell\Modules"
 New-Variable -Name PsWindowsCoreModulePath -Option ReadOnly -Scope Script -Value "$env:ProgramFiles\PowerShell\Modules"
 New-Variable -Name PsLinuxCoreModulePath -Option ReadOnly -Scope Script -Value '/usr/local/share/powershell/Modules/'
@@ -58,63 +54,106 @@ function Add-FunctionnalError {
    $script:FunctionnalErrors.Add($Message) > $null
 }
 
-function Test-Version {
-   #Return $true for a valid version (without prerelease) or
-   #a valid semantic version (with or without prerelease) but without the version constraints part.
-   param(
-      [string]$Version
+function Get-PowerShellGetVersion {
+   # Separates Version from Prerelease string (if needed) and validates each.
+   #Adapted from :
+   # https://github.com/PowerShell/PowerShellGetv2/blob/master/src/PowerShellGet/private/functions/ValidateAndGet-VersionPrereleaseStrings.ps1
+   #
+   #See to :
+   # https://learn.microsoft.com/en-us/powershell/scripting/gallery/concepts/module-prerelease-support?view=powershell-5.1
+   Param
+   (
+      [Parameter(Mandatory = $true)]
+      [ValidateNotNullOrEmpty()]
+      [string]
+      $Version
    )
-   #We don't yet know which versioning format we are handling
-   $isCLRVersion = $false
 
-   #Is it a Semver or a 3-digit [Version]?
-   $isSemverOrCLRVersion = $Version -match $script:SemverRegex
+   #In the original code this parameter is used by Update-ModuleManifest
+   #It is not used here, but the code references it using implicit conversions
+   [string] $Prerelease = [string]::Empty
 
-   if ($isSemverOrCLRVersion -eq $false) {
-      #It's not a Semver, but is it a 4-digit [Version]?
-      try { $TypeCastVersion = [Version]$Version } catch { $TypeCastVersion = $null }
-      #$isCLRVersion is $true if the cast succeeds
-      $isCLRVersion = $null -ne $TypeCastVersion
-   } elseif ($matches.ContainsKey('constraint')) {
-      #Here we validate a version number in the context of a powershell module publication.
-      #The version number cannot contain a semver constraint.
-      #Such a number is a valid semver but not for cache management.
+   # Scripts scenario
+   if ($Version -match '-' -and -not $Prerelease) {
+      $Version, $Prerelease = $Version -split '-', 2
+   }
+
+   # Remove leading hyphen (if present) and trim whitespace
+   if ($Prerelease -and $Prerelease.StartsWith('-') ) {
+      $Prerelease = $Prerelease -split '-', 2 | Select-Object -Skip 1
+   }
+   if ($Prerelease) {
+      $Prerelease = $Prerelease.Trim()
+   }
+
+   # only these characters are allowed in a prerelease string
+   $validCharacters = "^[a-zA-Z0-9]+$"
+   $prereleaseStringValid = $Prerelease -match $validCharacters
+   if ($Prerelease -and -not $prereleaseStringValid) {
+      throw 'InvalidCharactersInPrereleaseString'
+      $message = $PSModuleCacheResources.InvalidCharactersInPrereleaseString -f $Prerelease
+      Add-FunctionnalError -Message $Message
+   }
+
+   # Validate that Version contains exactly 3 parts
+   if ($Prerelease -and -not ($Version.ToString().Split('.').Count -eq 3)) {
+      throw  'IncorrectVersionPartsCountForPrereleaseStringUsage'
+      $message = $PSModuleCacheResources.IncorrectVersionPartsCountForPrereleaseStringUsage -f $Version
+      Add-FunctionnalError -Message $Message
+   }
+
+   # try parsing version string
+   [Version]$VersionVersion = $null
+   if (-not ( [System.Version]::TryParse($Version, [ref]$VersionVersion) )) {
+      throw  'InvalidVersion'
+      $message = $PSModuleCacheResources.InvalidVersion -f ($Version)
+      Add-FunctionnalError -Message $message
+   }
+
+   $fullVersion = if ($Prerelease) { "$VersionVersion-$Prerelease" } else { "$VersionVersion" }
+
+   $results = @{
+      Version     = "$VersionVersion"
+      Prerelease  = $Prerelease
+      FullVersion = $fullVersion
+   }
+   return $results
+}
+
+function Test-Version {
+   #Return $true for a valid PowerShellGet version (with or without prerelease).
+   param(
+      [string] $Version
+   )
+   try {
+      Get-PowerShellGetVersion -Version $Version > $null
+      return $true
+   } catch {
       return $false
    }
-   #If it is neither a Semver nor a valid version we return $false
-   return ($isSemverOrCLRVersion -OR $isCLRVersion)
 }
 
 function Test-PrereleaseVersion {
-   #Return $true for a semantic version with a prerelease but without the version constraints part.
-   #Only a semver can have a prerelease.
+   #Return $true for a PowerShellGet version with a prerelease.
    param( [string]$Version )
-
-   if ($Version -match $script:SemverRegex) {
-      if ($matches.ContainsKey('constraint')) {
-         #A Semver version number with the prerelease part can also have a constraint.
-         #we do not handle this case
-         return $false
-      }
-      return $matches.ContainsKey('prerelease')
-   } else {
+   try {
+      $PowerShellGetVersion = Get-PowerShellGetVersion -Version $Version
+      return $PowerShellGetVersion.Prerelease -ne ([string]::Empty)
+   } catch {
       return $false
    }
 }
 
 function ConvertTo-Version {
-   #return a version number without the prerelease
+   #return a PowerShellGet version number without the prerelease
    #Save-Module uses a [Version] as directory name for a prerelease module.
    param(
       [string]$Version
    )
    #Note : Here one should only receive valid and authorized version numbers.
-   #       We therefore do not manage the Constraint part nor the Semver/ClrVersion distinction
-   if ($Version -match $script:SemverRegex) {
-      return ('{0}.{1}.{2}' -f $matches.major, $matches.minor, $matches.patch)
-   } else {
-      return $Version
-   }
+
+   $PowerShellGetVersion = Get-PowerShellGetVersion -Version $Version
+   return $PowerShellGetVersion.Version
 }
 
 function New-ModuleToCacheInformation {
