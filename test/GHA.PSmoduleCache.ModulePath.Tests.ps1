@@ -94,8 +94,8 @@ Describe 'Github Action "psmodulecache" module. When there is no error.' -Tag 'M
     }
   }
 
-  Context "Syntax for the 'ModulePath' parameter for Powershell Core." {
-    It "New-ModuleSavePath with '<Modules>' / '<PrereleaseModules>'." -Skip:($isWindows -eq $true)-TestCases $ModulePathPSCore {
+  Context "Syntax for the 'ModulePath' parameter for Powershell Core Linux/OSX." {
+    It "New-ModuleSavePath with '<Modules>' / '<PrereleaseModules>'." -Skip:($isWindows -eq $true) -TestCases $ModulePathPSCore {
       param(
         $Modules,
         $PrereleaseModules,

@@ -28,7 +28,7 @@ $ModuleToCacheBasic = @(
   @{PrereleaseModules = "PnP.PowerShell:1.11.22-nightly"; Shells = "powershell, pwsh"; Updatable = $true }
 )
 
-$ModuleToCacheValidCLRVersion = '0.0.0',
+$ModuleToCacheValidVersion = '0.0.0',
 '0.0.0.0', #Valid but not tested with Pusblish-Module
 '0.0.-0', #Valid but not tested with Pusblish-Module
 '0.0.4',
@@ -77,9 +77,17 @@ $ModuleToCacheMissingRequiredVersion = @(
 
 $ModuleToCacheInvalidVersionNumberSyntax = @(
   @{PrereleaseModules = "PSScriptAnalyzer:."; Shells = "powershell"; Updatable = $false }
+  @{Modules = "dbatools-core-library:."; Shells = " powershell,pwsh "; Updatable = $false }
   @{PrereleaseModules = "PSScriptAnalyzer:1"; Shells = "pwsh"; Updatable = $false }
   @{PrereleaseModules = "PSScriptAnalyzer:1."; Shells = "powershell "; Updatable = $false }
+  @{Modules = "PSScriptAnalyzer:1."; Shells = "powershell "; Updatable = $false }
   @{PrereleaseModules = "PSScriptAnalyzer:Test"; Shells = " powershell,pwsh "; Updatable = $false }
+  @{PrereleaseModules = "dbatools-core-library:1.0-alpha"; Shells = " powershell,pwsh "; Updatable = $false }
+  @{PrereleaseModules = "dbatools-core-library:1.0.0.0-alpha"; Shells = " powershell,pwsh "; Updatable = $false }
+  @{PrereleaseModules = "dbatools-core-library:1.0.0-alpha.4"; Shells = " powershell,pwsh "; Updatable = $false }
+  @{PrereleaseModules = "dbatools-core-library:1.0.0-alpha+4"; Shells = " powershell,pwsh "; Updatable = $false }
+  @{PrereleaseModules = "dbatools-core-library:1.0.0-alpha-4"; Shells = " powershell,pwsh "; Updatable = $false }
+
   #Semver with constraint
   @{Modules = "dbatools-core-library:=0.2.3"; Shells = " powershell,pwsh "; Updatable = $false }
   @{Modules = "PnP.PowerShell:!=2.0.0+build.1848"; Shells = "powershell, pwsh"; Updatable = $false }
@@ -154,7 +162,7 @@ foreach ($Repository in $Repositories) {
 Describe 'Github Action "psmodulecache" module. When there is no error.' -Tag 'KeyGen' {
 
   Context "Syntax for the 'module-to-cache' or 'module-to-cache-prerelease' parameter." {
-    It "Syntax for the 'module-to-cache' or 'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" -TestCases @($ModuleToCacheBasic; $ModuleToCacheValidCLRVersion) {
+    It "Syntax for the 'module-to-cache' or 'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" -TestCases @($ModuleToCacheBasic; $ModuleToCacheValidVersion) {
       param(
         $Modules,
         $PrereleaseModules,
@@ -282,8 +290,9 @@ Describe 'Github Action "psmodulecache" module. When there error.' -Tag 'KeyGen'
       )
       $ActionParameters = New-ModuleCacheParameter -Modules $Modules -PrereleaseModules $PrereleaseModules -Shells $Shells -Updatable:$Updatable
       $ModulesCache = Get-ModuleCache $ActionParameters -Pester
-      $ModulesCache.Count | Should -Be 1
-      $ModulesCache[0] | Should -Match '^The syntax of the version'
+      $ModulesCache.Count | Should -Be 2
+      $ModulesCache[1] | Should -Match '^The syntax of the version'
+      $ModulesCache[0] | Should -Match "(Cannot convert value '.*?' to type 'System\.Version'\.|must have exactly 3 parts for a Prerelease string|Please ensure that only characters)"
     }
 
     It "Invalid syntax 'ModuleCannotContainPrerelease' for 'module-to-cache' or 'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" {
@@ -295,7 +304,7 @@ Describe 'Github Action "psmodulecache" module. When there error.' -Tag 'KeyGen'
       $ModulesCache[0] | Should -Match "^A module name into 'module-to-cache' cannot contain a prerelease version"
     }
 
-    It "Invalid syntax 'ModuleMustContainPrerelease' for'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" {
+    It "Invalid syntax 'ModuleMustContainPrerelease' for 'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" {
       $Params = @{PrereleaseModules = "PnP.PowerShell:1.11.22"; Shells = "powershell"; Updatable = $false }
       $ActionParameters = New-ModuleCacheParameter @Params
       $ModulesCache = Get-ModuleCache $ActionParameters -Pester
