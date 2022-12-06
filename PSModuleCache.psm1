@@ -59,6 +59,10 @@ function Get-PowerShellGetVersion {
    #Adapted from :
    # https://github.com/PowerShell/PowerShellGetv2/blob/master/src/PowerShellGet/private/functions/ValidateAndGet-VersionPrereleaseStrings.ps1
    #
+   #Note :
+   #The original code reconstructs the version number (see FullVersion),
+   # the returned version number may no longer correspond to the one passed as a parameter.
+   #
    #See to :
    # https://learn.microsoft.com/en-us/powershell/scripting/gallery/concepts/module-prerelease-support?view=powershell-5.1
    Param
@@ -90,24 +94,26 @@ function Get-PowerShellGetVersion {
    $validCharacters = "^[a-zA-Z0-9]+$"
    $prereleaseStringValid = $Prerelease -match $validCharacters
    if ($Prerelease -and -not $prereleaseStringValid) {
-      throw 'InvalidCharactersInPrereleaseString'
+      #Error for the Github Action runner
       $message = $PSModuleCacheResources.InvalidCharactersInPrereleaseString -f $Prerelease
       Add-FunctionnalError -Message $Message
+      #Error for the caller
+      throw "Get-PowerShellGetVersion : $Message"
    }
 
    # Validate that Version contains exactly 3 parts
    if ($Prerelease -and -not ($Version.ToString().Split('.').Count -eq 3)) {
-      throw  'IncorrectVersionPartsCountForPrereleaseStringUsage'
       $message = $PSModuleCacheResources.IncorrectVersionPartsCountForPrereleaseStringUsage -f $Version
       Add-FunctionnalError -Message $Message
+      throw "Get-PowerShellGetVersion : $Message"
    }
 
    # try parsing version string
    [Version]$VersionVersion = $null
    if (-not ( [System.Version]::TryParse($Version, [ref]$VersionVersion) )) {
-      throw  'InvalidVersion'
       $message = $PSModuleCacheResources.InvalidVersion -f ($Version)
       Add-FunctionnalError -Message $message
+      throw "Get-PowerShellGetVersion : $Message"
    }
 
    $fullVersion = if ($Prerelease) { "$VersionVersion-$Prerelease" } else { "$VersionVersion" }
@@ -140,6 +146,7 @@ function Test-PrereleaseVersion {
       $PowerShellGetVersion = Get-PowerShellGetVersion -Version $Version
       return $PowerShellGetVersion.Prerelease -ne ([string]::Empty)
    } catch {
+      #$Version has invalid syntax
       return $false
    }
 }
@@ -153,6 +160,10 @@ function ConvertTo-Version {
    #Note : Here one should only receive valid and authorized version numbers.
 
    $PowerShellGetVersion = Get-PowerShellGetVersion -Version $Version
+
+   #For '01.1.1' return '1.1.1'
+   #For '1.2.3--' return '1.2.3'
+   #for '1.2.3.4--' return '1.2.3.4'
    return $PowerShellGetVersion.Version
 }
 
