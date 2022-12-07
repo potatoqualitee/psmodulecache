@@ -561,7 +561,13 @@ function Save-ModuleCache {
    }
    $ModuleCache = Import-Clixml -Path (Join-Path $home -ChildPath $CacheFileName)
 
-   Set-PSRepository PSGallery -InstallationPolicy Trusted
+   try {
+      Get-PSRepository PSGallery -EA Stop > $null
+      Set-PSRepository PSGallery -InstallationPolicy Trusted
+   } catch {
+      if ($_.CategoryInfo.Category -ne 'ObjectNotFound')
+      { throw $_ }
+   }
 
    foreach ($ModuleCacheInformation in $ModuleCache.ModuleCacheInformations) {
       foreach ($ModulePath in $ModuleCacheInformation.ModuleSavePaths) {
