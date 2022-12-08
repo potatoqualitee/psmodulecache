@@ -295,7 +295,7 @@ Describe 'Github Action "psmodulecache" module. When there error.' -Tag 'KeyGen'
       $ModulesCache[0] | Should -Match "(Cannot convert value '.*?' to type 'System\.Version'\.|must have exactly 3 parts for a Prerelease string|Please ensure that only characters)"
     }
 
-    It "Invalid syntax 'ModuleCannotContainPrerelease' for 'module-to-cache' or 'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" {
+    It "Invalid syntax 'ModuleCannotContainPrerelease' for 'module-to-cache' or 'module-to-cache-prerelease' parameter." {
       $Params = @{Modules = "PnP.PowerShell:1.11.22-nightly"; Shells = "pwsh"; Updatable = $false }
       $ActionParameters = New-ModuleCacheParameter @Params
       $ModulesCache = Get-ModuleCache $ActionParameters -Pester
@@ -304,7 +304,7 @@ Describe 'Github Action "psmodulecache" module. When there error.' -Tag 'KeyGen'
       $ModulesCache[0] | Should -Match "^A module name into 'module-to-cache' cannot contain a prerelease version"
     }
 
-    It "Invalid syntax 'ModuleMustContainPrerelease' for 'module-to-cache-prerelease' parameter with '<Modules>' / '<PrereleaseModules>'" {
+    It "Invalid syntax 'ModuleMustContainPrerelease' for 'module-to-cache-prerelease' parameter." {
       $Params = @{PrereleaseModules = "PnP.PowerShell:1.11.22"; Shells = "powershell"; Updatable = $false }
       $ActionParameters = New-ModuleCacheParameter @Params
       $ModulesCache = Get-ModuleCache $ActionParameters -Pester
