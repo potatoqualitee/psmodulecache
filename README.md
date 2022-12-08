@@ -27,7 +27,7 @@ If you need to use `RequiredVersion`, add a colon then the version: **`modules-t
         modules-to-cache: PSFramework, dbatools:1.1.0
 ```
 
-For a cache with an update search each time your Action is executed, add two 
+For a cache with an update search each time your Action is executed, add two
 
 : **`modules-to-cache: PSFramework, Pester::, dbatools::1.1.0`**
 
@@ -70,6 +70,11 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 * `shell` - The default shell you'll be using. Defaults to pwsh. Recognized shells are 'powershell' and 'pwsh', you can specify one or the other, or both.
 * `updatable` - Triggers, on each execution of the action, an update for the module names that request it. Defaults to false.
 * `prefixidentifier` - Prefixes the cache key name with the Workflow name ($env:GITHUB_WORKFLOW). Used to group cache keys. Defaults to false.
+
+### Prerelease module versions
+
+The following text details the rule for building a prerelease version number.
+[Prerelease module versions](https://learn.microsoft.com/en-us/powershell/scripting/gallery/concepts/module-prerelease-support?view=powershell-5.1)
 
 ### Cache scopes
 
@@ -352,6 +357,7 @@ The key name of a cache is constructed as follows:
 * The name of the runner OS: $env:RUNNER_OS,
 * the version number of the PSModuleCache action,
 * the cache type: Immutable or Updatable,
+* the names of the specified shells,
 * followed by module names, and version number if requested. If given, the content of the 'module-to-cache' parameter is parsed first.
 
 Each part is separated by a hyphen character '-'.
