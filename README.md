@@ -13,7 +13,7 @@ Just copy the code below and modify the line **`modules-to-cache: PSFramework, P
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework, PoshRSJob, dbatools
 ```
@@ -22,7 +22,7 @@ If you need to use `RequiredVersion`, add a colon then the version: **`modules-t
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework, dbatools:1.1.0
 ```
@@ -35,7 +35,7 @@ In this case set the updatable parameter to true.
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework,Pester::, dbatools:1.1.0
         updatable: true
@@ -45,14 +45,14 @@ If you need to install a prerelease, use the `modules-to-cache-prerelease` param
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework,Pester:4.10.1, dbatools:1.1.0
         modules-to-cache-prerelease: PnP.PowerShell:1.11.44-nightly
 ```
 
 Note:
-Under Windows Powershell if the module targets both versions of PS, then PSCore uses the path of v5.1.
+Under Windows Powershell if the module targets both versions of PS, then PSCore uses the path of Powershell v5.1.
 
 It is therefore not necessary to create an installation (a Step) for each version of Powershell.
 
@@ -208,7 +208,7 @@ jobs:
     - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework, PoshRSJob
     - name: Show that the Action works
@@ -233,7 +233,7 @@ jobs:
     - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework, PoshRSJob
     - name: Show that the Action works
@@ -257,7 +257,7 @@ jobs:
       - uses: actions/checkout@v2.5.0
       - name: Install and cache PowerShell modules
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v5.1
+        uses: potatoqualitee/psmodulecache@v5.2
         with:
           modules-to-cache: PoshRSJob, dbatools
           shell: powershell, pwsh
@@ -287,7 +287,7 @@ jobs:
       - uses: actions/checkout@v2.5.0
       - name: Install a module with a required version
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v5.1
+        uses: potatoqualitee/psmodulecache@v5.2
         with:
           modules-to-cache: dbatools:1.0.0
           shell: powershell
@@ -312,7 +312,7 @@ jobs:
       - uses: actions/checkout@v2.5.0
       - name: Install a module with a required version
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v5.1
+        uses: potatoqualitee/psmodulecache@v5.2
         with:
           modules-to-cache: "dbatools::"
           shell: pwsh
@@ -338,7 +338,7 @@ jobs:
     - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: dbatools::,Pester:5.3.3, PSScriptAnalyzer
         shell: powershell
