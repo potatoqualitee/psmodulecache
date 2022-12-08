@@ -12,7 +12,6 @@
 #
 # Known issues : About AllowPrerelease - https://github.com/PowerShell/PowerShellGetv2/issues/517
 
-# Debug : Write-Warning "FunctionName `r`n$($PSBoundParameters.GetEnumerator()|Out-String -width 512)"
 
 $script:WarningPreference = 'Continue'
 
@@ -181,7 +180,7 @@ function New-ModuleToCacheInformation {
       [CacheType]$Type,
 
       #Requested version or an empty string.
-      #Can be in [Version] (PS v5.1) or [semver] format (PS >= v6.0 ) or empty.
+      #Can be in [Version] (Powershell v5.1) or [semver] format (Powershell >= v6.0 ) or empty.
       [Parameter(position = 2)]
       [string]$Version,
 

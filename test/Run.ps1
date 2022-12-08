@@ -4,7 +4,7 @@ if (-not (Test-Path env:CI) ) {
     $env:RUNNER_OS = 'Windows'
     $env:GITHUB_WORKFLOW = 'WorkflowDemo'
     If ( (Test-Path Variable:isWindows) -eq $false) {
-        #ps v5.1 only for Windows OS
+        #Powershell v5.1 only for Windows OS
         $global:isWindows = $true
     }
 }
