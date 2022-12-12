@@ -37,7 +37,7 @@ jobs:
 
           foreach ($Workflow in $Workflows) {
               #Beware https://github.com/PowerShell/PowerShell/issues/14264
-              # -as [int] for PS v5.1
+              # -as [int] for Powershell v5.1
               $wkfID = $Workflow.ID -as [int64]
               $wkfName = $Workflow.Name
 

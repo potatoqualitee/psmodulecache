@@ -45,7 +45,7 @@ jobs:
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: DTW.PS.FileSystem,PnP.PowerShell::,InvokeBuild:5.9.10
+          modules-to-cache: DTW.PS.FileSystem,PnP.PowerShell::,InvokeBuild:5.9.10,dbatools-core-library:2022.10.25.1
           modules-to-cache-prerelease: PnP.PowerShell::,pester:5.3.0-rc1
           shell: powershell,pwsh
           updatable: "true"

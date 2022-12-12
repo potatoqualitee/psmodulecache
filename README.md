@@ -13,7 +13,7 @@ Just copy the code below and modify the line **`modules-to-cache: PSFramework, P
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework, PoshRSJob, dbatools
 ```
@@ -22,12 +22,12 @@ If you need to use `RequiredVersion`, add a colon then the version: **`modules-t
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework, dbatools:1.1.0
 ```
 
-For a cache with an update search each time your Action is executed, add two 
+For a cache with an update search each time your Action is executed, add two
 
 : **`modules-to-cache: PSFramework, Pester::, dbatools::1.1.0`**
 
@@ -35,7 +35,7 @@ In this case set the updatable parameter to true.
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework,Pester::, dbatools:1.1.0
         updatable: true
@@ -45,14 +45,14 @@ If you need to install a prerelease, use the `modules-to-cache-prerelease` param
 
 ```yaml
     - name: Install and cache PowerShell modules
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework,Pester:4.10.1, dbatools:1.1.0
         modules-to-cache-prerelease: PnP.PowerShell:1.11.44-nightly
 ```
 
 Note:
-Under Windows Powershell if the module targets both versions of PS, then PSCore uses the path of v5.1.
+Under Windows Powershell if the module targets both versions of PS, then PSCore uses the path of Powershell v5.1.
 
 It is therefore not necessary to create an installation (a Step) for each version of Powershell.
 
@@ -70,6 +70,11 @@ Create a workflow `.yml` file in your repositories `.github/workflows` directory
 * `shell` - The default shell you'll be using. Defaults to pwsh. Recognized shells are 'powershell' and 'pwsh', you can specify one or the other, or both.
 * `updatable` - Triggers, on each execution of the action, an update for the module names that request it. Defaults to false.
 * `prefixidentifier` - Prefixes the cache key name with the Workflow name ($env:GITHUB_WORKFLOW). Used to group cache keys. Defaults to false.
+
+### Prerelease module versions
+
+The following text details the rule for building a prerelease version number.
+[Prerelease module versions](https://learn.microsoft.com/en-us/powershell/scripting/gallery/concepts/module-prerelease-support?view=powershell-5.1)
 
 ### Cache scopes
 
@@ -203,7 +208,7 @@ jobs:
     - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework, PoshRSJob
     - name: Show that the Action works
@@ -228,7 +233,7 @@ jobs:
     - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: PSFramework, PoshRSJob
     - name: Show that the Action works
@@ -252,7 +257,7 @@ jobs:
       - uses: actions/checkout@v2.5.0
       - name: Install and cache PowerShell modules
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v5.1
+        uses: potatoqualitee/psmodulecache@v5.2
         with:
           modules-to-cache: PoshRSJob, dbatools
           shell: powershell, pwsh
@@ -282,7 +287,7 @@ jobs:
       - uses: actions/checkout@v2.5.0
       - name: Install a module with a required version
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v5.1
+        uses: potatoqualitee/psmodulecache@v5.2
         with:
           modules-to-cache: dbatools:1.0.0
           shell: powershell
@@ -307,7 +312,7 @@ jobs:
       - uses: actions/checkout@v2.5.0
       - name: Install a module with a required version
         id: psmodulecache
-        uses: potatoqualitee/psmodulecache@v5.1
+        uses: potatoqualitee/psmodulecache@v5.2
         with:
           modules-to-cache: "dbatools::"
           shell: pwsh
@@ -333,7 +338,7 @@ jobs:
     - uses: actions/checkout@v2.5.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
-      uses: potatoqualitee/psmodulecache@v5.1
+      uses: potatoqualitee/psmodulecache@v5.2
       with:
         modules-to-cache: dbatools::,Pester:5.3.3, PSScriptAnalyzer
         shell: powershell
@@ -352,6 +357,7 @@ The key name of a cache is constructed as follows:
 * The name of the runner OS: $env:RUNNER_OS,
 * the version number of the PSModuleCache action,
 * the cache type: Immutable or Updatable,
+* the names of the specified shells,
 * followed by module names, and version number if requested. If given, the content of the 'module-to-cache' parameter is parsed first.
 
 Each part is separated by a hyphen character '-'.
