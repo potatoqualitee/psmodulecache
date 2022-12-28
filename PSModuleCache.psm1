@@ -24,7 +24,7 @@ Enum CacheType{
 
 $PSModuleCacheResources = Import-PowerShellDataFile "$PsScriptRoot/PSModuleCache.Resources.psd1" -ErrorAction Stop
 
-New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '5.0'
+New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '5.2'
 
 New-Variable -Name Delimiter -Option ReadOnly -Scope Script -Value '-'
 
