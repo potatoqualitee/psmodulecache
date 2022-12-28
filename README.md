@@ -21,6 +21,8 @@ It is possible to configure a cache with an automatic update, the module search 
     4. [Install a module with a required version, using powershell on Windows](#example4)
     5. [Install a module with an automatic version update, using pswh on MacOS](#example5)
     6. [Using powershell on Windows](#example6)
+6. [Cache key construction method](#buildcachekey)
+7. [Cache limits](#cachelimits)
 
 ## How to use it <a name="howto"></a>
 
@@ -125,7 +127,9 @@ The '_OptimizationRules_' module is not published on PSGallery but on [MyGet](ht
 
 #### Notes
 
-if a module name is present in several repositories PSModuleCache sort the elements by version number then we select the first of the list. _Find-Module returns the newest version of a module if no parameters are used that limit the version._
+if a module name is present in several repositories PSModuleCache sort the elements by version number then we select the first of the list.
+
+_Find-Module returns the newest version of a module if no parameters are used that limit the version._
 
 ## Parameters syntax <a name="parameterssyntax"></a>
 
@@ -397,7 +401,7 @@ jobs:
           Import-Module PSFramework
 ```
 
-## Cache key construction method
+## Cache key construction method <a name="buildcachekey"></a>
 
 The key name of a cache is constructed as follows:
 
@@ -427,7 +431,7 @@ This allows to find the caches associated with a workflow when using [GitHub Cli
   $Caches=$AllCaches|Group-Object WorkflowName -AsHashTable
 ```
 
-## Cache Limits
+## Cache Limits <a name="cachelimits"></a>
 
 A repository can have up to 5GB of caches. Once the 5GB limit is reached, older caches will be evicted based on when the cache was last accessed.  Caches that are not accessed within the last week (7 days) will also be evicted.
 
