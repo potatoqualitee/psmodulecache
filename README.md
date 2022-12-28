@@ -10,19 +10,19 @@ It is possible to configure a cache with an automatic update, the module search 
 
 ## Table of Contents
 
-1. [How to use it](#Howto)
-2. [Usage](#Usage)
-3. [Parameters syntax](#ParametersSyntax)
-4. [Error message](#ErrorMessage)
-5. [Examples of settings](#Examples)
-    1. [Using pwsh on Ubuntu](#Example1)
-    2. [Using powershell on Windows. pwsh also works and is the default](#Example2)
-    3. [Install for both powershell and pwsh on Windows](#Example3)
-    4. [Install a module with a required version, using powershell on Windows](#Example4)
-    5. [Install a module with an automatic version update, using pswh on MacOS](#Example5)
-    6. [Using powershell on Windows](#Example6)
+1. [How to use it](#howto)
+2. [Usage](#usage)
+3. [Parameters syntax](#parameterssyntax)
+4. [Error message](#errormessage)
+5. [Examples of settings](#examples)
+    1. [Using pwsh on Ubuntu](#example1)
+    2. [Using powershell on Windows. pwsh also works and is the default](#example2)
+    3. [Install for both powershell and pwsh on Windows](#example3)
+    4. [Install a module with a required version, using powershell on Windows](#example4)
+    5. [Install a module with an automatic version update, using pswh on MacOS](#example5)
+    6. [Using powershell on Windows](#example6)
 
-## How to use it <a name="Howto"></a>
+## How to use it <a name="howto"></a>
 
 Just copy the code below and modify the line **`modules-to-cache: PSFramework, PoshRSJob, dbatools`** with the modules you need.
 
@@ -71,7 +71,7 @@ It is therefore not necessary to create an installation (a Step) for each versio
 
 On the other hand under Windows with PS Core the same module targeting two versions will be only installed in the specific directory of PS Core.
 
-## Usage <a name="Usage"></a>
+## Usage <a name="usage"></a>
 
 ### Pre-requisites
 
@@ -127,7 +127,7 @@ The '_OptimizationRules_' module is not published on PSGallery but on [MyGet](ht
 
 if a module name is present in several repositories PSModuleCache sort the elements by version number then we select the first of the list. _Find-Module returns the newest version of a module if no parameters are used that limit the version._
 
-## Parameters syntax <a name="ParametersSyntax"></a>
+## Parameters syntax <a name="parameterssyntax"></a>
 
 ### Syntax for 'modules-to-cache' parameter
 
@@ -201,7 +201,7 @@ All other syntax duplications will run installs of the affected module names mul
 
 Note : YAML may need to use double quotation marks: **`modules-to-cache: "Pester::"`**
 
-#### Error message <a name="ErrorMessage"></a>
+#### Error message <a name="errormessage"></a>
 
 GitHub Action stop a step as soon as [an error is triggered](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference).
 
@@ -233,9 +233,9 @@ When
 * the requested version does not exist in the configured repositories,
 * the URI of one of the configured repositories is wrong.
 
-## Examples <a name="Examples"></a>
+## Examples of settings <a name="examples"></a>
 
-### Using pwsh on Ubuntu <a name="Example1"></a>
+### Using pwsh on Ubuntu <a name="example1"></a>
 
 For these modules, the cache will contain the current versions when the cache is created.
 
@@ -260,7 +260,7 @@ jobs:
           Get-Module -Name PSFramework, PoshRSJob -ListAvailable | Select Path
 ```
 
-### Using powershell on Windows. pwsh also works and is the default <a name="Example2"></a>
+### Using powershell on Windows. pwsh also works and is the default <a name="example2"></a>
 
 For these modules, the cache will contain the current versions when the cache is created.
 
@@ -286,7 +286,7 @@ jobs:
           Import-Module PSFramework
 ```
 
-### Install for both powershell and pwsh on Windows <a name="Example3"></a>
+### Install for both powershell and pwsh on Windows <a name="example3"></a>
 
 For these modules, the cache will contain the current versions when the cache is created.
 
@@ -318,7 +318,7 @@ jobs:
           Import-Module PoshRSJob
 ```
 
-### Install a module with a required version, using powershell on Windows <a name="Example4"></a>
+### Install a module with a required version, using powershell on Windows <a name="example4"></a>
 
 For this module, the cache will always contain this version.
 
@@ -345,7 +345,7 @@ jobs:
           Import-Module dbatools
 ```
 
-### Install a module with an automatic version update, using pswh on MacOS <a name="Example5"></a>
+### Install a module with an automatic version update, using pswh on MacOS <a name="example5"></a>
 
 For this module, each time the workflow is executed, updates will be checked. The cache will always contain the latest version.
 
@@ -371,7 +371,7 @@ jobs:
           Import-Module dbatools
 ```
 
-### Using powershell on Windows <a name="Example6"></a>
+### Using powershell on Windows <a name="example6"></a>
 
 In this example, the version of the `Pester` module is fixed, we always use the latest version for the `dbatools` module and the version of the `PSScriptAnalyzer` module does not matter, we use the one available when creating the cache.
 
