@@ -29,7 +29,7 @@ runs:
     - id: psoutput
       shell: pwsh
       run: |
-        Import-Module ${{ github.action_path }}/PSModuleCache.psd1
+        Import-Module $env:GITHUB_ACTION_PATH/PSModuleCache.psd1
         Write-Output "Getting variables for cacher"
 
         $Parameters = @{
@@ -70,5 +70,5 @@ runs:
       run: |
         Write-Output "Saving all modules"
 
-        Import-Module ${{ github.action_path }}/PSModuleCache.psd1
+        Import-Module $env:GITHUB_ACTION_PATH/PSModuleCache.psd1
         Save-ModuleCache

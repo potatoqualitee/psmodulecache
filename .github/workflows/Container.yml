@@ -1,0 +1,23 @@
+name: Cache Test
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/powershell:ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          Get-ChildItem Env: | Sort-Object Name | Format-Table -Wrap -AutoSize
+        shell: pwsh
+
+      - name: Cache modules
+        id: psmodulecache
+        uses: ./
+        with:
+          modules-to-cache: Az.Network
+          shell: pwsh
+
+      - run: Get-InstalledModule Az.Network
+        shell: pwsh
