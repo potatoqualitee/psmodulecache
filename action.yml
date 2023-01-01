@@ -38,6 +38,7 @@ runs:
           Shells = "${{ inputs.shell }}"
           Updatable = [boolean]::Parse("${{ inputs.updatable }}")
           PrefixIdentifier = [boolean]::Parse("${{ inputs.prefixidentifier }}")
+          ContainerJob = ("${{ job.container.id}}" -ne "")
         }
         Write-Output "Action Parameters = $([PsCustomObject]$Parameters)"
 
