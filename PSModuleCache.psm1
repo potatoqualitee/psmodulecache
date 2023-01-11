@@ -306,6 +306,7 @@ function New-ModuleCache {
    function Split-ModuleParameter {
       #return one or more 'ModuleToCacheInformation' objects.
       param(
+         [bool]$ContainerJob,
          $modules,
          $ShellsParameter,
          [switch]$AllowPrerelease
@@ -316,7 +317,7 @@ function New-ModuleCache {
 
          if ($null -ne $cacheinfo) {
             #To save a module, we use the PSModulePath associated with the shells,the module name and the version (not a semver).
-            $cacheinfo.ModuleSavePaths = Get-ModuleSavePath -Shells $ShellsParameter
+            $cacheinfo.ModuleSavePaths = Get-ModuleSavePath -ContainerJob $ContainerJob -Shells $ShellsParameter
          }
          Write-Output $cacheinfo
       }
@@ -390,8 +391,8 @@ function New-ModuleCache {
    $PrereleaseModules = $Action.PrereleaseModulesParameter.ToArray()
 
    $ModuleCacheInformations = @(
-      Split-ModuleParameter -modules $StableModules -ShellsParameter $Action.ShellsParameter
-      Split-ModuleParameter -modules $PrereleaseModules -ShellsParameter $Action.ShellsParameter -AllowPrerelease
+      Split-ModuleParameter -ContainerJob $Action.ContainerJob -modules $StableModules -ShellsParameter $Action.ShellsParameter
+      Split-ModuleParameter -ContainerJob $Action.ContainerJob -modules $PrereleaseModules -ShellsParameter $Action.ShellsParameter -AllowPrerelease
    )
 
    #The serialization depth use default value 2
@@ -449,6 +450,7 @@ function Get-ModuleSavePath {
    It is assumed that the parameters are valid and have been tested before calling this function.
 #>
    param(
+      [bool]$ContainerJob,
       #Depending on the implicit rule of the 'Shell' parameter of the Action, contains either 'powershell' or 'pwsh' or both.
       [string[]]$Shells
    )
@@ -463,7 +465,10 @@ function Get-ModuleSavePath {
       }
 
    } elseif ($env:RUNNER_OS -in @('Linux', 'MacOS')) {
-      $null = sudo chown -R runner $script:PsLinuxCoreModulePath
+      # Ensure 'sudo' exists
+      if (-not $ContainerJob) {
+         $null = sudo chown -R runner $script:PsLinuxCoreModulePath
+      }
       Write-Output $script:PsLinuxCoreModulePath
    } else {
       throw "`$env:RUNNER_OS ('$env:RUNNER_OS') is empty or unknown."
@@ -613,7 +618,8 @@ function New-ModuleCacheParameter {
       [string]$Shells,
 
       [switch]$Updatable,
-      [switch]$PrefixIdentifier
+      [switch]$PrefixIdentifier,
+      [bool]$ContainerJob
    )
 
    if (($Modules.Trim() -eq [string]::Empty) -and ($PrereleaseModules.Trim() -eq [string]::Empty) )
@@ -639,6 +645,7 @@ function New-ModuleCacheParameter {
       CacheType                  = [CacheType]$(if ($Updatable.IsPresent) { [CacheType]::Updatable } else { [CacheType]::Immutable } )
       Updatable                  = $Updatable;
       PrefixIdentifier           = $PrefixIdentifier
+      ContainerJob               = $ContainerJob
    }
 
    $sbToArray = {

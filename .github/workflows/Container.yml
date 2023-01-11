@@ -1,0 +1,30 @@
+name: Cache Test
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/powershell:ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          Get-ChildItem Env: | Sort-Object Name | Format-Table -Wrap -AutoSize
+        shell: pwsh
+
+      - name: Cache modules
+        id: psmodulecache
+        uses: ./
+        with:
+          modules-to-cache: powershell-yaml
+          shell: pwsh
+
+      - run: |
+          Get-InstalledModule powershell-yaml
+
+          Import-Module powershell-yaml
+
+          $yaml = (Get-Content action.yml) | ConvertFrom-Yaml
+
+          $yaml
+        shell: pwsh
