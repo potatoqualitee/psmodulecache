@@ -24,7 +24,7 @@ Enum CacheType{
 
 $PSModuleCacheResources = Import-PowerShellDataFile "$PsScriptRoot/PSModuleCache.Resources.psd1" -ErrorAction Stop
 
-New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '5.2'
+New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '5.3'
 
 New-Variable -Name Delimiter -Option ReadOnly -Scope Script -Value '-'
 
@@ -483,8 +483,24 @@ function New-ModuleSavePath {
 #>
    param( $modulecacheinfo )
 
+   $parameters = @{
+      Name            = $null
+      AllowPrerelease = $null
+      Repository      = $script:RepositoryNames
+   }
+
    foreach ($cacheinfo in $modulecacheinfo) {
-      $ModuleName = $cacheinfo.Name
+
+      $parameters.Name = $cacheinfo.Name
+      $parameters.AllowPrerelease = $cacheinfo.Allowprerelease
+
+      #We use the name of the Nuget package which is case sensitive.
+      $NugetPackage = Find-ModuleCacheName @parameters
+      if ($null -eq $NugetPackage)
+      { $ModuleName = $cacheinfo.Name }
+      else
+      { $ModuleName = $NugetPackage.Name }
+
       # For the management of a new version in the directory of an EXISTING module (see the image of the runner)
       # the new version number is added to the name of the save path, if it is specified.
       # We manage the following cases:
@@ -520,6 +536,29 @@ function ConvertTo-YamlLineBreak {
 
    $ofs = '%0A' #https://yaml.org/spec/1.2.2/#54-line-break-characters
    return "$Collection"
+}
+
+function Find-ModuleCacheName {
+   #Fnd the module package name.
+   #On linux, the module name used to build the path, save-module, is that of the Nuget package and not the 'modules-to-cache' parameter.
+   #So you can have case-based name differences.
+
+   #if a module name is present in several repositories we sort the elements by version number then we select the first of the list.
+   #note : Find-Module returns the newest version of a module if no parameters are used that limit the version.
+   [CmdletBinding()]
+   param(
+      $Name,
+      $Repository,
+      $RequiredVersion,
+      [switch]$AllowPrerelease
+   )
+   try {
+      Find-Module @PSBoundParameters -ErrorAction Stop |
+      Sort-Object Version -Descending |
+      Select-Object -First 1
+   } catch [System.Exception] {
+      return $null
+   }
 }
 
 function Find-ModuleCache {
@@ -690,7 +729,7 @@ function New-ModuleCacheParameter {
 }
 
 $parms = @{
-   Function = 'New-ModuleCacheParameter', 'Get-ModuleCache', 'Get-ModuleSavePath', 'New-ModuleSavePath', 'Save-ModuleCache', 'ConvertTo-YamlLineBreak'
+   Function = 'New-ModuleCacheParameter', 'Find-ModuleCacheName', 'Get-ModuleCache', 'Get-ModuleSavePath', 'New-ModuleSavePath', 'Save-ModuleCache', 'ConvertTo-YamlLineBreak'
    Variable = 'CacheFileName', 'RepositoryNames', 'PsWindowsModulePath', 'PsWindowsCoreModulePath', 'PsLinuxCoreModulePath'
 }
 Export-ModuleMember @parms
