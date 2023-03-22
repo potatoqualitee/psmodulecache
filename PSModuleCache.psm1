@@ -237,6 +237,7 @@ function Split-ModuleCacheInformation {
 
       if ($null -ne $RepoItemInfo) {
          $Version = $RepoItemInfo.Version
+         $Name = $RepoItemInfo.Name # Get the real module Name from the manifest; bypasses CaMeLcAsE Problems ;-)
       } else {
          $Version = $null
       }
@@ -245,6 +246,20 @@ function Split-ModuleCacheInformation {
    } else {
       #We use the string as it is
       $Name, $Version = $ModuleCacheInformation.Split(':')
+
+      #As the case of the module name may be relevant (see issue #48) we search the repositories for the module and take the name from the repo-info
+      $parameters = @{
+         Name            = $Name
+         AllowPrerelease = $AllowPrerelease
+         Repository      = $script:RepositoryNames
+      }
+
+      #if there is no prerelease, using AllowPrerelease returns the latest stable release.
+      $RepoItemInfo = Find-ModuleCache @Parameters
+      if ($null -ne $RepoItemInfo) {
+         $Name = $RepoItemInfo.Name # Get the real module Name from the manifest; bypasses CaMeLcAsE Problems ;-)
+      }
+
       #if a version is specified, it must be filled in.
       if ($ModuleCacheInformation -match ':') {
          if ($Name -eq [string]::Empty) {
@@ -592,6 +607,7 @@ function Save-ModuleCache {
          $RepoItemInfo = Find-ModuleCache @Parameters
          if ($null -ne $RepoItemInfo) {
             $parameters.Repository = $RepoItemInfo.Repository
+            $parameters.Name = $RepoItemInfo.Name
             if (Test-Path env:CI)
             { Write-Output ("`tModule '{0}' version '{1}' found in '{2}'." -F $RepoItemInfo.Name, $RepoItemInfo.Version, $RepoItemInfo.Repository) }
             Save-Module @Parameters -Path $ModulePath -Force -ErrorAction Stop
