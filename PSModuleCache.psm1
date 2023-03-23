@@ -479,6 +479,7 @@ function New-ModuleSavePath {
    <#
 .Synopsis
    return one or more module full paths.
+   Modify the case of the module name if necessary.
    Called from Action.yml
 #>
    param( $modulecacheinfo )
@@ -494,19 +495,23 @@ function New-ModuleSavePath {
       $parameters.Name = $cacheinfo.Name
       $parameters.AllowPrerelease = $cacheinfo.Allowprerelease
 
-      #We use the name of the Nuget package which is case sensitive.
+      #If it exists, we use the Nuget package name which is case sensitive.
+      #Otherwise we keep the name received, it will be tested during the second pass ( Save-ModuleCache )
       $NugetPackage = Find-ModuleCacheName @parameters
       if ($null -eq $NugetPackage)
       { $ModuleName = $cacheinfo.Name }
-      else
-      { $ModuleName = $NugetPackage.Name }
+      else {
+         Write-Warning "For the module name '$($cacheinfo.Name)' we use the case of the nuget package name: '$($NugetPackage.Name)'"
+         $ModuleName = $NugetPackage.Name
+         $cacheinfo.Name = $NugetPackage.Name
+      }
 
       # For the management of a new version in the directory of an EXISTING module (see the image of the runner)
       # the new version number is added to the name of the save path, if it is specified.
       # We manage the following cases:
-      #     'Pester::' , 'Pester:5.3.0-rc1', 'Pester:5.3.0'
+      #     'ModuleName::' , 'ModuleName:5.3.0-rc1', 'ModuleName:5.3.0'
       #
-      # But we do not manage the following case: 'Pester'
+      # But we do not manage the following case: 'ModuleName'
       $Version = $cacheinfo.Version
       $isVersion = $Version -ne [String]::Empty
 
