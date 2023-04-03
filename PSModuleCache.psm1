@@ -24,7 +24,7 @@ Enum CacheType{
 
 $PSModuleCacheResources = Import-PowerShellDataFile "$PsScriptRoot/PSModuleCache.Resources.psd1" -ErrorAction Stop
 
-New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '5.2'
+New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '5.3'
 
 New-Variable -Name Delimiter -Option ReadOnly -Scope Script -Value '-'
 
@@ -479,18 +479,39 @@ function New-ModuleSavePath {
    <#
 .Synopsis
    return one or more module full paths.
+   Modify the case of the module name if necessary.
    Called from Action.yml
 #>
    param( $modulecacheinfo )
 
+   $parameters = @{
+      Name            = $null
+      AllowPrerelease = $null
+      Repository      = $script:RepositoryNames
+   }
+
    foreach ($cacheinfo in $modulecacheinfo) {
-      $ModuleName = $cacheinfo.Name
+
+      $parameters.Name = $cacheinfo.Name
+      $parameters.AllowPrerelease = $cacheinfo.Allowprerelease
+
+      #If it exists, we use the Nuget package name which is case sensitive.
+      #Otherwise we keep the name received, it will be tested during the second pass ( Save-ModuleCache )
+      $NugetPackage = Find-ModuleCacheName @parameters
+      if ($null -eq $NugetPackage)
+      { $ModuleName = $cacheinfo.Name }
+      else {
+         Write-Warning "For the module name '$($cacheinfo.Name)' we use the case of the nuget package name: '$($NugetPackage.Name)'"
+         $ModuleName = $NugetPackage.Name
+         $cacheinfo.Name = $NugetPackage.Name
+      }
+
       # For the management of a new version in the directory of an EXISTING module (see the image of the runner)
       # the new version number is added to the name of the save path, if it is specified.
       # We manage the following cases:
-      #     'Pester::' , 'Pester:5.3.0-rc1', 'Pester:5.3.0'
+      #     'ModuleName::' , 'ModuleName:5.3.0-rc1', 'ModuleName:5.3.0'
       #
-      # But we do not manage the following case: 'Pester'
+      # But we do not manage the following case: 'ModuleName'
       $Version = $cacheinfo.Version
       $isVersion = $Version -ne [String]::Empty
 
@@ -520,6 +541,29 @@ function ConvertTo-YamlLineBreak {
 
    $ofs = '%0A' #https://yaml.org/spec/1.2.2/#54-line-break-characters
    return "$Collection"
+}
+
+function Find-ModuleCacheName {
+   #Fnd the module package name.
+   #On linux, the module name used to build the path, save-module, is that of the Nuget package and not the 'modules-to-cache' parameter.
+   #So you can have case-based name differences.
+
+   #if a module name is present in several repositories we sort the elements by version number then we select the first of the list.
+   #note : Find-Module returns the newest version of a module if no parameters are used that limit the version.
+   [CmdletBinding()]
+   param(
+      $Name,
+      $Repository,
+      $RequiredVersion,
+      [switch]$AllowPrerelease
+   )
+   try {
+      Find-Module @PSBoundParameters -ErrorAction Stop |
+      Sort-Object Version -Descending |
+      Select-Object -First 1
+   } catch [System.Exception] {
+      return $null
+   }
 }
 
 function Find-ModuleCache {
@@ -690,7 +734,7 @@ function New-ModuleCacheParameter {
 }
 
 $parms = @{
-   Function = 'New-ModuleCacheParameter', 'Get-ModuleCache', 'Get-ModuleSavePath', 'New-ModuleSavePath', 'Save-ModuleCache', 'ConvertTo-YamlLineBreak'
+   Function = 'New-ModuleCacheParameter', 'Find-ModuleCacheName', 'Get-ModuleCache', 'Get-ModuleSavePath', 'New-ModuleSavePath', 'Save-ModuleCache', 'ConvertTo-YamlLineBreak'
    Variable = 'CacheFileName', 'RepositoryNames', 'PsWindowsModulePath', 'PsWindowsCoreModulePath', 'PsLinuxCoreModulePath'
 }
 Export-ModuleMember @parms

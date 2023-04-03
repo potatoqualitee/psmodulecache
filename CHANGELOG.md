@@ -2,6 +2,15 @@
 
 ## Release Notes
 
+### v5.3
+
+* Fix (#45). Some module names are case-sensitive, and break the implicit (and informal) PascalCase naming rule.
+On Linux, the path names passed as a parameter to the 'Cache' action must be constructed with the nuget package name and not with the name coming from the 'modules-to-cache' parameter of the 'PSModuleCache' action.
+* Fix (#43). Action fails when used with a container job. The 'SUDO' command may not exist in the container.
+* Fix (#38). Updating the setting of output parameters (Github Action).
+* Fix (#35). Change after Github Action commands deprecated.
+* Update 'Readme.md' file.
+
 ### v5.2
 
 * Fix (#40). Now we validate a module version number identical to PowershellGet and not like a Semver 2.0.
