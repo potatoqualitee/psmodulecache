@@ -10,7 +10,7 @@
 
     RootModule           = 'PSModuleCache'
 
-    ModuleVersion        = '1.0'
+    ModuleVersion        = '2.0'
 
     CompatiblePSEditions = @()
 
@@ -103,7 +103,7 @@
         PSData = @{
 
             # Des balises ont été appliquées à ce module. Elles facilitent la découverte des modules dans les galeries en ligne.
-            Tags = @('PSEdition_Desktop','PSEdition_Core')
+            Tags = @('PSEdition_Desktop', 'PSEdition_Core')
 
             # URL vers la licence de ce module.
             # LicenseUri = ''

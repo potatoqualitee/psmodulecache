@@ -44,21 +44,22 @@ runs:
 
         $ActionParameters = New-ModuleCacheParameter @Parameters
 
-        $ModuleCaches = Get-ModuleCache $ActionParameters
-        "keygen=$($ModuleCaches.Key)" >> $env:GITHUB_OUTPUT
+        $ModulesCache = Get-ModuleCache $ActionParameters
+        "keygen=$($ModulesCache.Key)" >> $env:GITHUB_OUTPUT
 
-        $Paths = @(New-ModuleSavePath $ModuleCaches.ModuleCacheInformations)
+        $Paths = @(New-ModuleSavePath $ModulesCache)
 
         # Accommodate multi-line
         "modulepath<<EOF" >> $env:GITHUB_OUTPUT
         $Paths >> $env:GITHUB_OUTPUT
         "EOF" >> $env:GITHUB_OUTPUT
 
-        $null = $ModuleCaches | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
+         # $CacheFileName is exported by the 'PSModuleCache' module
+        $null = $ModulesCache | Export-CliXml -Path (Join-Path $home -ChildPath $CacheFileName)
 
     - name: Run module cacher action
       id: cacher
-      uses: actions/cache@v3.0.11
+      uses: actions/cache@v3.3.2
       with:
         key: ${{ steps.psoutput.outputs.keygen }}
         path: |
