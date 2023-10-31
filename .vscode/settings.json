@@ -82,5 +82,6 @@
         "Viorel",
         "Wsfc",
         "wsmelton"
-    ]
+    ],
+    "pester.autoRunOnSave": false
 }
