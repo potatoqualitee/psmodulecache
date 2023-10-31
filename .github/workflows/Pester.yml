@@ -6,22 +6,39 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
+
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v2.5.0
+      - uses: actions/checkout@v4.1.0
       - name: Run Pester tests (pwsh)
+        shell: pwsh
         run: |
           cd test
           ./Run.ps1
-        shell: pwsh
 
   test-posh:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2.5.0
+      - uses: actions/checkout@v4.1.0
       - name: Run Pester tests (PowerShell)
+        shell: powershell
         run: |
           $global:iswindows = $true
           cd test
           .\Run.ps1
+
+
+  test-Workflow:
+    runs-on: windows-latest
+    steps:
+      - name: Run Github action 'MatrixCacheDemo'
         shell: powershell
+        run: |
+          $global:iswindows = $true
+          $OwnerAndRepository ='${{ github.repository }}'
+
+          Write-Host "Execute the workflow 'MatrixCacheDemo'."
+          gh workflow run 'MatrixCacheDemo' --repo $OwnerAndRepository
+          # !! To check the result, you must run the workflow a second time without deleting anything.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

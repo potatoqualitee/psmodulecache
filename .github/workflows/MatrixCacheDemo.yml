@@ -10,42 +10,19 @@ jobs:
         platform: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v2.5.0
+      - uses: actions/checkout@v4.1.0
 
       - name: Set Required repositories PS Core
         shell: pwsh
         run: |
-          $Repositories = @(
-              [PsCustomObject]@{
-                  name            = 'OttoMatt'
-                  publishlocation = 'https://www.myget.org/F/ottomatt/api/v2/package'
-                  sourcelocation  = 'https://www.myget.org/F/ottomatt/api/v2'
-              }
-          )
-          foreach ($Repository in $Repositories) {
-              $Name = $Repository.Name
-              try {
-                  Get-PSRepository $Name -ErrorAction Stop >$null
-              } catch {
-                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
-                    throw $_
-                  } else {
-                      $Parameters = @{
-                          Name               = $Name
-                          SourceLocation     = $Repository.SourceLocation
-                          PublishLocation    = $Repository.PublishLocation
-                          InstallationPolicy = 'Trusted'
-                      }
-                      Write-Output "Register repository '$($Repository.Name)'"
-                      Register-PSRepository @Parameters
-                  }
-              }
-          }
+          cd test/Dependencies
+          ./Register-TestRepository.ps1
+
       - name: Cache modules
         id: psmodulecache
         uses: ./
         with:
-          modules-to-cache: DTW.PS.FileSystem,PnP.PowerShell::,InvokeBuild:5.9.10,dbatools-core-library:2022.10.25.1
+          modules-to-cache: PlatyPS,microsoft.powershell.secretmanagement,PSModuleCache\Duplicate,ActiveDirectoryCmdlets:22.0.8462.1
           modules-to-cache-prerelease: PnP.PowerShell::,pester:5.3.0-rc1
           shell: powershell,pwsh
           updatable: "true"
@@ -54,10 +31,8 @@ jobs:
       - name: Get required modules on Windows PowerShell
         shell: pwsh
         run: |
-          # 'DTW.PS.FileSystem','PnP.PowerShell','InvokeBuild','Pester'|
-          # foreach {
-          #    Import-Module $_
-          #    Write-Host "$_ '$(Get-Module $_ -ListAvailabLe|Select-Object Name,Version,@{Name='PreRelease';e={$_.PrivateData.PSData.Prerelease}},RepositorySourceLocation)'"
-          # }
-
-          Get-Module Pester -ListAvailabLe
+          'PlatyPS','microsoft.powershell.secretmanagement','Duplicate','PnP.PowerShell'|
+            Foreach-Object {
+              Import-Module $_
+              Write-Host "$_ '$(Get-Module $_ -ListAvailabLe|Select-Object Name,Version,@{Name='PreRelease';e={$_.PrivateData.PSData.Prerelease}},RepositorySourceLocation)'"
+           }

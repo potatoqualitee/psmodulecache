@@ -1,0 +1,150 @@
+name: MatrixCacheForIssue
+on:
+    workflow_dispatch:
+
+jobs:
+  test-pwsh:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4.1.0
+      - name: Create repositories
+        run: |
+
+          $CloudsmithRepositoryName = 'psmodulecache'
+          $CloudsmithUriLocation = 'https://nuget.cloudsmith.io/psmodulecache/test/v2/'
+
+          #$CloudsmithPrivateUriLocation = 'https://nuget.cloudsmith.io/psmodulecache/privatepsmodulecache/v2/'
+
+          $RemoteRepositories = @(
+              [PsCustomObject]@{
+                  name            = 'OttoMatt'
+                  publishlocation = 'https://www.myget.org/F/ottomatt/api/v2/package'
+                  sourcelocation  = 'https://www.myget.org/F/ottomatt/api/v2'
+              },
+
+              [PsCustomObject]@{
+                  name            = $CloudsmithRepositoryName
+                  publishlocation = $CloudsmithUriLocation
+                  sourcelocation  = $CloudsmithUriLocation
+              }
+          )
+
+          Try {
+              Get-PackageSource PSModuleCache -ErrorAction Stop > $null
+          } catch {
+              if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
+                  throw $_
+              } else {
+                  Register-PackageSource -Name $CloudsmithRepositoryName -Location $CloudsmithUriLocation -Trusted -ProviderName NuGet > $null
+              }
+          }
+
+          #Register additionnal repositories with credential
+          # Register-PackageSource -Name $CloudsmithPrivateRepositoryName -Location $CloudsmithPrivateUriLocation -Trusted -Credential $credential -ProviderName NuGet > $null
+
+          foreach ($Repository in $RemoteRepositories) {
+              $Name = $Repository.Name
+              try {
+                  Get-PSRepository $Name -ErrorAction Stop >$null
+              } catch {
+                  if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
+                      throw $_
+                  } else {
+                      $Parameters = @{
+                          Name               = $Name
+                          SourceLocation     = $Repository.SourceLocation
+                          PublishLocation    = $Repository.PublishLocation
+                          InstallationPolicy = 'Trusted'
+                      }
+                      Write-Output "Register repository '$($Repository.Name)'"
+                      Register-PSRepository @Parameters  > $null
+                  }
+              }
+          }
+        shell: pwsh
+
+      - name: Cache modules
+        id: psmodulecache
+        uses: ./
+        with:
+            modules-to-cache: InvokeBuild:5.10.4,PSModuleCache\Duplicate,Az:9.3.0
+            modules-to-cache-prerelease: "OnlyPrereleaseVersion::"
+            shell: pwsh
+            updatable: "true"
+
+      - name: Get required modules on Windows PowerShell
+        shell: pwsh
+        run: |
+
+            Import-Module 'Duplicate'
+            Write-Host "Duplicate '$(Get-Module Duplicate | Select-Object Name, Version, RepositorySourceLocation)'"
+            Import-Module 'AZ'
+            Write-Host "AZ '$(Get-Module AZ | Select-Object Name, Version, RepositorySourceLocation)'"
+
+
+#   test-posh:
+#     runs-on: windows-latest
+#     steps:
+#       - uses: actions/checkout@v4.1.0
+#       - name: Run Pester tests (PowerShell)
+#         run: |
+
+#           $global:iswindows = $true
+#           $CloudsmithRepositoryName = 'psmodulecache'
+#           $CloudsmithUriLocation = 'https://nuget.cloudsmith.io/psmodulecache/test/v2/'
+
+#           #$CloudsmithPrivateUriLocation = 'https://nuget.cloudsmith.io/psmodulecache/privatepsmodulecache/v2/'
+
+#           $RemoteRepositories = @(
+#               [PsCustomObject]@{
+#                   name            = 'OttoMatt'
+#                   publishlocation = 'https://www.myget.org/F/ottomatt/api/v2/package'
+#                   sourcelocation  = 'https://www.myget.org/F/ottomatt/api/v2'
+#               },
+
+#               [PsCustomObject]@{
+#                   name            = $CloudsmithRepositoryName
+#                   publishlocation = $CloudsmithUriLocation
+#                   sourcelocation  = $CloudsmithUriLocation
+#               }
+#           )
+
+#           Try {
+#               Get-PackageSource PSModuleCache -ErrorAction Stop >$null
+#           } catch {
+#               if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
+#                   throw $_
+#               } else {
+#                   Register-PackageSource -Name $CloudsmithRepositoryName -Location $CloudsmithUriLocation -Trusted -ProviderName NuGet > $null
+#               }
+#           }
+
+#           #Register additionnal repositories with credential
+#           # Register-PackageSource -Name $CloudsmithPrivateRepositoryName -Location $CloudsmithPrivateUriLocation -Trusted -Credential $credential -ProviderName NuGet > $null
+
+#           foreach ($Repository in $RemoteRepositories) {
+#               $Name = $Repository.Name
+#               try {
+#                   Get-PSRepository $Name -ErrorAction Stop >$null
+#               } catch {
+#                   if ($_.CategoryInfo.Category -ne 'ObjectNotFound') {
+#                       throw $_
+#                   } else {
+#                       $Parameters = @{
+#                           Name               = $Name
+#                           SourceLocation     = $Repository.SourceLocation
+#                           PublishLocation    = $Repository.PublishLocation
+#                           InstallationPolicy = 'Trusted'
+#                       }
+#                       Write-Output "Register repository '$($Repository.Name)'"
+#                       # An invalid Web Uri is managed by Register-PSRepository
+#                       Register-PSRepository @Parameters  > $null
+#                   }
+#               }
+#           }
+#           find-Module 'Duplicate' -IncludeDependencies |Select Name,Version,Repository
+#         shell: powershell
