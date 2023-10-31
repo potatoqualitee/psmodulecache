@@ -1,0 +1,3545 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MsaglGraph>
+  <GraphAttribute>
+    <BaseAttr>
+      <Styles />
+      <Color>
+        <Color>
+          <A>255</A>
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </Color>
+      </Color>
+      <LineWidth>1</LineWidth>
+      <ID />
+    </BaseAttr>
+    <MinNodeHeight>9</MinNodeHeight>
+    <MinNodeWidth>13.5</MinNodeWidth>
+    <AspectRatio>0</AspectRatio>
+    <Border>0</Border>
+    <BackgroundColor>
+      <Color>
+        <A>255</A>
+        <R>255</R>
+        <G>255</G>
+        <B>255</B>
+      </Color>
+    </BackgroundColor>
+    <Margin>10</Margin>
+    <OptimizeLabelPositions>True</OptimizeLabelPositions>
+    <NodeSeparation>9</NodeSeparation>
+    <LayerDirection>TB</LayerDirection>
+    <LayerSeparation>36</LayerSeparation>
+  </GraphAttribute>
+  <Label>
+    <Text>Graph</Text>
+    <FontName>Times-Roman</FontName>
+    <FontColor>
+      <Color>
+        <A>255</A>
+        <R>0</R>
+        <G>0</G>
+        <B>0</B>
+      </Color>
+    </FontColor>
+    <FontStyle>0</FontStyle>
+    <FontSize>12</FontSize>
+    <Width>0</Width>
+    <Height>0</Height>
+  </Label>
+  <Subgraphs />
+  <Nodes>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{ModuleVersion=2.0.0; ModuleName=lowercase; GUID=15999f90-c71b-473c-b08f-07fb36c01d1c; RequiredVersion=; Label=lowercase-2.0.0}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;lowercase&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;15999f90-c71b-473c-b08f-07fb36c01d1c&amp;lt;/S&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;lowercase-2.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;lowercase&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;15999f90-c71b-473c-b08f-07fb36c01d1c&amp;lt;/S&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;lowercase-2.0.0&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>lowercase-2.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>lowercase-2.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>113.039054870605</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-1.1.3; Dependencies=; ModuleVersion=1.1.3; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-1.1.3&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.1.3&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-1.1.3&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.1.3&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-1.1.3</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-1.1.3</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=LatestPrereleaseVersion; Label=LatestPrereleaseVersion-2.0.0; Dependencies=; ModuleVersion=2.0.0; GUID=4243ff41-9b6d-4268-bda8-16dbd6d3be1a}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;LatestPrereleaseVersion&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;LatestPrereleaseVersion-2.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;4243ff41-9b6d-4268-bda8-16dbd6d3be1a&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;LatestPrereleaseVersion&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;LatestPrereleaseVersion-2.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;4243ff41-9b6d-4268-bda8-16dbd6d3be1a&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>LatestPrereleaseVersion-2.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>LatestPrereleaseVersion-2.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>216.312484741211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-1.1.0; Dependencies=; ModuleVersion=1.1.0; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-1.1.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.1.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-1.1.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.1.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-1.1.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-1.1.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-2.0.0; Dependencies=; ModuleVersion=2.0.0; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-2.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-2.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-2.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-2.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-1.3.0; Dependencies=; ModuleVersion=1.3.0; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-1.3.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.3.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-1.3.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.3.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-1.3.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-1.3.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{ModuleVersion=1.0.0; ModuleName=Duplicate; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa; RequiredVersion=; Label=Duplicate-1.0.0}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;Duplicate&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;Duplicate-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;Duplicate&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;Duplicate-1.0.0&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>Duplicate-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>Duplicate-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>107.804679870605</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=Depends; Label=Depends-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=cc9919ea-5d1e-49bd-b7d6-a0f4d4b4a3ec}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;Depends&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;Depends-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;Tools&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;07571b28-ccde-4508-a55f-add334da649b&amp;lt;/S&amp;gt;
+            &amp;lt;S N="RequiredVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;Tools-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;cc9919ea-5d1e-49bd-b7d6-a0f4d4b4a3ec&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;Depends&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;Depends-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;cc9919ea-5d1e-49bd-b7d6-a0f4d4b4a3ec&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>Depends-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>Depends-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>104.960929870605</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=DuplicateByDependency; Label=DuplicateByDependency-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=f1526da5-7676-44f0-864f-bddb62500843}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;DuplicateByDependency&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;DuplicateByDependency-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;Main&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;749ed353-19c8-4d42-9933-3023018d6b01&amp;lt;/S&amp;gt;
+            &amp;lt;S N="RequiredVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;Main-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;f1526da5-7676-44f0-864f-bddb62500843&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;DuplicateByDependency&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;DuplicateByDependency-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;f1526da5-7676-44f0-864f-bddb62500843&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>DuplicateByDependency-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>DuplicateByDependency-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>216.320297241211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=GuidNotExist; Label=GuidNotExist-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=933a1fae-97d9-4e37-975f-dceb8c872b20}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;GuidNotExist&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;GuidNotExist-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-1234-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;String-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;933a1fae-97d9-4e37-975f-dceb8c872b20&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;GuidNotExist&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;GuidNotExist-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;933a1fae-97d9-4e37-975f-dceb8c872b20&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>GuidNotExist-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>GuidNotExist-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>134.468734741211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{ModuleVersion=; ModuleName=Tools; GUID=; RequiredVersion=; Label=Tools-}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;Tools&amp;lt;/S&amp;gt;
+        &amp;lt;Nil N="GUID" /&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;Tools-&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;Tools&amp;lt;/S&amp;gt;
+      &amp;lt;Nil N="GUID" /&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;Tools-&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>Tools-</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>Tools-</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>44.5468711853027</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=LatestStableVersion; Label=LatestStableVersion-2.0.0; Dependencies=; ModuleVersion=2.0.0; GUID=9f869a68-ecb4-44de-ab69-71fe571da416}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;LatestStableVersion&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;LatestStableVersion-2.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;9f869a68-ecb4-44de-ab69-71fe571da416&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;LatestStableVersion&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;LatestStableVersion-2.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;9f869a68-ecb4-44de-ab69-71fe571da416&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>LatestStableVersion-2.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>LatestStableVersion-2.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>184.304672241211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=LatestStableVersion; Label=LatestStableVersion-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=9f869a68-ecb4-44de-ab69-71fe571da416}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;LatestStableVersion&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;LatestStableVersion-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;9f869a68-ecb4-44de-ab69-71fe571da416&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;LatestStableVersion&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;LatestStableVersion-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;9f869a68-ecb4-44de-ab69-71fe571da416&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>LatestStableVersion-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>LatestStableVersion-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>184.304672241211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=Datas; Label=Datas-1.0.0; Dependencies=System.Object[]; ModuleVersion=1.0.0; GUID=408a2693-8516-4e19-8ef3-6e2b6f6012f1}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;Datas&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;Datas-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST&amp;gt;
+            &amp;lt;Obj RefId="3"&amp;gt;
+              &amp;lt;TNRef RefId="0" /&amp;gt;
+              &amp;lt;MS&amp;gt;
+                &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+                &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+                &amp;lt;Nil N="GUID" /&amp;gt;
+                &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+                &amp;lt;S N="Label"&amp;gt;UpperCase-&amp;lt;/S&amp;gt;
+              &amp;lt;/MS&amp;gt;
+            &amp;lt;/Obj&amp;gt;
+            &amp;lt;Obj RefId="4"&amp;gt;
+              &amp;lt;TNRef RefId="0" /&amp;gt;
+              &amp;lt;MS&amp;gt;
+                &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+                &amp;lt;S N="ModuleName"&amp;gt;Tools&amp;lt;/S&amp;gt;
+                &amp;lt;Nil N="GUID" /&amp;gt;
+                &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+                &amp;lt;S N="Label"&amp;gt;Tools-&amp;lt;/S&amp;gt;
+              &amp;lt;/MS&amp;gt;
+            &amp;lt;/Obj&amp;gt;
+          &amp;lt;/LST&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;408a2693-8516-4e19-8ef3-6e2b6f6012f1&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;Datas&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;Datas-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;408a2693-8516-4e19-8ef3-6e2b6f6012f1&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>Datas-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>Datas-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.7109298706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=External; Label=External-1.0.0; Dependencies=System.Object[]; ModuleVersion=1.0.0; GUID=134dc329-51f6-44b4-a7c2-c1abed478017}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;External&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;External-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST /&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;134dc329-51f6-44b4-a7c2-c1abed478017&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;External&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;External-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;134dc329-51f6-44b4-a7c2-c1abed478017&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>External-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>External-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>99.7031173706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{ModuleVersion=; ModuleName=UpperCase; GUID=; RequiredVersion=; Label=UpperCase-}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+        &amp;lt;Nil N="GUID" /&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;UpperCase-&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+      &amp;lt;Nil N="GUID" /&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;UpperCase-&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>UpperCase-</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>UpperCase-</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>86.2578048706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=lowercase; Label=lowercase-0.0.1; Dependencies=System.Object[]; ModuleVersion=0.0.1; GUID=15999f90-c71b-473c-b08f-07fb36c01d1c}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;lowercase&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;lowercase-0.0.1&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST /&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;0.0.1&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;15999f90-c71b-473c-b08f-07fb36c01d1c&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;lowercase&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;lowercase-0.0.1&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;0.0.1&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;15999f90-c71b-473c-b08f-07fb36c01d1c&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>lowercase-0.0.1</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>lowercase-0.0.1</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>113.039054870605</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=Example; Label=Example-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=d42f6973-ab07-4d7c-adad-28ec07449858}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;Example&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;Example-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+            &amp;lt;S N="RequiredVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;String-2.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;d42f6973-ab07-4d7c-adad-28ec07449858&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;Example&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;Example-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;d42f6973-ab07-4d7c-adad-28ec07449858&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>Example-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>Example-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>103.257804870605</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=Tools; Label=Tools-1.0.0; Dependencies=System.Object[]; ModuleVersion=1.0.0; GUID=07571b28-ccde-4508-a55f-add334da649b}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;Tools&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;Tools-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST /&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;07571b28-ccde-4508-a55f-add334da649b&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;Tools&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;Tools-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;07571b28-ccde-4508-a55f-add334da649b&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>Tools-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>Tools-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>80.1328048706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=lowercase; Label=lowercase-1.0.0; Dependencies=System.Object[]; ModuleVersion=1.0.0; GUID=15999f90-c71b-473c-b08f-07fb36c01d1c}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;lowercase&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;lowercase-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST /&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;15999f90-c71b-473c-b08f-07fb36c01d1c&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;lowercase&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;lowercase-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;15999f90-c71b-473c-b08f-07fb36c01d1c&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>lowercase-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>lowercase-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>113.039054870605</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=UpperCase; Label=UpperCase-1.0.0; Dependencies=System.Object[]; ModuleVersion=1.0.0; GUID=0dddb402-8080-439d-a5a0-06511fd76e7e}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST /&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>UpperCase-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>UpperCase-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>121.843742370605</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=LatestPrereleaseVersion; Label=LatestPrereleaseVersion-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=4243ff41-9b6d-4268-bda8-16dbd6d3be1a}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;LatestPrereleaseVersion&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;LatestPrereleaseVersion-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;4243ff41-9b6d-4268-bda8-16dbd6d3be1a&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;LatestPrereleaseVersion&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;LatestPrereleaseVersion-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;4243ff41-9b6d-4268-bda8-16dbd6d3be1a&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>LatestPrereleaseVersion-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>LatestPrereleaseVersion-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>216.312484741211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=OnlyPrereleaseVersion; Label=OnlyPrereleaseVersion-1.0.0; Dependencies=System.Object[]; ModuleVersion=1.0.0; GUID=dc512234-4b4a-4e42-be70-0e0fbaa45f2c}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;OnlyPrereleaseVersion&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;OnlyPrereleaseVersion-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST /&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;dc512234-4b4a-4e42-be70-0e0fbaa45f2c&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;OnlyPrereleaseVersion&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;OnlyPrereleaseVersion-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;dc512234-4b4a-4e42-be70-0e0fbaa45f2c&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>OnlyPrereleaseVersion-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>OnlyPrereleaseVersion-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>205.718734741211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-2.1.0; Dependencies=; ModuleVersion=2.1.0; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-2.1.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;2.1.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-2.1.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;2.1.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-2.1.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-2.1.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=Main; Label=Main-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=749ed353-19c8-4d42-9933-3023018d6b01}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;Main&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;Main-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;Duplicate&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;Duplicate-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;749ed353-19c8-4d42-9933-3023018d6b01&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;Main&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;Main-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;749ed353-19c8-4d42-9933-3023018d6b01&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>Main-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>Main-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>75.6874923706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=DependNotExist; Label=DependNotExist-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=bf105235-8795-457e-a1e6-471d9f6b6b8f}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;DependNotExist&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;DependNotExist-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;0.0.1&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;String-0.0.1&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;bf105235-8795-457e-a1e6-471d9f6b6b8f&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;DependNotExist&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;DependNotExist-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;bf105235-8795-457e-a1e6-471d9f6b6b8f&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>DependNotExist-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>DependNotExist-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>156.624984741211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-3.0.0; Dependencies=; ModuleVersion=3.0.0; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-3.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;2.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;lowercase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;15999f90-c71b-473c-b08f-07fb36c01d1c&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;lowercase-2.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;3.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-3.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;3.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-3.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-3.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{ModuleVersion=0.0.1; ModuleName=String; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa; RequiredVersion=; Label=String-0.0.1}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;0.0.1&amp;lt;/S&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-0.0.1&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;0.0.1&amp;lt;/S&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-0.0.1&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-0.0.1</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-0.0.1</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=OnlyStableVersion; Label=OnlyStableVersion-1.0.0; Dependencies=System.Object[]; ModuleVersion=1.0.0; GUID=9352f7ef-1c1a-4fd1-ade7-b70980e681ac}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;OnlyStableVersion&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;OnlyStableVersion-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST /&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;9352f7ef-1c1a-4fd1-ade7-b70980e681ac&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;OnlyStableVersion&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;OnlyStableVersion-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;9352f7ef-1c1a-4fd1-ade7-b70980e681ac&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>OnlyStableVersion-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>OnlyStableVersion-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>173.710922241211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+  </Nodes>
+  <Edges>
+    <Edge>
+      <SourceNodeID>String-1.1.3</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>LatestPrereleaseVersion-2.0.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>String-1.1.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>String-2.0.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706054</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>String-1.3.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>Duplicate-1.0.0</SourceNodeID>
+      <TargetNodeID>String-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>Depends-1.0.0</SourceNodeID>
+      <TargetNodeID>Tools-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>DuplicateByDependency-1.0.0</SourceNodeID>
+      <TargetNodeID>Main-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>GuidNotExist-1.0.0</SourceNodeID>
+      <TargetNodeID>String-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>LatestStableVersion-2.0.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>LatestStableVersion-1.0.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>Datas-1.0.0</SourceNodeID>
+      <TargetNodeID>UpperCase-</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>Datas-1.0.0</SourceNodeID>
+      <TargetNodeID>Tools-</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>Example-1.0.0</SourceNodeID>
+      <TargetNodeID>String-2.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>LatestPrereleaseVersion-1.0.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>String-2.1.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>String-1.0.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>Main-1.0.0</SourceNodeID>
+      <TargetNodeID>Duplicate-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>DependNotExist-1.0.0</SourceNodeID>
+      <TargetNodeID>String-0.0.1</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>String-3.0.0</SourceNodeID>
+      <TargetNodeID>lowercase-2.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+  </Edges>
+  <GeometryGraphIsPresent>True</GeometryGraphIsPresent>
+  <graph margins="10">
+    <layoutAlgorithmSettings edgeRoutingMode="0" />
+    <nodes>
+      <node id="lowercase-2.0.0" padding="2">
+        <rect x="652.56938250877" y="353.15182304382" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="String-1.1.3" padding="2">
+        <rect x="270.58818035766" y="151.66295623779" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="LatestPrereleaseVersion-2.0.0" padding="2">
+        <rect x="104.24955829002" y="403.33002853394" width="218.31248474121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="String-1.1.0" padding="2">
+        <rect x="-196.40405274668" y="252.44032478333" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="String-2.0.0" padding="2">
+        <rect x="29.37068332509" y="114.55987358093" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="String-1.3.0" padding="2">
+        <rect x="269.07247097196" y="211.85954856873" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Duplicate-1.0.0" padding="2">
+        <rect x="297.12428901226" y="505.22617149353" width="109.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Depends-1.0.0" padding="2">
+        <rect x="511.54860766746" y="413.54235649109" width="106.96092987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="DuplicateByDependency-1.0.0" padding="2">
+        <rect x="249.50566101074" y="651.62796211243" width="218.32029724121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="GuidNotExist-1.0.0" padding="2">
+        <rect x="537.84270311346" y="524.32419586182" width="136.46873474121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Tools-" padding="2">
+        <rect x="482.35360513458" y="30.40905570984" width="46.5468711853" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="LatestStableVersion-2.0.0" padding="2">
+        <rect x="-282.80072128528" y="396.05620765686" width="186.30467224121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="LatestStableVersion-1.0.0" padding="2">
+        <rect x="-219.84244867465" y="466.4051361084" width="186.30467224121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Datas-1.0.0" padding="2">
+        <rect x="409.82579109014" y="105.14074707031" width="84.71092987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="External-1.0.0" padding="2">
+        <rect x="672.60067065575" y="148.70111083984" width="101.70311737061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="UpperCase-" padding="2">
+        <rect x="367.45068438866" y="28.93810653687" width="88.25780487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="lowercase-0.0.1" padding="2">
+        <rect x="455.56143267967" y="258.33892250061" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Example-1.0.0" padding="2">
+        <rect x="14.19683305765" y="27.92004394531" width="105.25780487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Tools-1.0.0" padding="2">
+        <rect x="524.95806885107" y="344.72274780273" width="82.13280487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="lowercase-1.0.0" padding="2">
+        <rect x="458.1392448745" y="216.75860023499" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="UpperCase-1.0.0" padding="2">
+        <rect x="11.83242755523" y="251.74614334106" width="123.84374237061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="LatestPrereleaseVersion-1.0.0" padding="2">
+        <rect x="-42.33305270156" y="506.12221908569" width="218.31248474121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="OnlyPrereleaseVersion-1.0.0" padding="2">
+        <rect x="-170.02892986916" y="596.92174720764" width="207.71873474121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="String-2.1.0" padding="2">
+        <rect x="268.18698262805" y="281.20536613464" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="String-1.0.0" padding="2">
+        <rect x="307.36469216971" y="357.00275611877" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Main-1.0.0" padding="2">
+        <rect x="316.13889502204" y="584.33481216431" width="77.68749237061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="DependNotExist-1.0.0" padding="2">
+        <rect x="805.6286400161" y="430.37252616882" width="158.62498474121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="String-3.0.0" padding="2">
+        <rect x="668.68202972029" y="420.95336914063" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="String-0.0.1" padding="2">
+        <rect x="843.53394762196" y="354.62286376953" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="OnlyStableVersion-1.0.0" padding="2">
+        <rect x="-166.94798199318" y="636.52215003967" width="175.71092224121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+    </nodes>
+    <clusters />
+    <edges>
+      <edge id="0" s="String-1.1.3" t="UpperCase-1.0.0" at="97.78875735299 251.74614334106" label="152.29130245038 198.92982715291 89.84374237061 18.10937309265">
+        <lineSegment points="288.9560616805 171.77232933044 107.01402144532 247.88680370496" />
+      </edge>
+      <edge id="1" s="LatestPrereleaseVersion-2.0.0" t="UpperCase-1.0.0" at="83.01750027243 271.85551643372" label="100.57509146587 351.67989827368 89.84374237061 18.10937309265">
+        <lineSegment points="204.14259912873 403.33002853394 89.79317035521 279.21012688767" />
+      </edge>
+      <edge id="2" s="String-1.1.0" t="UpperCase-1.0.0" at="11.83242755523 261.98956261745" label="-54.88954524198 249.13822053341 89.84374237061 18.10937309265">
+        <lineSegment points="-111.59937287608 262.36577251268 1.8324740039 262.02004164688" />
+      </edge>
+      <edge id="3" s="String-2.0.0" t="UpperCase-1.0.0" at="73.60908665809 251.74614334106" label="23.76958617964 188.2370978162 89.84374237061 18.10937309265">
+        <lineSegment points="71.91823534284 134.66924667358 73.46467943055 241.7471860678" />
+      </edge>
+      <edge id="4" s="String-1.3.0" t="UpperCase-1.0.0" at="133.29491052988 251.81064337259" label="239.28143652843 252.64738495564 89.84374237061 18.10937309265">
+        <lineSegment points="269.07306718745 229.02872916513 143.15705095853 250.15589681631" />
+      </edge>
+      <edge id="5" s="Duplicate-1.0.0" t="String-1.0.0" at="349.92031111235 377.11212921143" label="302.05117312684 446.19905498935 89.84374237061 18.10937309265">
+        <lineSegment points="351.87334994022 505.22617149353 350.07273873805 387.11096743489" />
+      </edge>
+      <edge id="6" s="Depends-1.0.0" t="Tools-1.0.0" at="565.87904148892 364.83212089539" label="516.5325888921 394.15779102748 89.84374237061 18.10937309265">
+        <lineSegment points="565.17450240022 413.54235649109 565.73441779834 374.8310750401" />
+      </edge>
+      <edge id="7" s="DuplicateByDependency-1.0.0" t="Main-1.0.0" at="355.532966226 604.44418525696" label="308.17560669042 633.13790393791 89.84374237061 18.10937309265">
+        <lineSegment points="358.11548461269 651.62796211243 356.07948008629 614.42924021928" />
+      </edge>
+      <edge id="8" s="GuidNotExist-1.0.0" t="String-1.0.0" at="365.16922502503 377.11212921143" label="436.09373508244 464.18078710743 89.84374237061 18.10937309265">
+        <lineSegment points="590.67487756404 524.32419586182 373.54289775435 382.57853616867" />
+      </edge>
+      <edge id="9" s="LatestStableVersion-2.0.0" t="UpperCase-1.0.0" at="55.40193063173 271.85551643372" label="-108.21490060389 325.54958237725 89.84374237061 18.10937309265">
+        <lineSegment points="-171.29601705588 396.05620765686 46.63189019174 276.66034636629" />
+      </edge>
+      <edge id="10" s="LatestStableVersion-1.0.0" t="UpperCase-1.0.0" at="64.36542711886 271.85551643372" label="16.5032838338 383.20445957997 89.84374237061 18.10937309265">
+        <lineSegment points="-117.30124093237 466.4051361084 57.54049755027 279.16443813146" />
+      </edge>
+      <edge id="11" s="Datas-1.0.0" t="UpperCase-" at="416.93684287468 49.04747962952" label="387.54461168802 91.50197951012 89.84374237061 18.10937309265">
+        <lineSegment points="446.82399997472 105.14074707031 421.63914165774 57.87291934404" />
+      </edge>
+      <edge id="12" s="Datas-1.0.0" t="Tools-" at="498.43624118 50.51842880249" label="522.54423764735 92.11466979515 89.84374237061 18.10937309265">
+        <lineSegment points="459.37205557267 105.14074707031 492.61910318128 58.65236422784" />
+      </edge>
+      <edge id="13" s="Example-1.0.0" t="String-2.0.0" at="71.19888284524 114.55987358093" label="117.93621133391 76.1887591494 89.84374237061 18.10937309265">
+        <lineSegment points="67.39987590811 48.02941703796 70.62879379207 104.57613688211" />
+      </edge>
+      <edge id="14" s="LatestPrereleaseVersion-1.0.0" t="UpperCase-1.0.0" at="73.48033378951 271.85551643372" label="119.07442877042 394.04148748658 89.84374237061 18.10937309265">
+        <lineSegment points="67.09715462007 506.12221908569 73.20795999938 281.85180637141" />
+      </edge>
+      <edge id="15" s="String-2.1.0" t="UpperCase-1.0.0" at="135.60731963219 269.49454804399" label="208.55695222135 295.22634237944 89.84374237061 18.10937309265">
+        <lineSegment points="268.18698262805 285.98574840384 145.53084515679 270.72890664774" />
+      </edge>
+      <edge id="16" s="String-1.0.0" t="UpperCase-1.0.0" at="100.12054256633 271.85551643372" label="203.15303481587 339.47263860243 89.84374237061 18.10937309265">
+        <lineSegment points="323.40078827921 357.00275611877 109.46419290354 275.4186889493" />
+      </edge>
+      <edge id="17" s="Main-1.0.0" t="Duplicate-1.0.0" at="352.40233729557 525.33554458618" label="304.76946507419 559.90637225203 89.84374237061 18.10937309265">
+        <lineSegment points="354.60693285934 584.33481216431 352.77574160645 535.3285706154" />
+      </edge>
+      <edge id="18" s="DependNotExist-1.0.0" t="String-0.0.1" at="885.80419491172 374.73223686218" label="836.45115733689 407.52567751784 89.84374237061 18.10937309265">
+        <lineSegment points="885.07322503224 430.37252616882 885.67283204193 384.73137401478" />
+      </edge>
+      <edge id="19" s="String-3.0.0" t="lowercase-2.0.0" at="710.23653246812 373.26119613648" label="661.7381704896 402.13610458497 89.84374237061 18.10937309265">
+        <lineSegment points="710.93674713155 420.95336914063 710.38333626471 383.26011851068" />
+      </edge>
+    </edges>
+  </graph>
+</MsaglGraph>

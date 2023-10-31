@@ -1,8 +1,8 @@
-#GHA.PSmoduleCache.PowershellGetVersion.Tests.ps1
+#PowershellGetVersioning.Tests.ps1
 # Checks the syntax for a PowershellGet version.
 
 # See :  https://learn.microsoft.com/en-us/powershell/scripting/gallery/concepts/module-prerelease-support?view=powershell-5.1
-
+#        https://regex101.com/r/Ly7O1x/196
 
 [String[]]$global:ValidPowershellGetVersionsWithoutPrerelease = @(
    # [Version]
