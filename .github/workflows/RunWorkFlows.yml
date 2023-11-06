@@ -15,7 +15,7 @@ jobs:
 
           # !!!!!! Avoid recursive calls inside a CONSOLE : $env:GITHUB_WORKFLOW='CleanWorkFlowsHistory'
           #Retrieve All Workflow except 4
-          $Exclude=@($env:GITHUB_WORKFLOW,'Pester','MissingModuleInDefaultRepository','MissingModuleVersionInDefaultRepository')
+          $Exclude=@($env:GITHUB_WORKFLOW,'Pester')
           #We know the name of the worklfow
           $Workflows = gh workflow list --repo $Repo --all|
                        ForEach-Object {$_ -replace "`t",';'} |
