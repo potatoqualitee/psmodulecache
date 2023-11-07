@@ -93,7 +93,7 @@ A module name can be prefixed with a repository name separated by a backslash.
 * `modules-to-cache-prerelease` -A comma-separated list of PowerShell module names marked as a prerelease, to install and then cache. Each module name can specify a version or auto-update.
 A module name can be prefixed with a repository name separated by a backslash. **Keep in mind that when searching for a prerelease 'Find-Module' may return a stable version.**
 
-* `shell` - The default shell you'll be using. Defaults to pwsh. Recognized shells are '_powershell_' and '_pwsh_', you can specify one or the other, or both.
+* `shell` - The default shell you'll be using. Defaults to _pwsh_. Recognized shells are '_powershell_' and '_pwsh_', you can specify one or the other, or both.
   Duplicate shell names are silently removed and therefore do not generate an error.
   The use of shell names allows to configure the installation path of the module :
 
@@ -111,7 +111,7 @@ The following text details the rule for building a prerelease version number.
 
 ### Search in repositories
 
-The modules indicated in the `modules-to-cache' or 'modules-to-cache-prerelease' parameter can come from PsRepositories declared in the Runner (server).
+The modules indicated in the _`modules-to-cache'_ or _'modules-to-cache-prerelease'_ parameter can come from PsRepositories declared in the Runner (server).
 
 To declare PsRepositories again, you must save them before calling the 'Cache' step :
 
@@ -131,7 +131,7 @@ To declare PsRepositories again, you must save them before calling the 'Cache' s
 
 The '_OptimizationRules_' module is not published on PSGallery but on [MyGet](https://www.myget.org/feed/ottomatt/package/nuget/OptimizationRules).
 
-#### Notes
+#### Note
 
 In the event of multiple presence of the same module name in many repositories, psmodulecache will raise an error.
 The use of the following syntax will be necessary to specify from which repository the module is retrieved:
@@ -145,7 +145,7 @@ The use of the following syntax will be necessary to specify from which reposito
            ....
 ```
 
-The syntax 'OttoMatt\OptimizationRules is nammed 'Repository qualified module name'.
+The syntax 'OttoMatt\OptimizationRules is nammed _'Repository qualified module name'_.
 
 ## Parameters syntax <a name="parameterssyntax"></a>
 
@@ -175,7 +175,7 @@ Note : YAML may need to use double quotation marks: **`modules-to-cache: "Pester
 
 ### Syntax for 'modules-to-cache-prerelease' parameter
 
-The syntax is the same as for the 'module-to-cache' parameter but concerns only prerelease versions.
+The syntax is the same as for the _'module-to-cache'_ parameter but concerns only prerelease versions.
 
 #### Pester
 
@@ -226,7 +226,7 @@ The syntax _`modules-to-cache: Pester::`_ will cause a YAML syntax error.
 
 There can be no module name duplication in _'modules-to-cache'_ or _'modules-to-cache-prerelease'_.
 There is no check on grouping module names present in _'modules-to-cache'_ and in _'modules-to-cache-prerelease'_.
-Some cases will be filtered before call Save-Module, this ensures, when creating the cache, that a module of the same version is not saved several times.
+Some cases will be filtered before call _Save-Module_, this ensures, when creating the cache, that a module of the same version is not saved several times.
 The module name duplication check is case insensitive.
 
 We consider the combination _'InvokeBuild,InvokeBuild::'_ as identical to _'InvokeBuild,InvokeBuild'_. In this case, internally, the final setting will be equal to:
@@ -258,13 +258,19 @@ Syntax errors or incorrect parameter values will be displayed, followed by an ex
 
 * The following setting:
 
-   `@{Modules=UnknownModule; Shells=powershell,pwsh}`
+```yaml
+modules-to-cache: "UnknownModule"
+shell: powershell, pwsh
+```
 
 Generates two identical errors, one for each shell.
 
 * Duplicate shell names are silently removed and therefore do not generate an error:
 
-   `@{PrereleaseModules='PSScriptAnalyzer'; Shells='powershell,pwsh,pwsh,Powershell'}`
+```yaml
+modules-to-cache: "PSScriptAnalyzer"
+shell:powershell,pwsh,pwsh,Powershell
+```
 
 * The following error is thrown:
 
@@ -291,7 +297,7 @@ jobs:
   run-on-linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.5.0
+    - uses: actions/checkout@v4.1.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v6.0
@@ -316,7 +322,7 @@ jobs:
   run-on-windows:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2.5.0
+    - uses: actions/checkout@v4.1.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v6.0
@@ -342,7 +348,7 @@ jobs:
   run-for-both-pwsh-and-powershell:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2.5.0
+      - uses: actions/checkout@v4.1.0
       - name: Install and cache PowerShell modules
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v6.0
@@ -374,7 +380,7 @@ jobs:
   run-for-powershell-on-windows-with-required-version:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2.5.0
+      - uses: actions/checkout@v4.1.0
       - name: Install a module with a required version
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v6.0
@@ -399,7 +405,7 @@ jobs:
   run-for-pwsh-on-macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2.5.0
+      - uses: actions/checkout@v4.1.0
       - name: Install a module with a required version
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v6.0
@@ -425,7 +431,7 @@ jobs:
   run-on-windows:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2.5.0
+    - uses: actions/checkout@v4.1.0
     - name: Install and cache PowerShell modules
       id: psmodulecache
       uses: potatoqualitee/psmodulecache@v6.0
@@ -530,7 +536,7 @@ Note : Under Powershell Core this last setting works some times and other times 
 
 * [Module name collision under Linux](https://github.com/potatoqualitee/psmodulecache/issues/54#issuecomment-1740888358).
 
-* The management of external dependencies (_PrivateData .PSData.ExternalModuleDependencies_) is the responsibility of the user.
+* The management of external dependencies (_PrivateData.PSData.ExternalModuleDependencies_) is the responsibility of the user.
 That is to say that external dependencies must be specified in the settings, regardless of the order of declaration.
 
 ## Contributing
