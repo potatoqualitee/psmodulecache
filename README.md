@@ -23,7 +23,8 @@ It is possible to configure a cache with an automatic update, the module search 
     6. [Using powershell on Windows](#example6)
 6. [Cache key construction method](#buildcachekey)
 7. [Cache limits](#cachelimits)
-8. [Known issues](#knownissues)
+8. [Acceptance of a license](#acceptancelicense)
+9. [Known issues](#knownissues)
 
 ## How to use it <a name="howto"></a>
 
@@ -483,6 +484,10 @@ This allows to find the caches associated with a workflow when using [GitHub Cli
 ## Cache Limits <a name="cachelimits"></a>
 
 A repository can have up to 5GB of caches. Once the 5GB limit is reached, older caches will be evicted based on when the cache was last accessed.  Caches that are not accessed within the last week (7 days) will also be evicted.
+
+## Acceptance of a license <a name="acceptancelicense"></a>
+
+If a module requires acceptance of a license, it is automatically accepted.
 
 ## Known issues <a name="knownissues"></a>
 

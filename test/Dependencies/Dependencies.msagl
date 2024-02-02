@@ -59,6 +59,81 @@
       &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
       &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
     &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{ModuleVersion=; ModuleName=modulerequirelicenseacceptance; GUID=8dba4e13-19fd-41b5-8840-246e2f2b30c7; RequiredVersion=2.0; Label=modulerequirelicenseacceptance-2.0}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;modulerequirelicenseacceptance&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;8dba4e13-19fd-41b5-8840-246e2f2b30c7&amp;lt;/S&amp;gt;
+        &amp;lt;S N="RequiredVersion"&amp;gt;2.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;modulerequirelicenseacceptance-2.0&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;modulerequirelicenseacceptance&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;8dba4e13-19fd-41b5-8840-246e2f2b30c7&amp;lt;/S&amp;gt;
+      &amp;lt;S N="RequiredVersion"&amp;gt;2.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;modulerequirelicenseacceptance-2.0&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>modulerequirelicenseacceptance-2.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>modulerequirelicenseacceptance-2.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>261.867156982422</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
     &amp;lt;ToString&amp;gt;@{ModuleVersion=2.0.0; ModuleName=lowercase; GUID=15999f90-c71b-473c-b08f-07fb36c01d1c; RequiredVersion=; Label=lowercase-2.0.0}&amp;lt;/ToString&amp;gt;
     &amp;lt;Obj RefId="1"&amp;gt;
       &amp;lt;TNRef RefId="0" /&amp;gt;
@@ -177,7 +252,7 @@
               <B>0</B>
             </Color>
           </Color>
-          <LineWidth>1</LineWidth>
+          <LineWidth>2</LineWidth>
           <ID>String-1.1.3</ID>
         </BaseAttr>
         <Fillcolor>
@@ -1058,6 +1133,92 @@
       &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
       &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
     &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=DependencyRequiresAcceptanceOfTheLicense; Label=DependencyRequiresAcceptanceOfTheLicense-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=34c6bccb-a08c-4dbb-a83c-0422ee9b55d8}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;DependencyRequiresAcceptanceOfTheLicense&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;DependencyRequiresAcceptanceOfTheLicense-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;modulerequirelicenseacceptance&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;8dba4e13-19fd-41b5-8840-246e2f2b30c7&amp;lt;/S&amp;gt;
+            &amp;lt;S N="RequiredVersion"&amp;gt;2.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;modulerequirelicenseacceptance-2.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;34c6bccb-a08c-4dbb-a83c-0422ee9b55d8&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;DependencyRequiresAcceptanceOfTheLicense&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;DependencyRequiresAcceptanceOfTheLicense-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;34c6bccb-a08c-4dbb-a83c-0422ee9b55d8&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>DependencyRequiresAcceptanceOfTheLicense-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>DependencyRequiresAcceptanceOfTheLicense-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>378.195281982422</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
     &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=LatestStableVersion; Label=LatestStableVersion-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=9f869a68-ecb4-44de-ab69-71fe571da416}&amp;lt;/ToString&amp;gt;
     &amp;lt;Obj RefId="1"&amp;gt;
       &amp;lt;TNRef RefId="0" /&amp;gt;
@@ -1132,6 +1293,92 @@
         <FontStyle>0</FontStyle>
         <FontSize>12</FontSize>
         <Width>184.304672241211</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-2.1.0; Dependencies=; ModuleVersion=2.1.0; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;String-2.1.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
+            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;2.1.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;String-2.1.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;2.1.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>String-2.1.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>String-2.1.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>82.8046798706055</Width>
         <Height>18.1093730926514</Height>
       </Label>
     </Node>
@@ -2000,34 +2247,32 @@
       &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
       &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
     &amp;lt;/TN&amp;gt;
-    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=String; Label=String-2.1.0; Dependencies=; ModuleVersion=2.1.0; GUID=2cf44dd1-fdc0-4df7-a992-27cd359b08aa}&amp;lt;/ToString&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=WrongNamingRule; Label=WrongNamingRule-1.0.0; Dependencies=System.Object[]; ModuleVersion=1.0.0; GUID=9d3c3b12-fd2c-47b9-bee0-9fc92c521e72}&amp;lt;/ToString&amp;gt;
     &amp;lt;Obj RefId="1"&amp;gt;
       &amp;lt;TNRef RefId="0" /&amp;gt;
       &amp;lt;MS&amp;gt;
         &amp;lt;Nil N="RequiredVersion" /&amp;gt;
-        &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
-        &amp;lt;S N="Label"&amp;gt;String-2.1.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;WrongNamingRule&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;WrongNamingRule-1.0.0&amp;lt;/S&amp;gt;
         &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
-          &amp;lt;TNRef RefId="0" /&amp;gt;
-          &amp;lt;MS&amp;gt;
-            &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
-            &amp;lt;S N="ModuleName"&amp;gt;UpperCase&amp;lt;/S&amp;gt;
-            &amp;lt;S N="GUID"&amp;gt;0dddb402-8080-439d-a5a0-06511fd76e7e&amp;lt;/S&amp;gt;
-            &amp;lt;Nil N="RequiredVersion" /&amp;gt;
-            &amp;lt;S N="Label"&amp;gt;UpperCase-1.0.0&amp;lt;/S&amp;gt;
-          &amp;lt;/MS&amp;gt;
+          &amp;lt;TN RefId="1"&amp;gt;
+            &amp;lt;T&amp;gt;System.Object[]&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Array&amp;lt;/T&amp;gt;
+            &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+          &amp;lt;/TN&amp;gt;
+          &amp;lt;LST /&amp;gt;
         &amp;lt;/Obj&amp;gt;
-        &amp;lt;S N="ModuleVersion"&amp;gt;2.1.0&amp;lt;/S&amp;gt;
-        &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;9d3c3b12-fd2c-47b9-bee0-9fc92c521e72&amp;lt;/S&amp;gt;
       &amp;lt;/MS&amp;gt;
     &amp;lt;/Obj&amp;gt;
     &amp;lt;MS&amp;gt;
       &amp;lt;Nil N="RequiredVersion" /&amp;gt;
-      &amp;lt;S N="ModuleName"&amp;gt;String&amp;lt;/S&amp;gt;
-      &amp;lt;S N="Label"&amp;gt;String-2.1.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;WrongNamingRule&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;WrongNamingRule-1.0.0&amp;lt;/S&amp;gt;
       &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
-      &amp;lt;S N="ModuleVersion"&amp;gt;2.1.0&amp;lt;/S&amp;gt;
-      &amp;lt;S N="GUID"&amp;gt;2cf44dd1-fdc0-4df7-a992-27cd359b08aa&amp;lt;/S&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;9d3c3b12-fd2c-47b9-bee0-9fc92c521e72&amp;lt;/S&amp;gt;
     &amp;lt;/MS&amp;gt;
   &amp;lt;/Obj&amp;gt;
 &amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
@@ -2044,7 +2289,7 @@
             </Color>
           </Color>
           <LineWidth>1</LineWidth>
-          <ID>String-2.1.0</ID>
+          <ID>WrongNamingRule-1.0.0</ID>
         </BaseAttr>
         <Fillcolor>
           <Color>
@@ -2061,7 +2306,7 @@
         <YRad>3</YRad>
       </NodeAttribute>
       <Label>
-        <Text>String-2.1.0</Text>
+        <Text>WrongNamingRule-1.0.0</Text>
         <FontName>Times-Roman</FontName>
         <FontColor>
           <Color>
@@ -2073,7 +2318,7 @@
         </FontColor>
         <FontStyle>0</FontStyle>
         <FontSize>12</FontSize>
-        <Width>82.8046798706055</Width>
+        <Width>176.265609741211</Width>
         <Height>18.1093730926514</Height>
       </Label>
     </Node>
@@ -2160,6 +2405,92 @@
         <FontStyle>0</FontStyle>
         <FontSize>12</FontSize>
         <Width>82.8046798706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Node>
+    <Node>
+      <UserData>
+        <UserDataType>System.Management.Automation.PSObject, System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</UserDataType>
+        <SerializedUserData>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;PSObject xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/System.Management.Automation"&gt;&lt;CliXml i:type="x:string" xmlns=""&gt;&amp;lt;Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"&amp;gt;
+  &amp;lt;Obj RefId="0"&amp;gt;
+    &amp;lt;TN RefId="0"&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCustomObject&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;@{RequiredVersion=; ModuleName=DependOfWrongnaming; Label=DependOfWrongnaming-1.0.0; Dependencies=; ModuleVersion=1.0.0; GUID=0b232b7d-8388-4bd3-ad33-ab66c7504d51}&amp;lt;/ToString&amp;gt;
+    &amp;lt;Obj RefId="1"&amp;gt;
+      &amp;lt;TNRef RefId="0" /&amp;gt;
+      &amp;lt;MS&amp;gt;
+        &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+        &amp;lt;S N="ModuleName"&amp;gt;DependOfWrongnaming&amp;lt;/S&amp;gt;
+        &amp;lt;S N="Label"&amp;gt;DependOfWrongnaming-1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;Obj N="Dependencies" RefId="2"&amp;gt;
+          &amp;lt;TNRef RefId="0" /&amp;gt;
+          &amp;lt;MS&amp;gt;
+            &amp;lt;Nil N="ModuleVersion" /&amp;gt;
+            &amp;lt;S N="ModuleName"&amp;gt;WrongNamingRule&amp;lt;/S&amp;gt;
+            &amp;lt;S N="GUID"&amp;gt;9d3c3b12-fd2c-47b9-bee0-9fc92c521e72&amp;lt;/S&amp;gt;
+            &amp;lt;S N="RequiredVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+            &amp;lt;S N="Label"&amp;gt;WrongNamingRule-1.0.0&amp;lt;/S&amp;gt;
+          &amp;lt;/MS&amp;gt;
+        &amp;lt;/Obj&amp;gt;
+        &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+        &amp;lt;S N="GUID"&amp;gt;0b232b7d-8388-4bd3-ad33-ab66c7504d51&amp;lt;/S&amp;gt;
+      &amp;lt;/MS&amp;gt;
+    &amp;lt;/Obj&amp;gt;
+    &amp;lt;MS&amp;gt;
+      &amp;lt;Nil N="RequiredVersion" /&amp;gt;
+      &amp;lt;S N="ModuleName"&amp;gt;DependOfWrongnaming&amp;lt;/S&amp;gt;
+      &amp;lt;S N="Label"&amp;gt;DependOfWrongnaming-1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;Ref N="Dependencies" RefId="2" /&amp;gt;
+      &amp;lt;S N="ModuleVersion"&amp;gt;1.0.0&amp;lt;/S&amp;gt;
+      &amp;lt;S N="GUID"&amp;gt;0b232b7d-8388-4bd3-ad33-ab66c7504d51&amp;lt;/S&amp;gt;
+    &amp;lt;/MS&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;&lt;/CliXml&gt;&lt;/PSObject&gt;</SerializedUserData>
+      </UserData>
+      <NodeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID>DependOfWrongnaming-1.0.0</ID>
+        </BaseAttr>
+        <Fillcolor>
+          <Color>
+            <A>0</A>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+          </Color>
+        </Fillcolor>
+        <LabelMargin>1</LabelMargin>
+        <Padding>2</Padding>
+        <Shape>Box</Shape>
+        <XRad>3</XRad>
+        <YRad>3</YRad>
+      </NodeAttribute>
+      <Label>
+        <Text>DependOfWrongnaming-1.0.0</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>213.546859741211</Width>
         <Height>18.1093730926514</Height>
       </Label>
     </Node>
@@ -2738,7 +3069,7 @@
         </FontColor>
         <FontStyle>0</FontStyle>
         <FontSize>12</FontSize>
-        <Width>89.8437423706054</Width>
+        <Width>89.8437423706055</Width>
         <Height>18.1093730926514</Height>
       </Label>
     </Edge>
@@ -2978,12 +3309,92 @@
         </FontColor>
         <FontStyle>0</FontStyle>
         <FontSize>12</FontSize>
+        <Width>89.8437423706054</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>DependencyRequiresAcceptanceOfTheLicense-1.0.0</SourceNodeID>
+      <TargetNodeID>modulerequirelicenseacceptance-2.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
         <Width>89.8437423706055</Width>
         <Height>18.1093730926514</Height>
       </Label>
     </Edge>
     <Edge>
       <SourceNodeID>LatestStableVersion-1.0.0</SourceNodeID>
+      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <EdgeAttribute>
+        <BaseAttr>
+          <Styles />
+          <Color>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+          </Color>
+          <LineWidth>1</LineWidth>
+          <ID />
+        </BaseAttr>
+        <EdgeSeparation>1</EdgeSeparation>
+        <Weight>1</Weight>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowStyle>NonSpecified</ArrowStyle>
+        <ArrowheadLength>10</ArrowheadLength>
+      </EdgeAttribute>
+      <Label>
+        <Text>Dependency</Text>
+        <FontName>Times-Roman</FontName>
+        <FontColor>
+          <Color>
+            <A>255</A>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+          </Color>
+        </FontColor>
+        <FontStyle>0</FontStyle>
+        <FontSize>12</FontSize>
+        <Width>89.8437423706055</Width>
+        <Height>18.1093730926514</Height>
+      </Label>
+    </Edge>
+    <Edge>
+      <SourceNodeID>String-2.1.0</SourceNodeID>
       <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
       <EdgeAttribute>
         <BaseAttr>
@@ -3183,7 +3594,7 @@
       </Label>
     </Edge>
     <Edge>
-      <SourceNodeID>String-2.1.0</SourceNodeID>
+      <SourceNodeID>String-1.0.0</SourceNodeID>
       <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
       <EdgeAttribute>
         <BaseAttr>
@@ -3223,8 +3634,8 @@
       </Label>
     </Edge>
     <Edge>
-      <SourceNodeID>String-1.0.0</SourceNodeID>
-      <TargetNodeID>UpperCase-1.0.0</TargetNodeID>
+      <SourceNodeID>DependOfWrongnaming-1.0.0</SourceNodeID>
+      <TargetNodeID>WrongNamingRule-1.0.0</TargetNodeID>
       <EdgeAttribute>
         <BaseAttr>
           <Styles />
@@ -3385,160 +3796,178 @@
   </Edges>
   <GeometryGraphIsPresent>True</GeometryGraphIsPresent>
   <graph margins="10">
-    <layoutAlgorithmSettings edgeRoutingMode="0" />
+    <layoutAlgorithmSettings edgeRoutingMode="3" />
     <nodes>
+      <node id="modulerequirelicenseacceptance-2.0" padding="2">
+        <rect x="423.39522734894" y="250.16642951965" width="263.86715698242" height="20.10937309265" rx="3" ry="3" />
+      </node>
       <node id="lowercase-2.0.0" padding="2">
-        <rect x="652.56938250877" y="353.15182304382" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="595.39171054056" y="-88.25881958008" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="String-1.1.3" padding="2">
-        <rect x="270.58818035766" y="151.66295623779" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="215.53258282857" y="251.77889633179" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="LatestPrereleaseVersion-2.0.0" padding="2">
-        <rect x="104.24955829002" y="403.33002853394" width="218.31248474121" height="20.10937309265" rx="3" ry="3" />
+        <rect x="-13.13897476783" y="405.31101417542" width="218.31248474121" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="String-1.1.0" padding="2">
-        <rect x="-196.40405274668" y="252.44032478333" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="212.69549366096" y="299.55766105652" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="String-2.0.0" padding="2">
-        <rect x="29.37068332509" y="114.55987358093" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="-126.23499179554" y="345.54953765869" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="String-1.3.0" padding="2">
-        <rect x="269.07247097196" y="211.85954856873" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="213.28273915564" y="213.87027549744" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="Duplicate-1.0.0" padding="2">
-        <rect x="297.12428901226" y="505.22617149353" width="109.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="48.5425955155" y="44.31380271912" width="109.80467987061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="Depends-1.0.0" padding="2">
-        <rect x="511.54860766746" y="413.54235649109" width="106.96092987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="466.03411318949" y="-91.85369873047" width="106.96092987061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="DuplicateByDependency-1.0.0" padding="2">
-        <rect x="249.50566101074" y="651.62796211243" width="218.32029724121" height="20.10937309265" rx="3" ry="3" />
+        <rect x="-7.375" y="-77.61621665955" width="218.32029724121" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="GuidNotExist-1.0.0" padding="2">
-        <rect x="537.84270311346" y="524.32419586182" width="136.46873474121" height="20.10937309265" rx="3" ry="3" />
+        <rect x="224.67161821834" y="113.65106201172" width="136.46873474121" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="Tools-" padding="2">
-        <rect x="482.35360513458" y="30.40905570984" width="46.5468711853" height="20.10937309265" rx="3" ry="3" />
+        <rect x="350.36869535985" y="32.16815185547" width="46.5468711853" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="LatestStableVersion-2.0.0" padding="2">
-        <rect x="-282.80072128528" y="396.05620765686" width="186.30467224121" height="20.10937309265" rx="3" ry="3" />
+        <rect x="-154.95366363361" y="38.46435165405" width="186.30467224121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="DependencyRequiresAcceptanceOfTheLicense-1.0.0" padding="2">
+        <rect x="365.84343434717" y="304.84056091309" width="380.19528198242" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="LatestStableVersion-1.0.0" padding="2">
-        <rect x="-219.84244867465" y="466.4051361084" width="186.30467224121" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="Datas-1.0.0" padding="2">
-        <rect x="409.82579109014" y="105.14074707031" width="84.71092987061" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="External-1.0.0" padding="2">
-        <rect x="672.60067065575" y="148.70111083984" width="101.70311737061" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="UpperCase-" padding="2">
-        <rect x="367.45068438866" y="28.93810653687" width="88.25780487061" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="lowercase-0.0.1" padding="2">
-        <rect x="455.56143267967" y="258.33892250061" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="Example-1.0.0" padding="2">
-        <rect x="14.19683305765" y="27.92004394531" width="105.25780487061" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="Tools-1.0.0" padding="2">
-        <rect x="524.95806885107" y="344.72274780273" width="82.13280487061" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="lowercase-1.0.0" padding="2">
-        <rect x="458.1392448745" y="216.75860023499" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="UpperCase-1.0.0" padding="2">
-        <rect x="11.83242755523" y="251.74614334106" width="123.84374237061" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="LatestPrereleaseVersion-1.0.0" padding="2">
-        <rect x="-42.33305270156" y="506.12221908569" width="218.31248474121" height="20.10937309265" rx="3" ry="3" />
-      </node>
-      <node id="OnlyPrereleaseVersion-1.0.0" padding="2">
-        <rect x="-170.02892986916" y="596.92174720764" width="207.71873474121" height="20.10937309265" rx="3" ry="3" />
+        <rect x="-237.08563224809" y="123.98888969421" width="186.30467224121" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="String-2.1.0" padding="2">
-        <rect x="268.18698262805" y="281.20536613464" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="212.73607470365" y="167.8889503479" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Datas-1.0.0" padding="2">
+        <rect x="420.36504079248" y="92.38686752319" width="84.71092987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="External-1.0.0" padding="2">
+        <rect x="378.42540456201" y="349.1439037323" width="101.70311737061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="UpperCase-" padding="2">
+        <rect x="503.96624972513" y="29.32485771179" width="88.25780487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="lowercase-0.0.1" padding="2">
+        <rect x="497.7319154873" y="346.14820671082" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Example-1.0.0" padding="2">
+        <rect x="-137.81694643825" y="402.19467735291" width="105.25780487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="Tools-1.0.0" padding="2">
+        <rect x="476.66396081272" y="-21.60196113586" width="82.13280487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="lowercase-1.0.0" padding="2">
+        <rect x="636.36581899072" y="346.74735832214" width="115.03905487061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="UpperCase-1.0.0" padding="2">
+        <rect x="-80.8972084029" y="213.32428169251" width="123.84374237061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="LatestPrereleaseVersion-1.0.0" padding="2">
+        <rect x="123.33697987939" y="383.88386535645" width="218.31248474121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="OnlyPrereleaseVersion-1.0.0" padding="2">
+        <rect x="365.24431325342" y="401.20310401917" width="207.71873474121" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="WrongNamingRule-1.0.0" padding="2">
+        <rect x="389.264001763" y="152.38731956482" width="178.26560974121" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="String-1.0.0" padding="2">
-        <rect x="307.36469216971" y="357.00275611877" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="61.61211148344" y="112.76814651489" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+      </node>
+      <node id="DependOfWrongnaming-1.0.0" padding="2">
+        <rect x="370.63658620264" y="207.66054153442" width="215.54685974121" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="Main-1.0.0" padding="2">
-        <rect x="316.13889502204" y="584.33481216431" width="77.68749237061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="63.28421945331" y="-18.14902496338" width="77.68749237061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="DependNotExist-1.0.0" padding="2">
-        <rect x="805.6286400161" y="430.37252616882" width="158.62498474121" height="20.10937309265" rx="3" ry="3" />
+        <rect x="567.7534074917" y="92.35393714905" width="158.62498474121" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="String-3.0.0" padding="2">
-        <rect x="668.68202972029" y="420.95336914063" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="609.92286431614" y="-18.60626411438" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="String-0.0.1" padding="2">
-        <rect x="843.53394762196" y="354.62286376953" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
+        <rect x="604.67664729633" y="154.81685638428" width="84.80467987061" height="20.10937309265" rx="3" ry="3" />
       </node>
       <node id="OnlyStableVersion-1.0.0" padding="2">
-        <rect x="-166.94798199318" y="636.52215003967" width="175.71092224121" height="20.10937309265" rx="3" ry="3" />
+        <rect x="593.51634694482" y="406.02918624878" width="175.71092224121" height="20.10937309265" rx="3" ry="3" />
       </node>
     </nodes>
     <clusters />
     <edges>
-      <edge id="0" s="String-1.1.3" t="UpperCase-1.0.0" at="97.78875735299 251.74614334106" label="152.29130245038 198.92982715291 89.84374237061 18.10937309265">
-        <lineSegment points="288.9560616805 171.77232933044 107.01402144532 247.88680370496" />
+      <edge id="0" s="String-1.1.3" t="UpperCase-1.0.0" at="42.55067286381 231.92310455264" label="103.33726322993 257.67675117589 89.84374237061 18.10937309265">
+        <lineSegment points="215.53258282857 255.94515663444 52.45562066413 233.29860775974" />
       </edge>
-      <edge id="1" s="LatestPrereleaseVersion-2.0.0" t="UpperCase-1.0.0" at="83.01750027243 271.85551643372" label="100.57509146587 351.67989827368 89.84374237061 18.10937309265">
-        <lineSegment points="204.14259912873 403.33002853394 89.79317035521 279.21012688767" />
+      <edge id="1" s="LatestPrereleaseVersion-2.0.0" t="UpperCase-1.0.0" at="-12.95297003804 233.43365478516" label="-5.54747598898 333.74413088336 89.84374237061 18.10937309265">
+        <lineSegment points="89.99490042322 405.31101417542 -7.81456668213 242.01251315629" />
       </edge>
-      <edge id="2" s="String-1.1.0" t="UpperCase-1.0.0" at="11.83242755523 261.98956261745" label="-54.88954524198 249.13822053341 89.84374237061 18.10937309265">
-        <lineSegment points="-111.59937287608 262.36577251268 1.8324740039 262.02004164688" />
+      <edge id="2" s="String-1.1.0" t="UpperCase-1.0.0" at="12.98119566578 233.43365478516" label="83.9723624198 281.05545557654 89.84374237061 18.10937309265">
+        <lineSegment points="223.14130071288 299.55766105652 22.52017568083 236.43496454467" />
       </edge>
-      <edge id="3" s="String-2.0.0" t="UpperCase-1.0.0" at="73.60908665809 251.74614334106" label="23.76958617964 188.2370978162 89.84374237061 18.10937309265">
-        <lineSegment points="71.91823534284 134.66924667358 73.46467943055 241.7471860678" />
+      <edge id="3" s="String-2.0.0" t="UpperCase-1.0.0" at="-23.9072238243 233.43365478516" label="-100.32339563221 284.04519938608 89.84374237061 18.10937309265">
+        <lineSegment points="-78.90076525353 345.54953765869 -28.31104110671 242.41176111908" />
       </edge>
-      <edge id="4" s="String-1.3.0" t="UpperCase-1.0.0" at="133.29491052988 251.81064337259" label="239.28143652843 252.64738495564 89.84374237061 18.10937309265">
-        <lineSegment points="269.07306718745 229.02872916513 143.15705095853 250.15589681631" />
+      <edge id="4" s="String-1.3.0" t="UpperCase-1.0.0" at="42.94653396771 223.50206190668" label="133.11065091681 236.73599241065 89.84374237061 18.10937309265">
+        <lineSegment points="213.28273915564 223.84067099363 52.9465142093 223.521940735" />
       </edge>
-      <edge id="5" s="Duplicate-1.0.0" t="String-1.0.0" at="349.92031111235 377.11212921143" label="302.05117312684 446.19905498935 89.84374237061 18.10937309265">
-        <lineSegment points="351.87334994022 505.22617149353 350.07273873805 387.11096743489" />
+      <edge id="5" s="Duplicate-1.0.0" t="String-1.0.0" at="103.93079997716 112.76814651489" label="152.60996782763 83.57919547772 89.84374237061 18.10937309265">
+        <lineSegment points="103.52858689238 64.42317581177 103.84760638748 102.76849257955" />
       </edge>
-      <edge id="6" s="Depends-1.0.0" t="Tools-1.0.0" at="565.87904148892 364.83212089539" label="516.5325888921 394.15779102748 89.84374237061 18.10937309265">
-        <lineSegment points="565.17450240022 413.54235649109 565.73441779834 374.8310750401" />
+      <edge id="6" s="Depends-1.0.0" t="Tools-1.0.0" at="517.98572663022 -21.60196113586" label="567.67128838582 -51.6207530681 89.84374237061 18.10937309265">
+        <lineSegment points="519.25921474259 -71.74432563782 518.23961924265 -31.59873754335" />
       </edge>
-      <edge id="7" s="DuplicateByDependency-1.0.0" t="Main-1.0.0" at="355.532966226 604.44418525696" label="308.17560669042 633.13790393791 89.84374237061 18.10937309265">
-        <lineSegment points="358.11548461269 651.62796211243 356.07948008629 614.42924021928" />
+      <edge id="7" s="DuplicateByDependency-1.0.0" t="Main-1.0.0" at="102.0700022884 -18.14902496338" label="150.84960474805 -42.83938061161 89.84374237061 18.10937309265">
+        <lineSegment points="101.84311197082 -57.50684356689 102.01235515357 -28.14885880239" />
       </edge>
-      <edge id="8" s="GuidNotExist-1.0.0" t="String-1.0.0" at="365.16922502503 377.11212921143" label="436.09373508244 464.18078710743 89.84374237061 18.10937309265">
-        <lineSegment points="590.67487756404 524.32419586182 373.54289775435 382.57853616867" />
+      <edge id="8" s="GuidNotExist-1.0.0" t="String-1.0.0" at="146.41679135404 123.02102978398" label="190.5348018829 136.28197612457 89.84374237061 18.10937309265">
+        <lineSegment points="224.67161821834 123.38680795209 156.41668211543 123.06777120391" />
       </edge>
-      <edge id="9" s="LatestStableVersion-2.0.0" t="UpperCase-1.0.0" at="55.40193063173 271.85551643372" label="-108.21490060389 325.54958237725 89.84374237061 18.10937309265">
-        <lineSegment points="-171.29601705588 396.05620765686 46.63189019174 276.66034636629" />
+      <edge id="9" s="LatestStableVersion-2.0.0" t="UpperCase-1.0.0" at="-21.4378905788 213.32428169251" label="7.34580949378 129.96949519444 89.84374237061 18.10937309265">
+        <lineSegment points="-59.33877415179 58.5737247467 -23.81674295984 203.6113490072" />
       </edge>
-      <edge id="10" s="LatestStableVersion-1.0.0" t="UpperCase-1.0.0" at="64.36542711886 271.85551643372" label="16.5032838338 383.20445957997 89.84374237061 18.10937309265">
-        <lineSegment points="-117.30124093237 466.4051361084 57.54049755027 279.16443813146" />
+      <edge id="10" s="DependencyRequiresAcceptanceOfTheLicense-1.0.0" t="modulerequirelicenseacceptance-2.0" at="555.44140347507 270.27580261231" label="506.7690584987 292.58026391595 89.84374237061 18.10937309265">
+        <lineSegment points="555.82847770345 304.84056091309 555.55338168027 280.27517563673" />
       </edge>
-      <edge id="11" s="Datas-1.0.0" t="UpperCase-" at="416.93684287468 49.04747962952" label="387.54461168802 91.50197951012 89.84374237061 18.10937309265">
-        <lineSegment points="446.82399997472 105.14074707031 421.63914165774 57.87291934404" />
+      <edge id="11" s="LatestStableVersion-1.0.0" t="UpperCase-1.0.0" at="-33.03933895535 213.32428169251" label="-39.43672187495 165.12170105715 89.84374237061 18.10937309265">
+        <lineSegment points="-129.86929438972 144.09826278687 -41.17421868329 207.50846431125" />
       </edge>
-      <edge id="12" s="Datas-1.0.0" t="Tools-" at="498.43624118 50.51842880249" label="522.54423764735 92.11466979515 89.84374237061 18.10937309265">
-        <lineSegment points="459.37205557267 105.14074707031 492.61910318128 58.65236422784" />
+      <edge id="12" s="String-2.1.0" t="UpperCase-1.0.0" at="40.84823153052 213.46299850044" label="164.7430312743 211.45492875331 89.84374237061 18.10937309265">
+        <lineSegment points="212.73607470365 184.97197586554 50.71362765085 211.82777393203" />
       </edge>
-      <edge id="13" s="Example-1.0.0" t="String-2.0.0" at="71.19888284524 114.55987358093" label="117.93621133391 76.1887591494 89.84374237061 18.10937309265">
-        <lineSegment points="67.39987590811 48.02941703796 70.62879379207 104.57613688211" />
+      <edge id="13" s="Datas-1.0.0" t="UpperCase-" at="534.48291063101 49.43423080444" label="455.27587169745 63.21784765163 89.84374237061 18.10937309265">
+        <lineSegment points="476.33274725721 92.38686752319 526.43930365221 55.37564366425" />
       </edge>
-      <edge id="14" s="LatestPrereleaseVersion-1.0.0" t="UpperCase-1.0.0" at="73.48033378951 271.85551643372" label="119.07442877042 394.04148748658 89.84374237061 18.10937309265">
-        <lineSegment points="67.09715462007 506.12221908569 73.20795999938 281.85180637141" />
+      <edge id="14" s="Datas-1.0.0" t="Tools-" at="388.51549924823 52.27752494812" label="369.90074163034 81.53045947984 89.84374237061 18.10937309265">
+        <lineSegment points="447.84713743206 92.38686752319 396.80006745548 57.87805435339" />
       </edge>
-      <edge id="15" s="String-2.1.0" t="UpperCase-1.0.0" at="135.60731963219 269.49454804399" label="208.55695222135 295.22634237944 89.84374237061 18.10937309265">
-        <lineSegment points="268.18698262805 285.98574840384 145.53084515679 270.72890664774" />
+      <edge id="15" s="Example-1.0.0" t="String-2.0.0" at="-84.073238135 365.65891075134" label="-133.55182392018 388.87752146466 89.84374237061 18.10937309265">
+        <lineSegment points="-84.94745772819 402.19467735291 -84.31244741395 375.65604928799" />
       </edge>
-      <edge id="16" s="String-1.0.0" t="UpperCase-1.0.0" at="100.12054256633 271.85551643372" label="203.15303481587 339.47263860243 89.84374237061 18.10937309265">
-        <lineSegment points="323.40078827921 357.00275611877 109.46419290354 275.4186889493" />
+      <edge id="16" s="LatestPrereleaseVersion-1.0.0" t="UpperCase-1.0.0" at="-4.1509721049 233.43365478516" label="64.85241701444 322.17525010997 89.84374237061 18.10937309265">
+        <lineSegment points="217.66885713731 383.88386535645 4.1250056204 239.04687068073" />
       </edge>
-      <edge id="17" s="Main-1.0.0" t="Duplicate-1.0.0" at="352.40233729557 525.33554458618" label="304.76946507419 559.90637225203 89.84374237061 18.10937309265">
-        <lineSegment points="354.60693285934 584.33481216431 352.77574160645 535.3285706154" />
+      <edge id="17" s="String-1.0.0" t="UpperCase-1.0.0" at="-6.67749212885 213.32428169251" label="92.57825669313 180.53911142652 89.84374237061 18.10937309265">
+        <lineSegment points="91.71660632999 132.87751960754 1.06429769757 206.99461422228" />
       </edge>
-      <edge id="18" s="DependNotExist-1.0.0" t="String-0.0.1" at="885.80419491172 374.73223686218" label="836.45115733689 407.52567751784 89.84374237061 18.10937309265">
-        <lineSegment points="885.07322503224 430.37252616882 885.67283204193 384.73137401478" />
+      <edge id="18" s="DependOfWrongnaming-1.0.0" t="WrongNamingRule-1.0.0" at="478.39920954717 172.49669265747" label="429.48273509025 195.07909492202 89.84374237061 18.10937309265">
+        <lineSegment points="478.40761315967 207.66054153442 478.40159939144 182.4966923719" />
       </edge>
-      <edge id="19" s="String-3.0.0" t="lowercase-2.0.0" at="710.23653246812 373.26119613648" label="661.7381704896 402.13610458497 89.84374237061 18.10937309265">
-        <lineSegment points="710.93674713155 420.95336914063 710.38333626471 383.26011851068" />
+      <edge id="19" s="Main-1.0.0" t="Duplicate-1.0.0" at="103.23294186768 44.31380271912" label="151.60292496816 18.0960276532 89.84374237061 18.10937309265">
+        <lineSegment points="102.33995922174 1.96034812927 103.02214814646 34.31602466561" />
+      </edge>
+      <edge id="20" s="DependNotExist-1.0.0" t="String-0.0.1" at="647.07688055141 154.81685638428" label="695.99326712121 128.63966437831 89.84374237061 18.10937309265">
+        <lineSegment points="647.06800654252 112.4633102417 647.07478532929 144.81685660378" />
+      </edge>
+      <edge id="21" s="String-3.0.0" t="lowercase-2.0.0" at="652.82664114571 -68.14944648743" label="603.65428305701 -38.39485901371 89.84374237061 18.10937309265">
+        <lineSegment points="652.40980108159 -18.60626411438 652.74250740805 -58.14980041798" />
       </edge>
     </edges>
   </graph>

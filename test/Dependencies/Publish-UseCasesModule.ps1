@@ -60,6 +60,8 @@ Note : 'string' (in lowercase) exist into PSGallery.
 
 'LatestStableVersion'     1.0.0-beta (standalone)
 'LatestStableVersion'     2.0.0 (standalone)
+
+'DependencyRequiresAcceptanceOfTheLlicense' 1.0.0 module depend on 'modulerequirelicenseacceptance'
 #>
 
 $script:OrderedModuleNames = @(
@@ -90,6 +92,9 @@ $script:OrderedModuleNames = @(
     New-ModulePublication 'LatestPrereleaseVersion' '2.0.0' -AllowPrerelease
     New-ModulePublication 'LatestStableVersion' '1.0.0' -AllowPrerelease
     New-ModulePublication 'LatestStableVersion' '2.0.0'
+    #The 'ModuleRequireLicenseAcceptance' must be present in local
+    New-ModulePublication 'DependencyRequiresAcceptanceOfTheLicense' '1.0.0'
+    #Then we add the following packages 'modulerequirelicenseacceptance.2.0.0.nupkg'
 )
 
 Function Publish-UseCasesModule {
@@ -113,18 +118,20 @@ Function Publish-UseCasesModule {
         } else {
             $ModulePath = "$Source/$($Parameters.Name)/$($Parameters.RequiredVersion)"
         }
+        Write-Debug "Parameters=$($Parameters.GetEnumerator()|Out-String -Width 512)"
         try {
-            Find-Module @Parameters  -Repository $CloudsmithRepositoryName -EA Stop > $null
+            Find-Module @Parameters -EA Stop > $null
             Write-Warning "Found"
             $isPublished = $true
         } catch {
-            Write-Warning "Not Found"
+            Write-Warning "Not Found: $_"
             $isPublished = $false
         }
         if ($isPublished -eq $false) {
             Write-Warning "Publish"
             try {
-                Publish-Module -Repository $CloudsmithRepositoryName -Name $ModulePath -Force  -NuGetApiKey $ApiKey
+                Write-Debug "Publish-Module -Repository $CloudsmithRepositoryName -Name $ModulePath -Force  -NuGetApiKey $ApiKey"
+                Publish-Module -Repository $CloudsmithRepositoryName -Name $ModulePath -Force  -NuGetApiKey $ApiKey -AllowPrerelease
                 Start-Sleep -Seconds 3
                 #Publish-Module check the dependencies manifests from local computer
             } catch [System.InvalidOperationException] {
@@ -150,4 +157,5 @@ Publish-UseCasesModule
 
 nuget.exe push -Source $CloudsmithUriLocation "$PSScriptRoot/Gallery/String.1.1.0-alpha.nupkg" $ApiKey
 nuget.exe push -Source $CloudsmithUriLocation "$PSScriptRoot/Gallery/String.1.1.0-gamma.nupkg" $ApiKey
+nuget.exe push -Source $CloudsmithUriLocation "$PSScriptRoot/Gallery/modulerequirelicenseacceptance.2.0.0.nupkg" $ApiKey
 

@@ -2,6 +2,10 @@
 
 ## Release Notes
 
+### v6.1
+
+* Fix (#59). Modules requesting acceptance of a license triggered an exception. Now licenses are always accepted.
+
 ### v6.0
 
 * Add support for the modules dependencies. Module paths to be saved in cache are unique.

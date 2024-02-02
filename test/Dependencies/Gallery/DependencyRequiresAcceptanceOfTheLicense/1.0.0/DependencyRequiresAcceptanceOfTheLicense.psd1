@@ -1,31 +1,36 @@
+﻿#
+# Manifeste de module pour le module « DependencyRequiresAcceptanceOfTheLicense »
 #
-# Manifeste de module pour le module «PSModuleCache»
+# Généré par : Laurent
 #
-# Généré par :
-#
-# Généré le : 26/07/2022
+# Généré le : 24/01/2024
 #
 
 @{
 
-    RootModule           = 'PSModuleCache'
+    # Module de script ou fichier de module binaire associé à ce manifeste
+    RootModule        = 'DependencyRequiresAcceptanceOfTheLicense'
 
-    ModuleVersion        = '2.1'
+    # Numéro de version de ce module.
+    ModuleVersion     = '1.0.0'
 
-    CompatiblePSEditions = @()
+    # Éditions PS prises en charge
+    # CompatiblePSEditions = @()
 
     # ID utilisé pour identifier de manière unique ce module
-    GUID                 = '2708ca9f-db54-4ecf-bffa-71ae8d404c49'
+    GUID              = '34c6bccb-a08c-4dbb-a83c-0422ee9b55d8'
 
-    Author               = ''
+    # Auteur de ce module
+    Author            = 'Laurent'
 
-    CompanyName          = ''
+    # Société ou fournisseur de ce module
+    CompanyName       = 'Inconnu'
 
     # Déclaration de copyright pour ce module
-    Copyright            = ''
+    Copyright         = 'CopyLeft.'
 
     # Description de la fonctionnalité fournie par ce module
-    Description          = ''
+    Description       = 'Module DependencyRequiresAcceptanceOfTheLicense'
 
     # Version minimale du moteur Windows PowerShell requise par ce module
     # PowerShellVersion = ''
@@ -39,19 +44,19 @@
     # Version minimale du Microsoft .NET Framework requise par ce module. Cette configuration requise est valide uniquement pour PowerShell Desktop Edition.
     # DotNetFrameworkVersion = ''
 
-    # Version minimale de l'environnement CLR (Common Language Runtime) requise par ce module. Cette configuration requise est valide uniquement pour PowerShell Desktop Edition.
+    # Version minimale de l’environnement CLR (Common Language Runtime) requise par ce module. Cette configuration requise est valide uniquement pour PowerShell Desktop Edition.
     # CLRVersion = ''
 
     # Architecture de processeur (None, X86, Amd64) requise par ce module
     # ProcessorArchitecture = ''
 
     # Modules qui doivent être importés dans l'environnement global préalablement à l'importation de ce module
-    # RequiredModules = @()
+    RequiredModules = @( @{ ModuleName = 'modulerequirelicenseacceptance'; RequiredVersion = '2.0'; Guid = '8dba4e13-19fd-41b5-8840-246e2f2b30c7' } )
 
     # Assemblys qui doivent être chargés préalablement à l'importation de ce module
     # RequiredAssemblies = @()
 
-    # Fichiers de script (.ps1) exécutés dans l'environnement de l'appelant préalablement à l'importation de ce module
+    # Fichiers de script (.ps1) exécutés dans l’environnement de l’appelant préalablement à l’importation de ce module
     # ScriptsToProcess = @()
 
     # Fichiers de types (.ps1xml) à charger lors de l'importation de ce module
@@ -63,30 +68,17 @@
     # Modules à importer en tant que modules imbriqués du module spécifié dans RootModule/ModuleToProcess
     # NestedModules = @()
 
-    # Fonctions à exporter à partir de ce module. Pour de meilleures performances, n'utilisez pas de caractères génériques et ne supprimez pas l'entrée. Utilisez un tableau vide si vous n'avez aucune fonction à exporter.
-    FunctionsToExport    = @(
-        'New-ModuleCacheParameter',
-        'Get-ModuleCache',
-        'Get-ModuleSavePath',
-        'New-ModuleSavePath',
-        'Save-ModuleCache',
-        'ConvertTo-YamlLineBreak'
-    )
+    # Fonctions à exporter à partir de ce module. Pour de meilleures performances, n’utilisez pas de caractères génériques et ne supprimez pas l’entrée. Utilisez un tableau vide si vous n’avez aucune fonction à exporter.
+    FunctionsToExport = '*'
 
-    # Applets de commande à exporter à partir de ce module. Pour de meilleures performances, n'utilisez pas de caractères génériques et ne supprimez pas l'entrée. Utilisez un tableau vide si vous n'avez aucune applet de commande à exporter.
-    CmdletsToExport      = @()
+    # Applets de commande à exporter à partir de ce module. Pour de meilleures performances, n’utilisez pas de caractères génériques et ne supprimez pas l’entrée. Utilisez un tableau vide si vous n’avez aucune applet de commande à exporter.
+    CmdletsToExport   = '*'
 
     # Variables à exporter à partir de ce module
-    VariablesToExport    = @(
-        'CacheFileName',
-        'RepositoryNames',
-        'PsWindowsModulePath',
-        'PsWindowsCoreModulePath',
-        'PsLinuxCoreModulePath'
-    )
+    VariablesToExport = '*'
 
-    # Alias à exporter à partir de ce module. Pour de meilleures performances, n'utilisez pas de caractères génériques et ne supprimez pas l'entrée. Utilisez un tableau vide si vous n'avez aucun alias à exporter.
-    #AliasesToExport = @()
+    # Alias à exporter à partir de ce module. Pour de meilleures performances, n’utilisez pas de caractères génériques et ne supprimez pas l’entrée. Utilisez un tableau vide si vous n’avez aucun alias à exporter.
+    AliasesToExport   = '*'
 
     # Ressources DSC à exporter depuis ce module
     # DscResourcesToExport = @()
@@ -98,12 +90,12 @@
     # FileList = @()
 
     # Données privées à transmettre au module spécifié dans RootModule/ModuleToProcess. Cela peut également inclure une table de hachage PSData avec des métadonnées de modules supplémentaires utilisées par PowerShell.
-    PrivateData          = @{
+    PrivateData       = @{
 
         PSData = @{
 
             # Des balises ont été appliquées à ce module. Elles facilitent la découverte des modules dans les galeries en ligne.
-            Tags = @('PSEdition_Desktop', 'PSEdition_Core')
+            # Tags = @()
 
             # URL vers la licence de ce module.
             # LicenseUri = ''
@@ -116,15 +108,18 @@
 
             # Propriété ReleaseNotes de ce module
             # ReleaseNotes = ''
+            ExternalModuleDependencies = @()
 
         } # Fin de la table de hachage PSData
 
     } # Fin de la table de hachage PrivateData
 
+
     # URI HelpInfo de ce module
     # HelpInfoURI = ''
 
-    # Le préfixe par défaut des commandes a été exporté à partir de ce module. Remplacez le préfixe par défaut à l'aide d'Import-Module -Prefix.
+    # Le préfixe par défaut des commandes a été exporté à partir de ce module. Remplacez le préfixe par défaut à l’aide d’Import-Module -Prefix.
     # DefaultCommandPrefix = ''
 
 }
+

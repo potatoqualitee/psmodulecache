@@ -1,0 +1,2 @@
+#DependencyRequiresAcceptanceOfTheLicense.psm1
+# Empty file
