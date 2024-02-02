@@ -1,6 +1,5 @@
 #SaveModuleCache.Tests.ps1
 #Records the information of the requested modules (step 1) then saves them (step 2).
-return
 Import-Module "$PSScriptRoot/../PSModuleCache.psd1" -Force
 
 #Skip :  $ModulesCache.ModuleSavePaths references the paths of the local workstation. 'We don't mix up apples and pears'.
@@ -64,6 +63,65 @@ Describe 'Github Action "psmodulecache" module. When there is no error.' -Skip:(
             $M.Version | Should -Be '1.1.0'
             $M.PrivateData.PSData.Prerelease | Should -Be 'beta'
             $M.RepositorySourceLocation.AbsoluteUri | Should -Be 'https://nuget.cloudsmith.io/psmodulecache/test/v2/'
+        }
+
+        It "We accept all required license automatically (psmodulecache)." {
+            $params = @{
+                Modules   = 'PSModuleCache\modulerequirelicenseacceptance:2.0'
+                Shells    = 'powershell,pwsh';
+                Updatable = $false
+            }
+            $ActionParameters = New-ModuleCacheParameter @params
+            $ModulesCache = Get-ModuleCache $ActionParameters
+
+            $ModulesCache.ModuleCacheInformations | Should -Not -Be $null
+            $null = $ModulesCache | Export-Clixml -Path (Join-Path $home -ChildPath $CacheFileName)
+
+            Save-ModuleCache
+            Remove-Item -Path (Join-Path $home -ChildPath $CacheFileName)
+
+            $M = Import-Module modulerequirelicenseacceptance -PassThru
+            $M.Version | Should -Be '2.0'
+            $M.PrivateData.PSData.RequireLicenseAcceptance | Should -Be $true
+        }
+
+        It "We accept all required license automatically (psgallery)." -Skip:($PSVersionTable.PSEdition -eq 'Core') {
+            $params = @{
+                Modules   = 'SqlChangeAutomation'
+                Shells    = 'powershell';
+                Updatable = $false
+            }
+            $ActionParameters = New-ModuleCacheParameter @params
+            $ModulesCache = Get-ModuleCache $ActionParameters
+
+            $ModulesCache.ModuleCacheInformations | Should -Not -Be $null
+            $null = $ModulesCache | Export-Clixml -Path (Join-Path $home -ChildPath $CacheFileName)
+
+            Save-ModuleCache
+            Remove-Item -Path (Join-Path $home -ChildPath $CacheFileName)
+
+            $M = Import-Module SqlChangeAutomation -PassThru
+            $M.PrivateData.PSData.RequireLicenseAcceptance | Should -Be $true
+        }
+
+        It "All license required by dependencies are accepted automatically." {
+            $params = @{
+                Modules   = 'PSModuleCache\DependencyRequiresAcceptanceOfTheLicense'
+                Shells    = 'powershell,pwsh';
+                Updatable = $false
+            }
+            $ActionParameters = New-ModuleCacheParameter @params
+            $ModulesCache = Get-ModuleCache $ActionParameters
+
+            $ModulesCache.ModuleCacheInformations | Should -Not -Be $null
+            $null = $ModulesCache | Export-Clixml -Path (Join-Path $home -ChildPath $CacheFileName)
+
+            Save-ModuleCache
+            Remove-Item -Path (Join-Path $home -ChildPath $CacheFileName)
+
+            Import-Module modulerequirelicenseacceptance
+            $M = Import-Module DependencyRequiresAcceptanceOfTheLicense -PassThru
+            $M.Version | Should -Be '1.0.0'
         }
     }
 }
