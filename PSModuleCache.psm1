@@ -25,7 +25,7 @@ Enum CacheType{
 
 Import-LocalizedData -BindingVariable PSModuleCacheResources -FileName PSModuleCache.Resources.psd1 -ErrorAction Stop
 
-New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '6.0'
+New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '6.1'
 
 New-Variable -Name Delimiter -Option ReadOnly -Scope Script -Value '-'
 
@@ -1092,7 +1092,7 @@ function Save-ModuleCache {
          # If the version is different then Save-Module completes the contents of the directory with the new version.
          Write-Debug "Save-Module -Path $ModulePath -name $($ModuleCacheInformation.Name) -version $($ModuleCacheInformation.Version) -allow $($ModuleCacheInformation.Allowprerelease)  -repo $($ModuleCacheInformation.Repository)"
 
-         Save-Module @Parameters -Path $ModulePath -Force -ErrorAction Stop
+         Save-Module @Parameters -Path $ModulePath -ErrorAction Stop -AcceptLicense -Force 
 
          #Once the module and its dependencies are written to disk, we check the naming convention.
          #Changing $WarningPreference in the caller's scope has no impact on this module's scope.
