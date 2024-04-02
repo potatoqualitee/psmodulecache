@@ -59,7 +59,7 @@ runs:
 
     - name: Run module cacher action
       id: cacher
-      uses: actions/cache@v3.3.2
+      uses: actions/cache@v4.0.1
       with:
         key: ${{ steps.psoutput.outputs.keygen }}
         path: |
