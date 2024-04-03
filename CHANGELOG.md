@@ -2,6 +2,10 @@
 
 ## Release Notes
 
+### v6.2
+
+* Bump actions/cache to v4. Node 16 is deprecated, v4 uses Node 20. Thanks to Frode Flaten (fflaten).
+
 ### v6.1
 
 * Fix (#59). Modules requesting acceptance of a license triggered an exception. Now licenses are always accepted.
