@@ -124,7 +124,7 @@ Describe 'Github Action "psmodulecache" module. When there is no error.' -Tag 'D
             $Result[1].MainModule | Should -Be 'psmodulecache-Duplicate-1.0.0'
 
             $Result[2].Name | Should -MatchExactly 'string'
-            $Result[2].Version | Should -Be '1.1.3'
+            $Result[2].Version | Should -Be '1.1.5'
             $Result[2].MainModule | Should -Be $null
 
             $Result[3].Name | Should -Be 'UpperCase'
