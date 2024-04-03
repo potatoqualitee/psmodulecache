@@ -105,7 +105,7 @@ Describe 'Github Action "psmodulecache" module. When there is no error.' -Tag 'D
 
          $ModulesCache.ModuleCacheInformations[1].Name | Should -Be 'Duplicate'
          $ModulesCache.ModuleCacheInformations[0].Name | Should -MatchExactly 'string'
-         $ModulesCache.ModuleCacheInformations[0].Version | Should -Be '1.1.3'
+         $ModulesCache.ModuleCacheInformations[0].Version | Should -Be '1.1.5'
          $ModulesCache.ModuleCacheInformations[0].Repository | Should -Be 'PSGallery'
 
          $ModulesCache.ModuleCacheInformations[0].Dependencies.Count | Should -Be 0
@@ -156,7 +156,7 @@ Describe 'Github Action "psmodulecache" module. When there is no error.' -Tag 'D
          $ModulesCache.ModuleCacheInformations[1].Dependencies.Count | Should -Be ( (105 - 27) - 1)
 
          <#
-         todo controle dans inScopeModule
+         todo control inside inScopeModule
          $result = &$mod { Remove-ModulePathDuplication  $ModulesCache.ModuleCacheInformations }
          $h = $result | Sort-Object Name | Group-Object Name -AsHashTable
          $h.'Az.Storage'
