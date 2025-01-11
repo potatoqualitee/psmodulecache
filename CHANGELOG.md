@@ -2,6 +2,16 @@
 
 ## Release Notes
 
+### v6.2.1
+Upgrade to actions/cache v4.2.0. Thanks to David Gardiner (flcdrg)
+
+
+Additional notes for Ubuntu users :
+
+ubuntu-latest pipelines will use ubuntu-24.04 soon. For more details, see actions/runner-images#10636
+
+See to : https://github.com/actions/runner-images/blob/ubuntu24/20250105.1/images/ubuntu/Ubuntu2404-Readme.md
+
 ### v6.2
 
 * Bump actions/cache to v4. Node 16 is deprecated, v4 uses Node 20. Thanks to Frode Flaten (fflaten).
