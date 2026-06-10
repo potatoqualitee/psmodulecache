@@ -25,7 +25,7 @@ Enum CacheType{
 
 Import-LocalizedData -BindingVariable PSModuleCacheResources -FileName PSModuleCache.Resources.psd1 -ErrorAction Stop
 
-New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '6.1'
+New-Variable -Name ActionVersion -Option ReadOnly -Scope Script -Value '6.3'
 
 New-Variable -Name Delimiter -Option ReadOnly -Scope Script -Value '-'
 
