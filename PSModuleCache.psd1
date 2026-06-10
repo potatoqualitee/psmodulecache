@@ -10,7 +10,7 @@
 
     RootModule           = 'PSModuleCache'
 
-    ModuleVersion        = '2.1'
+    ModuleVersion        = '2.2'
 
     CompatiblePSEditions = @()
 
