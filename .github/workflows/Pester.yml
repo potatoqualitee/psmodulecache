@@ -19,7 +19,7 @@ jobs:
   test-posh:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4.1.0
+      - uses: actions/checkout@v6.0.3
       - name: Run Pester tests (PowerShell)
         shell: powershell
         run: |
