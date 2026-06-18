@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/powershell:ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6.0.3
       - run: |
           Get-ChildItem Env: | Sort-Object Name | Format-Table -Wrap -AutoSize
         shell: pwsh
